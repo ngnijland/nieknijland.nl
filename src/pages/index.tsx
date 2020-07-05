@@ -71,6 +71,25 @@ const AvoidWrap = styled.span`
   display: block;
 `
 
+const Tag = styled.span`
+  background-color: #8b9862;
+  background-image: linear-gradient(
+    90deg,
+    #d12c1f ${(100 / 6) * 1}%,
+    #f18f35 ${(100 / 6) * 1}%,
+    #f18f35 ${(100 / 6) * 2}%,
+    #fced4f ${(100 / 6) * 2}%,
+    #fced4f ${(100 / 6) * 3}%,
+    #367e33 ${(100 / 6) * 3}%,
+    #367e33 ${(100 / 6) * 4}%,
+    #1951f5 ${(100 / 6) * 4}%,
+    #1951f5 ${(100 / 6) * 5}%,
+    #6c1a84 ${(100 / 6) * 5}%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+`
+
 const LinkWrapper = styled.div`
   position: relative;
   top: -0.125rem;
@@ -140,7 +159,9 @@ function IndexPage({ data }: IndexPageProps): JSX.Element {
       <Layout>
         <TitleWrapper>
           <Title>
-            <AvoidWrap>Hi, I&#39;m &#60;Niek/&#62;</AvoidWrap>
+            <AvoidWrap>
+              Hi, I&#39;m <Tag>&#60;</Tag>Niek<Tag>/&#62;</Tag>
+            </AvoidWrap>
             <AvoidWrap>a web developer and</AvoidWrap>
             <AvoidWrap>travel enthousiast based</AvoidWrap>
             <AvoidWrap>in The Netherlands.</AvoidWrap>
