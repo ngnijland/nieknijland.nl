@@ -7,12 +7,23 @@ export interface LayoutProps {
 
 const Grid = styled.div`
   display: grid;
-  grid-template-columns: repeat(4, [col-start] 1fr);
   grid-gap: 0 0.625rem;
+  grid-template-columns: repeat(4, [col-start] 1fr);
   margin: 0 2.25rem;
 
+  @media (min-width: 600px) {
+    grid-gap: 0 1rem;
+    grid-template-columns: repeat(8, [col-start] 1fr);
+    margin: 0 5rem;
+  }
+
+  @media (min-width: 1200px) {
+    grid-template-columns: repeat(12, [col-start] 1fr);
+    margin: 0 8.75rem;
+  }
+
   > * {
-    grid-column: col-start / span 4;
+    grid-column: col-start / -1;
   }
 `
 
