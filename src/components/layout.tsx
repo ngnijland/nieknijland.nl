@@ -8,7 +8,7 @@ export interface LayoutProps {
 const Grid = styled.div`
   display: grid;
   grid-template-columns: repeat(4, [col-start] 1fr);
-  grid-gap: 0.625rem;
+  grid-gap: 0 0.625rem;
   margin: 0 2.25rem;
 
   > * {
@@ -16,8 +16,9 @@ const Grid = styled.div`
   }
 `
 
-function Layout({ children }: LayoutProps): JSX.Element {
-  return <Grid>{children}</Grid>
+function Layout(props: LayoutProps): JSX.Element {
+  const { children } = props
+  return <Grid {...props}>{children}</Grid>
 }
 
 export default Layout

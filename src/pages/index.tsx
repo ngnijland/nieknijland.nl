@@ -3,8 +3,11 @@ import { graphql } from "gatsby"
 import Img, { GatsbyImageProps } from "gatsby-image"
 import styled from "styled-components"
 
-import Layout from "../components/Layout"
+import GridLayout from "../components/Layout"
+import LinkedInIcon from "../components/LinkedInIcon"
 import SEO from "../components/seo"
+import TwitterIcon from "../components/TwitterIcon"
+import { vh } from "../utils"
 
 export interface IndexPageProps {
   data: {
@@ -15,17 +18,40 @@ export interface IndexPageProps {
 }
 
 const Header = styled.header`
-  height: 100vh;
+  height: ${vh(100)};
 `
 
-const TitleWrapper = styled.div`
-  margin-top: 16vh;
+const Layout = styled(GridLayout)`
+  padding: ${vh(12)} 0;
 `
 
 const Title = styled.h1`
   margin: 0;
 
   font-size: 1.625rem;
+`
+
+const LinkWrapper = styled.div`
+  position: relative;
+  top: -0.125rem;
+  display: flex;
+  margin: 1.75rem 0 1.75rem -0.625rem;
+`
+
+const Link = styled.a`
+  display: inline-block;
+  width: 2.75rem;
+  height: 2.75rem;
+
+  box-sizing: border-box;
+`
+
+const TwitterLink = styled(Link)`
+  padding: 0.125rem;
+`
+
+const LinkedInLink = styled(Link)`
+  padding: 0.6875rem;
 `
 
 const StyledImg = styled(Img)`
@@ -39,16 +65,26 @@ function IndexPage({ data }: IndexPageProps): JSX.Element {
     <Header>
       <SEO title="Home" />
       <Layout>
-        <TitleWrapper>
+        <div>
           <Title>
             Hi, I&#39;m &#60;Niek/&#62; a web developer and travel enthousiast
             based in The Netherlands.
           </Title>
-          <div>
-            <a href="https://twitter.com/nieknijland">T</a>
-            <a href="https://www.linkedin.com/in/nieknijland/">L</a>
-          </div>
-        </TitleWrapper>
+          <LinkWrapper>
+            <TwitterLink
+              href="https://twitter.com/nieknijland"
+              aria-label="Twitter"
+            >
+              <TwitterIcon />
+            </TwitterLink>
+            <LinkedInLink
+              href="https://www.linkedin.com/in/nieknijland/"
+              aria-label="LinkedIn"
+            >
+              <LinkedInIcon />
+            </LinkedInLink>
+          </LinkWrapper>
+        </div>
         <StyledImg fluid={data.heroImage.childImageSharp.fluid} />
       </Layout>
     </Header>
