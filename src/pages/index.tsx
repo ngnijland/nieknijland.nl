@@ -3,10 +3,10 @@ import { graphql } from "gatsby"
 import Img, { GatsbyImageProps } from "gatsby-image"
 import styled from "styled-components"
 
-import GridLayout from "../components/Layout"
-import LinkedInIcon from "../components/LinkedInIcon"
+import GridLayout from "../components/layout"
+import LinkedInIcon from "../components/linkedinIcon"
 import SEO from "../components/seo"
-import TwitterIcon from "../components/TwitterIcon"
+import TwitterIcon from "../components/twitterIcon"
 import { vh } from "../utils"
 
 export interface IndexPageProps {
