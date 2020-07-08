@@ -7,7 +7,6 @@ import GridLayout from "../components/layout"
 import LinkedInIcon from "../components/linkedinIcon"
 import SEO from "../components/seo"
 import TwitterIcon from "../components/twitterIcon"
-import { vh } from "../utils"
 
 export interface IndexPageProps {
   data: {
@@ -18,14 +17,14 @@ export interface IndexPageProps {
 }
 
 const Header = styled.header`
-  height: ${vh(100)};
+  height: 100%;
 `
 
 const Layout = styled(GridLayout)`
-  padding: ${vh(12)} 0;
+  padding: 12vh 0;
 
   @media (min-width: 1000px) {
-    padding: ${vh(25)} 0;
+    padding: 25vh 0;
   }
 `
 
