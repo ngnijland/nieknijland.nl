@@ -180,7 +180,11 @@ function IndexPage({ data }: IndexPageProps): JSX.Element {
             </LinkedInLink>
           </LinkWrapper>
         </TitleWrapper>
-        <StyledImg fluid={data.heroImage.childImageSharp.fluid} />
+        <StyledImg
+          fadeIn={false}
+          fluid={data.heroImage.childImageSharp.fluid}
+          alt="Portrait picture of me"
+        />
       </Layout>
     </Header>
   )
