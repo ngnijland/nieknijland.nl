@@ -9,7 +9,7 @@ const Grid = styled.div`
   display: grid;
   grid-gap: 0 0.625rem;
   grid-template-columns: repeat(4, [col-start] 1fr);
-  max-width: 1920px;
+  max-width: 1640px;
   margin: 0 2.25rem;
 
   @media (min-width: 600px) {
