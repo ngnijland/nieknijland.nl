@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react"
 
 const getWidth = (): number | undefined => {
-  if (!window) {
+  if (typeof window === "undefined") {
     return undefined
   }
 
@@ -12,6 +12,7 @@ const getWidth = (): number | undefined => {
   )
 }
 
+// TODO: fix window is undefined error
 export default function (): number | undefined {
   const [width, setWidth] = useState(getWidth())
 
