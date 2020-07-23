@@ -1,15 +1,15 @@
 import React from "react"
 import { graphql, useStaticQuery } from "gatsby"
-import Img from "gatsby-image"
 import styled from "styled-components"
 
-import GridLayout from "../components/layout"
-import LinkedInIcon from "../components/linkedinIcon"
-import SEO from "../components/seo"
-import TwitterIcon from "../components/twitterIcon"
+import GridLayout from "./layout"
+import LinkedInIcon from "./linkedinIcon"
+import SEO from "./seo"
+import TwitterIcon from "./twitterIcon"
+import Image from "./image"
 
 const Header = styled.header`
-  height: 100%;
+  min-height: 100%;
 `
 
 const Layout = styled(GridLayout)`
@@ -128,10 +128,8 @@ const LinkedInLink = styled(Link)`
   }
 `
 
-const StyledImg = styled(Img)`
+const StyledImage = styled(Image)`
   grid-column: 1 / span 3;
-
-  border-radius: 1rem;
 
   @media (min-width: 1000px) {
     grid-column: span 3 / -1;
@@ -146,7 +144,7 @@ const StyledImg = styled(Img)`
 function Hero(): JSX.Element {
   const data = useStaticQuery(graphql`
     query {
-      heroImage: file(relativePath: { eq: "nieknijland.jpg" }) {
+      image: file(relativePath: { eq: "nieknijland.jpg" }) {
         childImageSharp {
           fluid(maxWidth: 750) {
             ...GatsbyImageSharpFluid
@@ -184,9 +182,8 @@ function Hero(): JSX.Element {
             </LinkedInLink>
           </LinkWrapper>
         </TitleWrapper>
-        <StyledImg
-          fadeIn={false}
-          fluid={data.heroImage.childImageSharp.fluid}
+        <StyledImage
+          fluid={data.image.childImageSharp.fluid}
           alt="Portrait picture of me"
         />
       </Layout>
