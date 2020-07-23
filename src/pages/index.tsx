@@ -12,6 +12,9 @@ const Main = styled.main`
 `
 
 const HomeImage1 = styled(Image)`
+   {
+    /* TODO: specify row for every image? */
+  }
   grid-column: 1 / span 3;
 
   @media (min-width: 600px) {

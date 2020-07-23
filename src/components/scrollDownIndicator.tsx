@@ -3,6 +3,10 @@ import styled from "styled-components"
 
 import ArrowDownIcon from "../components/arrowDownIcon"
 
+{
+  /* TODO: fix for viewport of 600px and up */
+}
+
 const Header = styled.header`
   position: relative;
 
@@ -16,7 +20,12 @@ const Header = styled.header`
 
 const Title = styled.h1`
   padding: 1rem 0;
-  margin: 0 0 1rem;
+   {
+    /* TODO: presses content down on mobile viewport and doesn't vertically center
+     * - Maybe no padding and before line on mobile?
+    */
+  }
+  margin: 0 0 1.125rem;
 
   font-size: 0.875rem;
   font-weight: normal;
@@ -35,6 +44,9 @@ const Title = styled.h1`
     content: "";
 
     position: absolute;
+     {
+      /* TODO: should be different for different writing modes */
+    }
     right: 0.4375rem;
 
     display: block;
