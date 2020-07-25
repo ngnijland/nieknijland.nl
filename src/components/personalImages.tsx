@@ -6,7 +6,7 @@ import Image, { CaptionPosition } from "../components/image"
 import Layout from "../components/layout"
 import ScrollDownIndicator from "../components/scrollDownIndicator"
 
-const HomeImage1 = styled(Image)`
+const Image1 = styled(Image)`
   grid-column: 1 / span 3;
 
   @media (min-width: 600px) {
@@ -22,7 +22,7 @@ const HomeImage1 = styled(Image)`
   }
 `
 
-const HomeImage2 = styled(Image)`
+const Image2 = styled(Image)`
   grid-column: 1 / span 4;
 
   @media (min-width: 600px) {
@@ -38,7 +38,7 @@ const HomeImage2 = styled(Image)`
   }
 `
 
-const HomeImage3 = styled(Image)`
+const Image3 = styled(Image)`
   grid-column: 1 / span 4;
 
   @media (min-width: 600px) {
@@ -60,27 +60,21 @@ const HomeImage3 = styled(Image)`
 function PersonalImages(): JSX.Element {
   const data = useStaticQuery(graphql`
     query {
-      homepageTravelImage1: file(
-        relativePath: { eq: "homepage-travel-image-1.jpeg" }
-      ) {
+      image1: file(relativePath: { eq: "homepage-travel-image-1.jpeg" }) {
         childImageSharp {
           fluid(maxWidth: 750) {
             ...GatsbyImageSharpFluid
           }
         }
       }
-      homepageTravelImage2: file(
-        relativePath: { eq: "homepage-travel-image-2.jpeg" }
-      ) {
+      image2: file(relativePath: { eq: "homepage-travel-image-2.jpeg" }) {
         childImageSharp {
           fluid(maxWidth: 600) {
             ...GatsbyImageSharpFluid
           }
         }
       }
-      homepageTravelImage3: file(
-        relativePath: { eq: "homepage-travel-image-3.jpeg" }
-      ) {
+      image3: file(relativePath: { eq: "homepage-travel-image-3.jpeg" }) {
         childImageSharp {
           fluid(maxWidth: 900) {
             ...GatsbyImageSharpFluid
@@ -93,21 +87,21 @@ function PersonalImages(): JSX.Element {
   return (
     <Layout verticalGap>
       <ScrollDownIndicator />
-      <HomeImage1
+      <Image1
         alt="Rice fields between mountains"
         caption="Rice fields in Vietnam"
         captionPosition={CaptionPosition.Top}
-        fluid={data.homepageTravelImage1.childImageSharp.fluid}
+        fluid={data.image1.childImageSharp.fluid}
       />
-      <HomeImage2
+      <Image2
         alt="Me standing on a big rock"
         caption="Joshua Tree National Park, California"
-        fluid={data.homepageTravelImage2.childImageSharp.fluid}
+        fluid={data.image2.childImageSharp.fluid}
       />
-      <HomeImage3
+      <Image3
         alt="Brice Canyon hoodoos"
         caption="Bryce Canyon National Park, Utah"
-        fluid={data.homepageTravelImage3.childImageSharp.fluid}
+        fluid={data.image3.childImageSharp.fluid}
       />
     </Layout>
   )
