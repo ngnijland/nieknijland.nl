@@ -3,15 +3,10 @@ import styled from "styled-components"
 
 import Hero from "../components/hero"
 import PersonalImages from "../components/personalImages"
+import Footer from "../components/footer"
 
 const Main = styled.main`
   position: relative;
-
-  margin-bottom: 5rem;
-
-  @media (min-width: 1200px) {
-    margin-bottom: 10rem;
-  }
 `
 
 function IndexPage(): JSX.Element {
@@ -21,6 +16,7 @@ function IndexPage(): JSX.Element {
       <Main>
         <PersonalImages />
       </Main>
+      <Footer />
     </>
   )
 }
