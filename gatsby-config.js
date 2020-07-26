@@ -1,8 +1,10 @@
 module.exports = {
   siteMetadata: {
-    title: `Niek Nijland portfolio`,
+    title: `Niek Nijland Portfolio`,
     description: `Info about Niek Nijland.`,
-    author: `@ngnijland`,
+    url: "https://www.nieknijland.nl",
+    image: "/images/og-image.png",
+    twitterUsername: "@nieknijland",
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
