@@ -151,8 +151,6 @@ const Icon = styled(ArrowDownIcon)`
 
   width: 1rem;
 
-  fill: #acacac;
-
   @media (min-width: 600px) {
     right: auto;
     left: 1.25rem;
