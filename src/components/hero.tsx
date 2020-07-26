@@ -6,6 +6,7 @@ import GithubIcon from "./githubIcon"
 import GridLayout from "./layout"
 import Image from "./image"
 import LinkedInIcon from "./linkedinIcon"
+import Tag from "./tag"
 import TwitterIcon from "./twitterIcon"
 
 const Header = styled.header`
@@ -44,25 +45,6 @@ const Title = styled.h1`
 
 const AvoidWrap = styled.span`
   display: block;
-`
-
-const Tag = styled.span`
-  background-color: #8b9862;
-  background-image: linear-gradient(
-    90deg,
-    #d12c1f ${(100 / 6) * 1}%,
-    #f18f35 ${(100 / 6) * 1}%,
-    #f18f35 ${(100 / 6) * 2}%,
-    #fced4f ${(100 / 6) * 2}%,
-    #fced4f ${(100 / 6) * 3}%,
-    #367e33 ${(100 / 6) * 3}%,
-    #367e33 ${(100 / 6) * 4}%,
-    #1951f5 ${(100 / 6) * 4}%,
-    #1951f5 ${(100 / 6) * 5}%,
-    #6c1a84 ${(100 / 6) * 5}%
-  );
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
 `
 
 const LinkWrapper = styled.div`

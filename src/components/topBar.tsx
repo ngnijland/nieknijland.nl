@@ -2,6 +2,8 @@ import React from "react"
 import { Link } from "gatsby"
 import styled from "styled-components"
 
+import Tag from "./tag"
+
 const Header = styled.header`
   display: flex;
   align-items: center;
@@ -32,25 +34,6 @@ const Title = styled.h1`
     margin-right: 2rem;
     margin-left: 2rem;
   }
-`
-
-const Tag = styled.span`
-  background-color: #8b9862;
-  background-image: linear-gradient(
-    90deg,
-    #d12c1f ${(100 / 6) * 1}%,
-    #f18f35 ${(100 / 6) * 1}%,
-    #f18f35 ${(100 / 6) * 2}%,
-    #fced4f ${(100 / 6) * 2}%,
-    #fced4f ${(100 / 6) * 3}%,
-    #367e33 ${(100 / 6) * 3}%,
-    #367e33 ${(100 / 6) * 4}%,
-    #1951f5 ${(100 / 6) * 4}%,
-    #1951f5 ${(100 / 6) * 5}%,
-    #6c1a84 ${(100 / 6) * 5}%
-  );
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
 `
 
 function TopBar(): JSX.Element {
