@@ -1,13 +1,18 @@
 import React from "react"
 import styled from "styled-components"
 
+import GithubIcon from "../components/githubIcon"
 import LinkedInIcon from "../components/linkedinIcon"
 import TwitterIcon from "../components/twitterIcon"
 
 const FooterComponent = styled.footer`
   display: flex;
   justify-content: center;
-  margin-bottom: 6rem;
+  padding-bottom: 4rem;
+
+  @media (min-width: 1200px) {
+    padding-bottom: 6rem;
+  }
 `
 
 const FooterWrapper = styled.div`
@@ -56,19 +61,14 @@ const Link = styled.a`
 
 const TwitterLink = styled(Link)`
   padding: 0.125rem;
+`
 
-  @media (min-width: 600px) {
-    padding: 0;
-    margin-right: 1rem;
-  }
+const GithubLink = styled(Link)`
+  padding: 0.5625rem;
 `
 
 const LinkedInLink = styled(Link)`
   padding: 0.6875rem;
-
-  @media (min-width: 600px) {
-    padding: 0.625rem;
-  }
 `
 
 function Footer(): JSX.Element {
@@ -83,6 +83,9 @@ function Footer(): JSX.Element {
           >
             <TwitterIcon />
           </TwitterLink>
+          <GithubLink href="https://github.com/ngnijland" aria-label="GitHub">
+            <GithubIcon />
+          </GithubLink>
           <LinkedInLink
             href="https://www.linkedin.com/in/nieknijland/"
             aria-label="LinkedIn"
