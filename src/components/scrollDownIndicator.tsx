@@ -57,8 +57,8 @@ const Title = styled.h1`
     width: 0.0625rem;
     height: 12.5rem;
 
-    background-color: #272727;
-    background-image: linear-gradient(0deg, #272727 0%, #fff 100%);
+    background-color: var(--text-color);
+    background-image: linear-gradient(0deg, var(--text-color) 0%, #fff 100%);
 
     @supports (writing-mode: sideways-lr) {
       right: 0.4375rem;
@@ -108,7 +108,7 @@ const Title = styled.h1`
 
       display: block;
       width: 0.0625rem;
-      background-color: #272727;
+      background-color: var(--text-color);
 
       @supports (writing-mode: sideways-lr) {
         right: 0.4375rem;

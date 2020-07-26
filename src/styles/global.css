@@ -1,3 +1,8 @@
+:root {
+  --text-color: #272727;
+  --text-color-secondary: #b5b5b5;
+}
+
 html,
 body,
 #___gatsby,
@@ -7,8 +12,8 @@ body,
 
 html {
   font-family: sans-serif;
-  color: #272727;
-  fill: #272727;
+  color: var(--text-color);
+  fill: var(--text-color);
 }
 
 body {
