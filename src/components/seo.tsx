@@ -1,16 +1,10 @@
-/**
- * SEO component that queries for data with
- *  Gatsby's useStaticQuery React hook
- *
- * See: https://www.gatsbyjs.org/docs/use-static-query/
- */
-
 import React from "react"
 import { Helmet } from "react-helmet"
 import { useStaticQuery, graphql } from "gatsby"
 
 export interface SEOProps {
   description?: string
+  image?: string
   lang?: string
   meta?: ConcatArray<
     | { name: string; content: string; property?: undefined }
@@ -21,6 +15,7 @@ export interface SEOProps {
 
 function SEO({
   description = "",
+  image,
   lang = "en",
   meta = [],
   title,
@@ -32,7 +27,9 @@ function SEO({
           siteMetadata {
             title
             description
-            author
+            image
+            url
+            twitterUsername
           }
         }
       }
@@ -40,6 +37,9 @@ function SEO({
   )
 
   const metaDescription = description || site.siteMetadata.description
+  const metaImage = `${site.siteMetadata.url}${
+    image || site.siteMetadata.image
+  }`
 
   return (
     <Helmet
@@ -54,12 +54,20 @@ function SEO({
           content: metaDescription,
         },
         {
+          name: "image",
+          content: metaImage,
+        },
+        {
           property: `og:title`,
           content: title,
         },
         {
           property: `og:description`,
           content: metaDescription,
+        },
+        {
+          property: "og:image",
+          content: metaImage,
         },
         {
           property: `og:type`,
@@ -71,7 +79,7 @@ function SEO({
         },
         {
           name: `twitter:creator`,
-          content: site.siteMetadata.author,
+          content: site.siteMetadata.twitterUsername,
         },
         {
           name: `twitter:title`,
@@ -80,6 +88,10 @@ function SEO({
         {
           name: `twitter:description`,
           content: metaDescription,
+        },
+        {
+          name: "twitter:image",
+          content: metaImage,
         },
       ].concat(meta)}
     />

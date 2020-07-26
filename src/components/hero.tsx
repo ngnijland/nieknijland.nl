@@ -6,7 +6,6 @@ import GithubIcon from "./githubIcon"
 import GridLayout from "./layout"
 import Image from "./image"
 import LinkedInIcon from "./linkedinIcon"
-import SEO from "./seo"
 import TwitterIcon from "./twitterIcon"
 
 const Header = styled.header`
@@ -150,7 +149,6 @@ function Hero(): JSX.Element {
 
   return (
     <Header>
-      <SEO title="Home" />
       <Layout>
         <TitleWrapper>
           <Title>
