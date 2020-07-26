@@ -27,7 +27,7 @@ const Figcaption = styled.figcaption<{ position: CaptionPosition }>`
   padding: 0 1rem;
 
   font-size: 0.875rem;
-  color: #b5b5b5;
+  color: var(--text-color-secondary);
   line-height: 1rem;
 `
 

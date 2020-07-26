@@ -28,7 +28,7 @@ const FooterWrapper = styled.div`
     height: 6rem;
     margin: 0.5rem 0 1rem;
 
-    background-color: #272727;
+    background-color: var(--text-color);
 
     @media (min-width: 600px) {
       height: 8rem;
