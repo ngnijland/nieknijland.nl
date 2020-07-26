@@ -5,6 +5,10 @@ import GithubIcon from "../components/githubIcon"
 import LinkedInIcon from "../components/linkedinIcon"
 import TwitterIcon from "../components/twitterIcon"
 
+export interface FooterProps {
+  title?: string
+}
+
 const FooterComponent = styled.footer`
   display: flex;
   justify-content: center;
@@ -26,7 +30,7 @@ const FooterWrapper = styled.div`
     display: block;
     width: 0.0625rem;
     height: 6rem;
-    margin: 0.5rem 0 1rem;
+    margin: 1rem 0;
 
     background-color: var(--text-color);
 
@@ -71,11 +75,11 @@ const LinkedInLink = styled(Link)`
   padding: 0.6875rem;
 `
 
-function Footer(): JSX.Element {
+function Footer({ title }: FooterProps): JSX.Element {
   return (
     <FooterComponent>
       <FooterWrapper>
-        <FooterTitle>Find me at:</FooterTitle>
+        {title && <FooterTitle>{title}</FooterTitle>}
         <LinkWrapper>
           <TwitterLink
             href="https://twitter.com/nieknijland"
