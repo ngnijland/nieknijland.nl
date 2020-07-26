@@ -2,11 +2,12 @@ import React from "react"
 import { graphql, useStaticQuery } from "gatsby"
 import styled from "styled-components"
 
+import GithubIcon from "./githubIcon"
 import GridLayout from "./layout"
+import Image from "./image"
 import LinkedInIcon from "./linkedinIcon"
 import SEO from "./seo"
 import TwitterIcon from "./twitterIcon"
-import Image from "./image"
 
 const Header = styled.header`
   min-height: 100%;
@@ -120,6 +121,15 @@ const TwitterLink = styled(Link)`
   }
 `
 
+const GithubLink = styled(Link)`
+  padding: 0.5625rem;
+
+  @media (min-width: 600px) {
+    padding: 0.5rem;
+    margin-right: 1rem;
+  }
+`
+
 const LinkedInLink = styled(Link)`
   padding: 0.6875rem;
 
@@ -174,6 +184,9 @@ function Hero(): JSX.Element {
             >
               <TwitterIcon />
             </TwitterLink>
+            <GithubLink href="https://github.com/ngnijland" aria-label="GitHub">
+              <GithubIcon />
+            </GithubLink>
             <LinkedInLink
               href="https://www.linkedin.com/in/nieknijland/"
               aria-label="LinkedIn"
