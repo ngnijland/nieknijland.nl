@@ -18,7 +18,7 @@ function IndexPage(): JSX.Element {
       <Main>
         <PersonalImages />
       </Main>
-      <Footer />
+      <Footer title="Find me at:" />
     </>
   )
 }
