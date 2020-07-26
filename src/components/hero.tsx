@@ -40,23 +40,7 @@ const TitleWrapper = styled.div`
 const Title = styled.h1`
   margin: 0;
 
-  font-size: 1.5rem;
-
-  @media (min-width: 600px) {
-    font-size: 2.625rem;
-  }
-
-  @media (min-width: 1400px) {
-    font-size: 3.5rem;
-  }
-
-  @media (min-width: 1600px) {
-    font-size: 4rem;
-  }
-
-  @media (min-width: 1800px) {
-    font-size: 4.5rem;
-  }
+  font-size: clamp(1.5rem, 3.75vw, 4.5rem);
 `
 
 const AvoidWrap = styled.span`
