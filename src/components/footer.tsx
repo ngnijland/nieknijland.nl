@@ -86,12 +86,6 @@ function Footer({ title }: FooterProps): JSX.Element {
       <FooterWrapper>
         {title && <FooterTitle>{title}</FooterTitle>}
         <LinkWrapper>
-          <TwitterLink
-            aria-label="Twitter"
-            title="My twitter account is suspended for an unknow reason to me. I'll disable this link until my account is unsuspended."
-          >
-            <TwitterIcon color="#ccc" />
-          </TwitterLink>
           <GithubLink href="https://github.com/ngnijland" aria-label="GitHub">
             <GithubIcon />
           </GithubLink>
@@ -101,6 +95,12 @@ function Footer({ title }: FooterProps): JSX.Element {
           >
             <LinkedInIcon />
           </LinkedInLink>
+          <TwitterLink
+            aria-label="Twitter"
+            data-tip="My twitter account is suspended for an unknow reason to me. I'll disable this link until my account is unsuspended."
+          >
+            <TwitterIcon color="#ccc" />
+          </TwitterLink>
         </LinkWrapper>
       </FooterWrapper>
     </FooterComponent>

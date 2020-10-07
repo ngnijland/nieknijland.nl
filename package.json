@@ -6,6 +6,7 @@
   "author": "Niek Nijland <ngnijland@gmail.com>",
   "dependencies": {
     "@types/react-helmet": "^6.0.0",
+    "@types/react-transition-group": "^4.4.0",
     "@types/styled-components": "^5.1.0",
     "babel-plugin-styled-components": "^1.10.7",
     "gatsby": "^2.22.15",
@@ -21,6 +22,7 @@
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
     "react-helmet": "^6.0.0",
+    "react-transition-group": "^4.4.1",
     "styled-components": "^5.1.1"
   },
   "devDependencies": {
