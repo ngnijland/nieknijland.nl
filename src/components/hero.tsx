@@ -77,10 +77,17 @@ const Link = styled.a`
   }
 `
 
-const TwitterLink = styled(Link)`
+const TwitterLink = styled.span`
+  display: inline-block;
+  width: 2.75rem;
+  height: 2.75rem;
   padding: 0.125rem;
 
+  box-sizing: border-box;
+
   @media (min-width: 600px) {
+    width: 3.5rem;
+    height: 3.5rem;
     padding: 0;
     margin-right: 1rem;
   }
@@ -143,10 +150,10 @@ function Hero(): JSX.Element {
           </Title>
           <LinkWrapper>
             <TwitterLink
-              href="https://twitter.com/nieknijland"
               aria-label="Twitter"
+              title="My twitter account is suspended for an unknow reason to me. I'll disable this link until my account is unsuspended."
             >
-              <TwitterIcon />
+              <TwitterIcon color="#ccc" />
             </TwitterLink>
             <GithubLink href="https://github.com/ngnijland" aria-label="GitHub">
               <GithubIcon />
