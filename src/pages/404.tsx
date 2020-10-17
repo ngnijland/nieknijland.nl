@@ -18,8 +18,6 @@ const Main = styled.main`
   align-items: center;
   justify-content: center;
   flex: 1;
-
-  font-size: 0.875rem;
 `
 
 const Title = styled.h1`

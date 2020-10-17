@@ -47,7 +47,7 @@ const FooterWrapper = styled.div`
 const FooterTitle = styled.h1`
   margin: 0 0 0.25rem;
 
-  font-size: 0.875rem;
+  font-size: 1rem;
   font-weight: normal;
 `
 
