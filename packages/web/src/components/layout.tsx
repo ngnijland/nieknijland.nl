@@ -1,7 +1,7 @@
-import styled from "styled-components"
+import styled from "styled-components";
 
 export interface LayoutProps {
-  verticalGap?: boolean
+  verticalGap?: boolean;
 }
 
 const Layout = styled.div<LayoutProps>`
@@ -31,6 +31,6 @@ const Layout = styled.div<LayoutProps>`
   > * {
     grid-column: col-start / -1;
   }
-`
+`;
 
-export default Layout
+export default Layout;

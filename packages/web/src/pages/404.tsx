@@ -1,16 +1,16 @@
-import React from "react"
-import { Link } from "gatsby"
-import styled from "styled-components"
+import React from "react";
+import { Link } from "gatsby";
+import styled from "styled-components";
 
-import SEO from "../components/seo"
-import Footer from "../components/footer"
-import TopBar from "../components/topBar"
+import SEO from "../components/seo";
+import Footer from "../components/footer";
+import TopBar from "../components/topBar";
 
 const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   height: 100%;
-`
+`;
 
 const Main = styled.main`
   display: flex;
@@ -18,14 +18,14 @@ const Main = styled.main`
   align-items: center;
   justify-content: center;
   flex: 1;
-`
+`;
 
 const Title = styled.h1`
   margin: 0 2rem;
 
   font-size: clamp(1.5rem, 3.75vw, 4.5rem);
   text-align: center;
-`
+`;
 
 const Line = styled.div`
   content: "";
@@ -40,7 +40,7 @@ const Line = styled.div`
   @media (min-width: 600px) {
     height: 4rem;
   }
-`
+`;
 
 function NotFoundPage(): JSX.Element {
   return (
@@ -54,7 +54,7 @@ function NotFoundPage(): JSX.Element {
         <Footer title="Or find me at:" />
       </Main>
     </Wrapper>
-  )
+  );
 }
 
-export default NotFoundPage
+export default NotFoundPage;

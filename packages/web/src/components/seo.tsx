@@ -1,16 +1,16 @@
-import React from "react"
-import { Helmet } from "react-helmet"
-import { useStaticQuery, graphql } from "gatsby"
+import React from "react";
+import { Helmet } from "react-helmet";
+import { useStaticQuery, graphql } from "gatsby";
 
 export interface SEOProps {
-  description?: string
-  image?: string
-  lang?: string
+  description?: string;
+  image?: string;
+  lang?: string;
   meta?: ConcatArray<
     | { name: string; content: string; property?: undefined }
     | { property: string; content: string; name?: undefined }
-  >
-  title?: string
+  >;
+  title?: string;
 }
 
 function SEO({
@@ -34,12 +34,12 @@ function SEO({
         }
       }
     `
-  )
+  );
 
-  const metaDescription = description || site.siteMetadata.description
+  const metaDescription = description || site.siteMetadata.description;
   const metaImage = `${site.siteMetadata.url}${
     image || site.siteMetadata.image
-  }`
+  }`;
 
   return (
     <Helmet
@@ -95,7 +95,7 @@ function SEO({
         },
       ].concat(meta)}
     />
-  )
+  );
 }
 
-export default SEO
+export default SEO;

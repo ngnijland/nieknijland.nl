@@ -1,10 +1,10 @@
-import React from "react"
-import { graphql, useStaticQuery } from "gatsby"
-import styled from "styled-components"
+import React from "react";
+import { graphql, useStaticQuery } from "gatsby";
+import styled from "styled-components";
 
-import Image, { CaptionPosition } from "../components/image"
-import Layout from "../components/layout"
-import ScrollDownIndicator from "../components/scrollDownIndicator"
+import Image, { CaptionPosition } from "../components/image";
+import Layout from "../components/layout";
+import ScrollDownIndicator from "../components/scrollDownIndicator";
 
 const Image1 = styled(Image)`
   grid-column: 1 / span 3;
@@ -20,7 +20,7 @@ const Image1 = styled(Image)`
   @media (min-width: 1200px) {
     grid-column: 3 / span 5;
   }
-`
+`;
 
 const Image2 = styled(Image)`
   grid-column: 1 / span 4;
@@ -36,7 +36,7 @@ const Image2 = styled(Image)`
   @media (min-width: 1200px) {
     grid-column: 1 / span 4;
   }
-`
+`;
 
 const Image3 = styled(Image)`
   grid-column: 1 / span 4;
@@ -55,7 +55,7 @@ const Image3 = styled(Image)`
     grid-column: 5 / span 6;
     grid-row: 2;
   }
-`
+`;
 
 function PersonalImages(): JSX.Element {
   const data = useStaticQuery(graphql`
@@ -82,7 +82,7 @@ function PersonalImages(): JSX.Element {
         }
       }
     }
-  `)
+  `);
 
   return (
     <Layout verticalGap>
@@ -104,7 +104,7 @@ function PersonalImages(): JSX.Element {
         fluid={data.image3.childImageSharp.fluid}
       />
     </Layout>
-  )
+  );
 }
 
-export default PersonalImages
+export default PersonalImages;

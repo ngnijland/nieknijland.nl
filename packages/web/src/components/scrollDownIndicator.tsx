@@ -1,7 +1,7 @@
-import React from "react"
-import styled from "styled-components"
+import React from "react";
+import styled from "styled-components";
 
-import ArrowDownIcon from "../components/arrowDownIcon"
+import ArrowDownIcon from "../components/arrowDownIcon";
 
 const Header = styled.header`
   position: relative;
@@ -29,7 +29,7 @@ const Header = styled.header`
     justify-content: flex-start;
     grid-column: 2 / span 1;
   }
-`
+`;
 
 const Title = styled.h1`
   padding: 0.5rem 0 0;
@@ -142,7 +142,7 @@ const Title = styled.h1`
       }
     }
   }
-`
+`;
 
 const Icon = styled(ArrowDownIcon)`
   position: absolute;
@@ -165,7 +165,7 @@ const Icon = styled(ArrowDownIcon)`
     right: auto;
     left: -1.25rem;
   }
-`
+`;
 
 function ScrollDownIndicator(): JSX.Element {
   return (
@@ -173,7 +173,7 @@ function ScrollDownIndicator(): JSX.Element {
       <Title>Something about me</Title>
       <Icon />
     </Header>
-  )
+  );
 }
 
-export default ScrollDownIndicator
+export default ScrollDownIndicator;

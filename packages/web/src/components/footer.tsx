@@ -1,12 +1,12 @@
-import React from "react"
-import styled from "styled-components"
+import React from "react";
+import styled from "styled-components";
 
-import GithubIcon from "../components/githubIcon"
-import LinkedInIcon from "../components/linkedinIcon"
-import TwitterIcon from "../components/twitterIcon"
+import GithubIcon from "../components/githubIcon";
+import LinkedInIcon from "../components/linkedinIcon";
+import TwitterIcon from "../components/twitterIcon";
 
 export interface FooterProps {
-  title?: string
+  title?: string;
 }
 
 const FooterComponent = styled.footer`
@@ -17,7 +17,7 @@ const FooterComponent = styled.footer`
   @media (min-width: 1200px) {
     padding-bottom: 6rem;
   }
-`
+`;
 
 const FooterWrapper = styled.div`
   display: flex;
@@ -42,18 +42,18 @@ const FooterWrapper = styled.div`
       height: 10rem;
     }
   }
-`
+`;
 
 const FooterTitle = styled.h1`
   margin: 0 0 0.25rem;
 
   font-size: 1rem;
   font-weight: normal;
-`
+`;
 
 const LinkWrapper = styled.div`
   display: flex;
-`
+`;
 
 const Link = styled.a`
   display: inline-block;
@@ -61,7 +61,7 @@ const Link = styled.a`
   height: 2.75rem;
 
   box-sizing: border-box;
-`
+`;
 
 const TwitterLink = styled.span`
   display: inline-block;
@@ -70,15 +70,15 @@ const TwitterLink = styled.span`
   padding: 0.125rem;
 
   box-sizing: border-box;
-`
+`;
 
 const GithubLink = styled(Link)`
   padding: 0.5625rem;
-`
+`;
 
 const LinkedInLink = styled(Link)`
   padding: 0.6875rem;
-`
+`;
 
 function Footer({ title }: FooterProps): JSX.Element {
   return (
@@ -104,7 +104,7 @@ function Footer({ title }: FooterProps): JSX.Element {
         </LinkWrapper>
       </FooterWrapper>
     </FooterComponent>
-  )
+  );
 }
 
-export default Footer
+export default Footer;

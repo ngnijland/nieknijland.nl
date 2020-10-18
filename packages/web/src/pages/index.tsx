@@ -1,14 +1,14 @@
-import React from "react"
-import styled from "styled-components"
+import React from "react";
+import styled from "styled-components";
 
-import Hero from "../components/hero"
-import PersonalImages from "../components/personalImages"
-import Footer from "../components/footer"
-import SEO from "../components/seo"
+import Hero from "../components/hero";
+import PersonalImages from "../components/personalImages";
+import Footer from "../components/footer";
+import SEO from "../components/seo";
 
 const Main = styled.main`
   position: relative;
-`
+`;
 
 function IndexPage(): JSX.Element {
   return (
@@ -20,7 +20,7 @@ function IndexPage(): JSX.Element {
       </Main>
       <Footer title="Find me at:" />
     </>
-  )
+  );
 }
 
-export default IndexPage
+export default IndexPage;

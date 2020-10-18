@@ -1,19 +1,19 @@
-import React, { useState } from "react"
-import { Transition } from "react-transition-group"
-import { graphql, useStaticQuery } from "gatsby"
-import styled from "styled-components"
+import React, { useState } from "react";
+import { Transition } from "react-transition-group";
+import { graphql, useStaticQuery } from "gatsby";
+import styled from "styled-components";
 
-import GithubIcon from "./githubIcon"
-import GridLayout from "./layout"
-import Image from "./image"
-import LinkedInIcon from "./linkedinIcon"
-import NoTwitterTooltip from "./noTwitterTooltip"
-import Tag from "./tag"
-import TwitterIcon from "./twitterIcon"
+import GithubIcon from "./githubIcon";
+import GridLayout from "./layout";
+import Image from "./image";
+import LinkedInIcon from "./linkedinIcon";
+import NoTwitterTooltip from "./noTwitterTooltip";
+import Tag from "./tag";
+import TwitterIcon from "./twitterIcon";
 
 const Header = styled.header`
   min-height: 100%;
-`
+`;
 
 const Layout = styled(GridLayout)`
   padding: 12vh 0;
@@ -21,7 +21,7 @@ const Layout = styled(GridLayout)`
   @media (min-width: 1000px) {
     padding: 25vh 0;
   }
-`
+`;
 
 const TitleWrapper = styled.div`
   @media (min-width: 1000px) {
@@ -37,17 +37,17 @@ const TitleWrapper = styled.div`
   @media (min-width: 1200px) {
     grid-column: 1 / span 7;
   }
-`
+`;
 
 const Title = styled.h1`
   margin: 0;
 
   font-size: clamp(1.5rem, 3.75vw, 4.5rem);
-`
+`;
 
 const AvoidWrap = styled.span`
   display: block;
-`
+`;
 
 const LinkWrapper = styled.div`
   position: relative;
@@ -65,7 +65,7 @@ const LinkWrapper = styled.div`
   @media (min-width: 1000px) {
     margin-bottom: 0;
   }
-`
+`;
 
 const Link = styled.a`
   display: inline-block;
@@ -80,7 +80,7 @@ const Link = styled.a`
     height: 3.5rem;
     margin-right: 1rem;
   }
-`
+`;
 
 const TwitterLink = styled.span`
   display: inline-block;
@@ -97,7 +97,7 @@ const TwitterLink = styled.span`
     padding: 0;
     margin-right: 0.25rem;
   }
-`
+`;
 
 const GithubLink = styled(Link)`
   padding: 0.5625rem;
@@ -105,7 +105,7 @@ const GithubLink = styled(Link)`
   @media (min-width: 600px) {
     padding: 0.5rem;
   }
-`
+`;
 
 const LinkedInLink = styled(Link)`
   padding: 0.6875rem;
@@ -113,7 +113,7 @@ const LinkedInLink = styled(Link)`
   @media (min-width: 600px) {
     padding: 0.625rem;
   }
-`
+`;
 
 const StyledImage = styled(Image)`
   grid-column: 1 / span 3;
@@ -126,10 +126,10 @@ const StyledImage = styled(Image)`
   @media (min-width: 1200px) {
     grid-column: span 5 / -1;
   }
-`
+`;
 
 function Hero(): JSX.Element {
-  const [show, setShow] = useState<boolean>(false)
+  const [show, setShow] = useState<boolean>(false);
 
   const data = useStaticQuery(graphql`
     query {
@@ -141,7 +141,7 @@ function Hero(): JSX.Element {
         }
       }
     }
-  `)
+  `);
 
   return (
     <Header>
@@ -169,12 +169,12 @@ function Hero(): JSX.Element {
               aria-label="Twitter"
               onMouseEnter={() => {
                 if (!show) {
-                  setShow(true)
+                  setShow(true);
                 }
               }}
               onMouseLeave={() => {
                 if (show) {
-                  setShow(false)
+                  setShow(false);
                 }
               }}
             >
@@ -191,7 +191,7 @@ function Hero(): JSX.Element {
         />
       </Layout>
     </Header>
-  )
+  );
 }
 
-export default Hero
+export default Hero;

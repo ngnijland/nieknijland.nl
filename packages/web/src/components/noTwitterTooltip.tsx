@@ -1,10 +1,10 @@
-import React from "react"
-import styled from "styled-components"
+import React from "react";
+import styled from "styled-components";
 
-import ArrowDownIcon from "./arrowDownIcon"
+import ArrowDownIcon from "./arrowDownIcon";
 
 export interface NoTwitterTooltipProps {
-  state: string
+  state: string;
 }
 
 const Root = styled.div<{ state: string }>`
@@ -19,7 +19,7 @@ const Root = styled.div<{ state: string }>`
     state === "entering" || state === "entered"
       ? "translateX(0)"
       : "translateX(0.25rem)"};
-`
+`;
 
 const Icon = styled(ArrowDownIcon)`
   flex: 0 0 auto;
@@ -32,7 +32,7 @@ const Icon = styled(ArrowDownIcon)`
     width: 1rem;
     margin-right: 0.5rem;
   }
-`
+`;
 
 const Text = styled.span`
   display: block;
@@ -45,7 +45,7 @@ const Text = styled.span`
 
     font-size: 0.875rem;
   }
-`
+`;
 
 const SubText = styled(Text)`
   margin-top: 0.25rem;
@@ -55,7 +55,7 @@ const SubText = styled(Text)`
   @media (min-width: 600px) {
     margin-top: 0.25rem;
   }
-`
+`;
 
 function NoTwitterTooltip({ state }: NoTwitterTooltipProps): JSX.Element {
   return (
@@ -66,7 +66,7 @@ function NoTwitterTooltip({ state }: NoTwitterTooltipProps): JSX.Element {
         <SubText>Waiting for a response from Twitter</SubText>
       </div>
     </Root>
-  )
+  );
 }
 
-export default NoTwitterTooltip
+export default NoTwitterTooltip;

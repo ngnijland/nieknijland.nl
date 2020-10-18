@@ -1,8 +1,8 @@
-import React from "react"
-import { Link } from "gatsby"
-import styled from "styled-components"
+import React from "react";
+import { Link } from "gatsby";
+import styled from "styled-components";
 
-import Tag from "./tag"
+import Tag from "./tag";
 
 const Header = styled.header`
   display: flex;
@@ -12,7 +12,7 @@ const Header = styled.header`
   @media (min-width: 600px) {
     height: 6rem;
   }
-`
+`;
 
 const NoStyleLink = styled(Link)`
   font-weight: normal;
@@ -23,7 +23,7 @@ const NoStyleLink = styled(Link)`
   :active {
     color: var(--text-color);
   }
-`
+`;
 
 const Title = styled.h1`
   margin: 0 1rem;
@@ -34,7 +34,7 @@ const Title = styled.h1`
     margin-right: 2rem;
     margin-left: 2rem;
   }
-`
+`;
 
 function TopBar(): JSX.Element {
   return (
@@ -45,7 +45,7 @@ function TopBar(): JSX.Element {
         </Title>
       </NoStyleLink>
     </Header>
-  )
+  );
 }
 
-export default TopBar
+export default TopBar;

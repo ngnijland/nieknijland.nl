@@ -1,7 +1,7 @@
-import React from "react"
+import React from "react";
 
 export interface TwitterIconProps {
-  color?: string
+  color?: string;
 }
 
 function TwitterIcon({ color }: TwitterIconProps): JSX.Element {
@@ -13,7 +13,7 @@ function TwitterIcon({ color }: TwitterIconProps): JSX.Element {
         fill={color}
       />
     </svg>
-  )
+  );
 }
 
-export default TwitterIcon
+export default TwitterIcon;

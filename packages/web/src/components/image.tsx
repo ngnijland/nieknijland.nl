@@ -1,6 +1,6 @@
-import React from "react"
-import Img, { FluidObject } from "gatsby-image"
-import styled, { css } from "styled-components"
+import React from "react";
+import Img, { FluidObject } from "gatsby-image";
+import styled, { css } from "styled-components";
 
 export enum CaptionPosition {
   Top,
@@ -8,20 +8,20 @@ export enum CaptionPosition {
 }
 
 export interface ImageProps {
-  alt: string
-  className?: string
-  caption?: string
-  captionPosition?: CaptionPosition
-  fluid: FluidObject
+  alt: string;
+  className?: string;
+  caption?: string;
+  captionPosition?: CaptionPosition;
+  fluid: FluidObject;
 }
 
 const Figure = styled.figure`
   margin: 0;
-`
+`;
 
 const StyledImg = styled(Img)`
   border-radius: 1rem;
-`
+`;
 
 const Figcaption = styled.figcaption<{ position: CaptionPosition }>`
   padding: 0 1rem;
@@ -29,7 +29,7 @@ const Figcaption = styled.figcaption<{ position: CaptionPosition }>`
   font-size: 0.875rem;
   color: var(--text-color-secondary);
   line-height: 1rem;
-`
+`;
 
 const FigcaptionTop = styled(Figcaption)`
   display: none;
@@ -43,7 +43,7 @@ const FigcaptionTop = styled(Figcaption)`
         display: block;
       }
     `}
-`
+`;
 
 const FigcaptionBottom = styled(Figcaption)`
   margin-top: 0.75rem;
@@ -56,7 +56,7 @@ const FigcaptionBottom = styled(Figcaption)`
         display: none;
       }
     `}
-`
+`;
 
 function Image(props: ImageProps): JSX.Element {
   const {
@@ -64,7 +64,7 @@ function Image(props: ImageProps): JSX.Element {
     caption,
     captionPosition = CaptionPosition.Bottom,
     ...rest
-  } = props
+  } = props;
 
   return (
     <Figure className={className}>
@@ -78,7 +78,7 @@ function Image(props: ImageProps): JSX.Element {
         </FigcaptionBottom>
       )}
     </Figure>
-  )
+  );
 }
 
-export default Image
+export default Image;

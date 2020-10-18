@@ -1,4 +1,4 @@
-import styled from "styled-components"
+import styled from "styled-components";
 
 const Tag = styled.span`
   background-color: #8b9862;
@@ -17,6 +17,6 @@ const Tag = styled.span`
   );
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-`
+`;
 
-export default Tag
+export default Tag;
