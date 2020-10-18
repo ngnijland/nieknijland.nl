@@ -1,4 +1,0 @@
-{
-  "*.{js,jsx,ts,tsx}": ["yarn lint:fix --max-warnings=0", "git add"],
-  "{*.{json,md}}": ["prettier --write", "git add"]
-}
