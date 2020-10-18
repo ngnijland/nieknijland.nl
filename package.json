@@ -4,7 +4,9 @@
   "private": true,
   "version": "1.0.0",
   "author": "Niek Nijland <ngnijland@gmail.com>",
-  "scripts": {},
+  "scripts": {
+    "start": "lerna run empty-cache && lerna run start --parallel"
+  },
   "devDependencies": {},
   "dependencies": {
     "lerna": "^3.22.1"
