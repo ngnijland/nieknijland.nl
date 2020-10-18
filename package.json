@@ -9,8 +9,7 @@
     "start": "lerna run empty-cache && lerna run start --parallel",
     "type-check": "lerna run type-check"
   },
-  "devDependencies": {},
-  "dependencies": {
+  "devDependencies": {
     "husky": "^4.3.0",
     "lerna": "^3.22.1"
   }
