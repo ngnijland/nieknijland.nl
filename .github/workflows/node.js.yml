@@ -19,6 +19,7 @@ jobs:
         node-version: '12.x'
     - name: Install dependencies
       run: yarn --frozen-lockfile
+    - name: Bootstrap project
       run: yarn bootstrap
     - name: Lint files
       run: yarn lint
