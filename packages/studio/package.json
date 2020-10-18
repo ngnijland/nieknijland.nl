@@ -1,0 +1,12 @@
+{
+  "name": "portfolio-niek-nijland-studio",
+  "description": "SanityIO studio for Niek Nijlands portfolio",
+  "private": true,
+  "version": "1.0.0",
+  "author": "Niek Nijland <ngnijland@gmail.com>",
+  "scripts": {},
+  "dependencies": {
+    "@sanity/cli": "^2.0.3"
+  },
+  "devDependencies": {}
+}
