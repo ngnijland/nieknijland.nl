@@ -5,6 +5,7 @@
   "version": "1.0.0",
   "author": "Niek Nijland <ngnijland@gmail.com>",
   "scripts": {
+    "bootstrap": "lerna bootstrap --ignore-scripts",
     "lint": "lerna run lint",
     "start": "lerna run empty-cache && lerna run start --parallel",
     "type-check": "lerna run type-check"
