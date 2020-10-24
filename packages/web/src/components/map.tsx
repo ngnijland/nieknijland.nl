@@ -15,7 +15,7 @@ function Map(): JSX.Element {
   useEffect(() => {
     const map = new mapboxgl.Map({
       container: ref.current,
-      style: "mapbox://styles/mapbox/streets-v11",
+      style: "mapbox://styles/nieknijland/ckgnvhm130gpq19nys1cyg7wn",
       center: [5, 34],
       zoom: 2,
     });
