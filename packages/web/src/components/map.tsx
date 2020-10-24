@@ -20,6 +20,14 @@ function Map(): JSX.Element {
       zoom: 2,
     });
 
+    map.boxZoom.disable();
+    map.doubleClickZoom.disable();
+    map.dragPan.disable();
+    map.dragRotate.disable();
+    map.keyboard.disable();
+    map.scrollZoom.disable();
+    map.touchZoomRotate.disable();
+
     return () => map.remove();
   }, []);
 
