@@ -5,6 +5,9 @@ import styled from "styled-components";
 import Tag from "./tag";
 
 const Header = styled.header`
+  position: relative;
+  z-index: 1;
+
   display: flex;
   align-items: center;
   height: 4rem;
