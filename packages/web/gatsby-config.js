@@ -1,3 +1,5 @@
+const sanityConfig = require("../studio/sanity.json");
+
 module.exports = {
   siteMetadata: {
     title: `Niek Nijland`,
@@ -31,5 +33,12 @@ module.exports = {
     },
     `gatsby-plugin-typescript`,
     `gatsby-plugin-styled-components`,
+    {
+      resolve: "gatsby-source-sanity",
+      options: {
+        projectId: sanityConfig.api.projectId,
+        dataset: sanityConfig.api.dataset,
+      },
+    },
   ],
 };

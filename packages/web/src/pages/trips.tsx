@@ -1,12 +1,27 @@
 import React from "react";
 import styled from "styled-components";
 import { Helmet } from "react-helmet";
+import { PageProps, graphql } from "gatsby";
 
 import GridLayout from "../components/layout";
 import Map from "../components/map";
 import SEO from "../components/seo";
 import TopBar from "../components/topBar";
 import { useWindowSize } from "../hooks";
+
+export interface TripsProps extends PageProps {
+  data: {
+    allSanityContinent: {
+      totalCount: number;
+    };
+    allSanityCountry: {
+      totalCount: number;
+    };
+    allSanityPlace: {
+      totalCount: number;
+    };
+  };
+}
 
 const MapWrapper = styled.div`
   position: fixed;
@@ -51,7 +66,6 @@ const TitleContainer = styled.div`
   flex-direction: column;
 `;
 
-// TODO: make reusable
 const Title = styled.h1`
   margin: 5.5rem 0 0;
 
@@ -206,7 +220,21 @@ const SummaryListItem = styled.li`
   }
 `;
 
-function Trips(): JSX.Element {
+export const pageQuery = graphql`
+  {
+    allSanityContinent {
+      totalCount
+    }
+    allSanityCountry {
+      totalCount
+    }
+    allSanityPlace {
+      totalCount
+    }
+  }
+`;
+
+function Trips({ data }: TripsProps): JSX.Element {
   const { width } = useWindowSize();
 
   return (
@@ -230,7 +258,7 @@ function Trips(): JSX.Element {
               {width > 1200 && (
                 <SummaryContainer>
                   <SummaryTitle>
-                    4
+                    {data.allSanityContinent.totalCount}
                     <br />
                     <SummaryTitleHighlight>Continents</SummaryTitleHighlight>
                   </SummaryTitle>
@@ -244,7 +272,7 @@ function Trips(): JSX.Element {
               )}
               <SummaryContainer>
                 <SummaryTitle>
-                  18
+                  {data.allSanityCountry.totalCount}
                   <br />
                   <SummaryTitleHighlight>Countries</SummaryTitleHighlight>
                 </SummaryTitle>
@@ -259,7 +287,7 @@ function Trips(): JSX.Element {
               </SummaryContainer>
               <SummaryContainer>
                 <SummaryTitle>
-                  102
+                  {data.allSanityPlace.totalCount}
                   <br />
                   <SummaryTitleHighlight>Places</SummaryTitleHighlight>
                 </SummaryTitle>
