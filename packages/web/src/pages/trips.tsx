@@ -9,12 +9,17 @@ import SEO from "../components/seo";
 import TopBar from "../components/topBar";
 import { useWindowSize } from "../hooks";
 
+export interface Country {
+  code: "string";
+}
+
 export interface TripsProps extends PageProps {
   data: {
     allSanityContinent: {
       totalCount: number;
     };
     allSanityCountry: {
+      nodes: Country[];
       totalCount: number;
     };
     allSanityPlace: {
@@ -226,6 +231,9 @@ export const pageQuery = graphql`
       totalCount
     }
     allSanityCountry {
+      nodes {
+        code
+      }
       totalCount
     }
     allSanityPlace {
@@ -306,7 +314,13 @@ function Trips({ data }: TripsProps): JSX.Element {
       </Main>
       {width > 600 && (
         <MapWrapper>
-          <Map />
+          <Map
+            countryFilter={[
+              "in",
+              "iso_3166_1_alpha_3",
+              ...data.allSanityCountry.nodes.map((node) => node.code),
+            ]}
+          />
         </MapWrapper>
       )}
     </>
