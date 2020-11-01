@@ -158,6 +158,7 @@ const SummaryContainer = styled.section`
 
   @media (min-width: 1200px) {
     :nth-of-type(1) {
+      display: block;
       grid-column: col-start / 3;
 
       ul::after {
@@ -172,6 +173,14 @@ const SummaryContainer = styled.section`
     :nth-of-type(3) {
       grid-column: 5 / 7;
     }
+  }
+`;
+
+const FirstSummaryContainer = styled(SummaryContainer)`
+  display: none;
+
+  @media (min-width: 1200px) {
+    display: block;
   }
 `;
 
@@ -247,12 +256,10 @@ export const pageQuery = graphql`
 
 function Trips({ data }: TripsProps): JSX.Element {
   const { width } = useWindowSize();
-  const [countries, setCountries] = useState<Country[]>(
+  const [countries] = useState<Country[]>(
     shuffle<Country>(data.allSanityCountry.nodes)
   );
-  const [places, setPlaces] = useState<Place[]>(
-    shuffle<Place>(data.allSanityPlace.nodes)
-  );
+  const [places] = useState<Place[]>(shuffle<Place>(data.allSanityPlace.nodes));
 
   return (
     <>
@@ -273,7 +280,7 @@ function Trips({ data }: TripsProps): JSX.Element {
                 <SubTitle>Summary</SubTitle>
               </TitleContainer>
               {width > 1200 && (
-                <SummaryContainer>
+                <FirstSummaryContainer>
                   <SummaryTitle>
                     {data.allSanityContinent.totalCount}
                     <br />
@@ -284,7 +291,7 @@ function Trips({ data }: TripsProps): JSX.Element {
                       <SummaryListItem key={name}>{name}</SummaryListItem>
                     ))}
                   </SummaryList>
-                </SummaryContainer>
+                </FirstSummaryContainer>
               )}
               <SummaryContainer>
                 <SummaryTitle>
