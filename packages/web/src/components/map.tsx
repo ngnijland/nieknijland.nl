@@ -13,6 +13,8 @@ export interface MapProps {
 const Root = styled.div`
   width: 100%;
   height: 100%;
+
+  background-color: #eff0f0;
 `;
 
 function Map({ countryFilter }: MapProps): JSX.Element {
