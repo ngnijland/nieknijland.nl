@@ -214,6 +214,22 @@ const SummaryList = styled.ul`
   @media (min-width: 1200px) {
     margin-top: 1rem;
   }
+
+  ::after {
+    content: "";
+
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+
+    height: 4rem;
+
+    background-image: linear-gradient(
+      rgba(255, 255, 255, 0),
+      rgba(255, 255, 255, 1)
+    );
+  }
 `;
 
 const SummaryListItem = styled.li`
