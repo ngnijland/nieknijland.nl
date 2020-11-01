@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { Helmet } from "react-helmet";
 import { PageProps, graphql } from "gatsby";
@@ -8,14 +8,25 @@ import Map from "../components/map";
 import SEO from "../components/seo";
 import TopBar from "../components/topBar";
 import { useWindowSize } from "../hooks";
+import { shuffle } from "../utils";
+
+export interface Continent {
+  name: string;
+}
 
 export interface Country {
-  code: "string";
+  code: string;
+  name: string;
+}
+
+export interface Place {
+  name: string;
 }
 
 export interface TripsProps extends PageProps {
   data: {
     allSanityContinent: {
+      nodes: Continent[];
       totalCount: number;
     };
     allSanityCountry: {
@@ -23,6 +34,7 @@ export interface TripsProps extends PageProps {
       totalCount: number;
     };
     allSanityPlace: {
+      nodes: Place[];
       totalCount: number;
     };
   };
@@ -193,22 +205,6 @@ const SummaryList = styled.ul`
   @media (min-width: 1200px) {
     margin-top: 1rem;
   }
-
-  ::after {
-    content: "";
-
-    position: absolute;
-    right: 0;
-    bottom: 0;
-    left: 0;
-
-    height: 4rem;
-
-    background-image: linear-gradient(
-      rgba(255, 255, 255, 0),
-      rgba(255, 255, 255, 1)
-    );
-  }
 `;
 
 const SummaryListItem = styled.li`
@@ -228,15 +224,22 @@ const SummaryListItem = styled.li`
 export const pageQuery = graphql`
   {
     allSanityContinent {
-      totalCount
-    }
-    allSanityCountry {
       nodes {
-        code
+        name
       }
       totalCount
     }
-    allSanityPlace {
+    allSanityCountry(sort: { fields: name }) {
+      nodes {
+        code
+        name
+      }
+      totalCount
+    }
+    allSanityPlace(sort: { fields: name }) {
+      nodes {
+        name
+      }
       totalCount
     }
   }
@@ -244,6 +247,12 @@ export const pageQuery = graphql`
 
 function Trips({ data }: TripsProps): JSX.Element {
   const { width } = useWindowSize();
+  const [countries, setCountries] = useState<Country[]>(
+    shuffle<Country>(data.allSanityCountry.nodes)
+  );
+  const [places, setPlaces] = useState<Place[]>(
+    shuffle<Place>(data.allSanityPlace.nodes)
+  );
 
   return (
     <>
@@ -271,10 +280,9 @@ function Trips({ data }: TripsProps): JSX.Element {
                     <SummaryTitleHighlight>Continents</SummaryTitleHighlight>
                   </SummaryTitle>
                   <SummaryList>
-                    <SummaryListItem>Europoe</SummaryListItem>
-                    <SummaryListItem>Asia</SummaryListItem>
-                    <SummaryListItem>Australia</SummaryListItem>
-                    <SummaryListItem>North America</SummaryListItem>
+                    {data.allSanityContinent.nodes.map(({ name }) => (
+                      <SummaryListItem key={name}>{name}</SummaryListItem>
+                    ))}
                   </SummaryList>
                 </SummaryContainer>
               )}
@@ -285,12 +293,9 @@ function Trips({ data }: TripsProps): JSX.Element {
                   <SummaryTitleHighlight>Countries</SummaryTitleHighlight>
                 </SummaryTitle>
                 <SummaryList>
-                  <SummaryListItem>France</SummaryListItem>
-                  <SummaryListItem>Italia</SummaryListItem>
-                  <SummaryListItem>Vietnam</SummaryListItem>
-                  <SummaryListItem>Sweden</SummaryListItem>
-                  <SummaryListItem>Portugal</SummaryListItem>
-                  <SummaryListItem>Australia</SummaryListItem>
+                  {countries.slice(0, 6).map(({ code, name }) => (
+                    <SummaryListItem key={code}>{name}</SummaryListItem>
+                  ))}
                 </SummaryList>
               </SummaryContainer>
               <SummaryContainer>
@@ -300,12 +305,9 @@ function Trips({ data }: TripsProps): JSX.Element {
                   <SummaryTitleHighlight>Places</SummaryTitleHighlight>
                 </SummaryTitle>
                 <SummaryList>
-                  <SummaryListItem>Rome</SummaryListItem>
-                  <SummaryListItem>Paris</SummaryListItem>
-                  <SummaryListItem>Miami</SummaryListItem>
-                  <SummaryListItem>Hoi An</SummaryListItem>
-                  <SummaryListItem>New York</SummaryListItem>
-                  <SummaryListItem>San Fransisco</SummaryListItem>
+                  {places.slice(0, 6).map(({ code, name }) => (
+                    <SummaryListItem key={name}>{name}</SummaryListItem>
+                  ))}
                 </SummaryList>
               </SummaryContainer>
             </Layout>
