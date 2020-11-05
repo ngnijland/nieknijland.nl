@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import styled from "styled-components";
 import { Helmet } from "react-helmet";
 import { PageProps, graphql } from "gatsby";
@@ -7,8 +7,6 @@ import GridLayout from "../components/layout";
 import Map from "../components/map";
 import SEO from "../components/seo";
 import TopBar from "../components/topBar";
-import { useWindowSize } from "../hooks";
-import { shuffle } from "../utils";
 
 export interface Continent {
   name: string;
@@ -33,10 +31,11 @@ export interface TripsProps extends PageProps {
       nodes: Country[];
       totalCount: number;
     };
+    allRandomSanityCountry: Country[];
     allSanityPlace: {
-      nodes: Place[];
       totalCount: number;
     };
+    allRandomSanityPlace: Place[];
   };
 }
 
@@ -46,6 +45,12 @@ const MapWrapper = styled.div`
   right: 0;
   bottom: 0;
   left: 50%;
+
+  display: none;
+
+  @media (min-width: 600px) {
+    display: block;
+  }
 `;
 
 const Main = styled.main`
@@ -149,10 +154,14 @@ const SummaryContainer = styled.section`
   max-width: 100%;
 
   :nth-of-type(1) {
-    grid-column: col-start / 3;
+    display: none;
   }
 
   :nth-of-type(2) {
+    grid-column: col-start / 3;
+  }
+
+  :nth-of-type(3) {
     grid-column: 3 / 5;
   }
 
@@ -173,14 +182,6 @@ const SummaryContainer = styled.section`
     :nth-of-type(3) {
       grid-column: 5 / 7;
     }
-  }
-`;
-
-const FirstSummaryContainer = styled(SummaryContainer)`
-  display: none;
-
-  @media (min-width: 1200px) {
-    display: block;
   }
 `;
 
@@ -257,9 +258,12 @@ export const pageQuery = graphql`
     allSanityCountry(sort: { fields: name }) {
       nodes {
         code
-        name
       }
       totalCount
+    }
+    allRandomSanityCountry {
+      code
+      name
     }
     allSanityPlace(sort: { fields: name }) {
       nodes {
@@ -267,16 +271,13 @@ export const pageQuery = graphql`
       }
       totalCount
     }
+    allRandomSanityPlace {
+      name
+    }
   }
 `;
 
 function Trips({ data }: TripsProps): JSX.Element {
-  const { width } = useWindowSize();
-  const [countries] = useState<Country[]>(
-    shuffle<Country>(data.allSanityCountry.nodes)
-  );
-  const [places] = useState<Place[]>(shuffle<Place>(data.allSanityPlace.nodes));
-
   return (
     <>
       <SEO title="Trips" />
@@ -288,6 +289,7 @@ function Trips({ data }: TripsProps): JSX.Element {
       </Helmet>
       <TopBar />
       <Main>
+        {console.log("hier?")}
         <HeaderWrapper>
           <Header>
             <Layout>
@@ -295,20 +297,18 @@ function Trips({ data }: TripsProps): JSX.Element {
                 <Title>Trips</Title>
                 <SubTitle>Summary</SubTitle>
               </TitleContainer>
-              {width > 1200 && (
-                <FirstSummaryContainer>
-                  <SummaryTitle>
-                    {data.allSanityContinent.totalCount}
-                    <br />
-                    <SummaryTitleHighlight>Continents</SummaryTitleHighlight>
-                  </SummaryTitle>
-                  <SummaryList>
-                    {data.allSanityContinent.nodes.map(({ name }) => (
-                      <SummaryListItem key={name}>{name}</SummaryListItem>
-                    ))}
-                  </SummaryList>
-                </FirstSummaryContainer>
-              )}
+              <SummaryContainer>
+                <SummaryTitle>
+                  {data.allSanityContinent.totalCount}
+                  <br />
+                  <SummaryTitleHighlight>Continents</SummaryTitleHighlight>
+                </SummaryTitle>
+                <SummaryList>
+                  {data.allSanityContinent.nodes.map(({ name }) => (
+                    <SummaryListItem key={name}>{name}</SummaryListItem>
+                  ))}
+                </SummaryList>
+              </SummaryContainer>
               <SummaryContainer>
                 <SummaryTitle>
                   {data.allSanityCountry.totalCount}
@@ -316,9 +316,11 @@ function Trips({ data }: TripsProps): JSX.Element {
                   <SummaryTitleHighlight>Countries</SummaryTitleHighlight>
                 </SummaryTitle>
                 <SummaryList>
-                  {countries.slice(0, 6).map(({ code, name }) => (
-                    <SummaryListItem key={code}>{name}</SummaryListItem>
-                  ))}
+                  {data.allRandomSanityCountry
+                    .slice(0, 6)
+                    .map(({ code, name }) => (
+                      <SummaryListItem key={code}>{name}</SummaryListItem>
+                    ))}
                 </SummaryList>
               </SummaryContainer>
               <SummaryContainer>
@@ -328,7 +330,7 @@ function Trips({ data }: TripsProps): JSX.Element {
                   <SummaryTitleHighlight>Places</SummaryTitleHighlight>
                 </SummaryTitle>
                 <SummaryList>
-                  {places.slice(0, 6).map(({ code, name }) => (
+                  {data.allRandomSanityPlace.slice(0, 6).map(({ name }) => (
                     <SummaryListItem key={name}>{name}</SummaryListItem>
                   ))}
                 </SummaryList>
@@ -337,17 +339,15 @@ function Trips({ data }: TripsProps): JSX.Element {
           </Header>
         </HeaderWrapper>
       </Main>
-      {width > 600 && (
-        <MapWrapper>
-          <Map
-            countryFilter={[
-              "in",
-              "iso_3166_1_alpha_3",
-              ...data.allSanityCountry.nodes.map((node) => node.code),
-            ]}
-          />
-        </MapWrapper>
-      )}
+      <MapWrapper>
+        <Map
+          countryFilter={[
+            "in",
+            "iso_3166_1_alpha_3",
+            ...data.allSanityCountry.nodes.map((node) => node.code),
+          ]}
+        />
+      </MapWrapper>
     </>
   );
 }
