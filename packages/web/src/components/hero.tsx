@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { Transition } from "react-transition-group";
 import { graphql, useStaticQuery } from "gatsby";
 import styled from "styled-components";
 
@@ -55,7 +54,6 @@ const LinkWrapper = styled.div`
   left: -0.625rem;
 
   display: flex;
-  align-items: center;
   margin: 1.75rem 0;
 
   @media (min-width: 600px) {
@@ -69,7 +67,6 @@ const LinkWrapper = styled.div`
 
 const Link = styled.a`
   display: inline-block;
-  flex: 0 0 auto;
   width: 2.75rem;
   height: 2.75rem;
 
@@ -78,24 +75,15 @@ const Link = styled.a`
   @media (min-width: 600px) {
     width: 3.5rem;
     height: 3.5rem;
-    margin-right: 1rem;
   }
 `;
 
-const TwitterLink = styled.span`
-  display: inline-block;
-  flex: 0 0 auto;
-  width: 2.75rem;
-  height: 2.75rem;
+const TwitterLink = styled(Link)`
   padding: 0.125rem;
 
-  box-sizing: border-box;
-
   @media (min-width: 600px) {
-    width: 3.5rem;
-    height: 3.5rem;
     padding: 0;
-    margin-right: 0.25rem;
+    margin-right: 1rem;
   }
 `;
 
@@ -104,6 +92,7 @@ const GithubLink = styled(Link)`
 
   @media (min-width: 600px) {
     padding: 0.5rem;
+    margin-right: 1rem;
   }
 `;
 
@@ -129,8 +118,6 @@ const StyledImage = styled(Image)`
 `;
 
 function Hero(): JSX.Element {
-  const [show, setShow] = useState<boolean>(false);
-
   const data = useStaticQuery(graphql`
     query {
       image: file(relativePath: { eq: "nieknijland.jpg" }) {
@@ -156,6 +143,12 @@ function Hero(): JSX.Element {
             <AvoidWrap>in The Netherlands.</AvoidWrap>
           </Title>
           <LinkWrapper>
+            <TwitterLink
+              aria-label="Twitter"
+              href="https://twitter.com/ngnijland"
+            >
+              <TwitterIcon />
+            </TwitterLink>
             <GithubLink href="https://github.com/ngnijland" aria-label="GitHub">
               <GithubIcon />
             </GithubLink>
@@ -165,24 +158,6 @@ function Hero(): JSX.Element {
             >
               <LinkedInIcon />
             </LinkedInLink>
-            <TwitterLink
-              aria-label="Twitter"
-              onMouseEnter={() => {
-                if (!show) {
-                  setShow(true);
-                }
-              }}
-              onMouseLeave={() => {
-                if (show) {
-                  setShow(false);
-                }
-              }}
-            >
-              <TwitterIcon color="#ccc" />
-            </TwitterLink>
-            <Transition in={show} timeout={2000}>
-              {(state) => <NoTwitterTooltip state={state} />}
-            </Transition>
           </LinkWrapper>
         </TitleWrapper>
         <StyledImage

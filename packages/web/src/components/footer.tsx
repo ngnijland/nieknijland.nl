@@ -63,13 +63,8 @@ const Link = styled.a`
   box-sizing: border-box;
 `;
 
-const TwitterLink = styled.span`
-  display: inline-block;
-  width: 2.75rem;
-  height: 2.75rem;
+const TwitterLink = styled(Link)`
   padding: 0.125rem;
-
-  box-sizing: border-box;
 `;
 
 const GithubLink = styled(Link)`
@@ -86,6 +81,12 @@ function Footer({ title }: FooterProps): JSX.Element {
       <FooterWrapper>
         {title && <FooterTitle>{title}</FooterTitle>}
         <LinkWrapper>
+          <TwitterLink
+            aria-label="Twitter"
+            href="https://twitter.com/ngnijland"
+          >
+            <TwitterIcon />
+          </TwitterLink>
           <GithubLink href="https://github.com/ngnijland" aria-label="GitHub">
             <GithubIcon />
           </GithubLink>
@@ -95,12 +96,6 @@ function Footer({ title }: FooterProps): JSX.Element {
           >
             <LinkedInIcon />
           </LinkedInLink>
-          <TwitterLink
-            aria-label="Twitter"
-            data-tip="My twitter account is suspended for an unknow reason to me. I'll disable this link until my account is unsuspended."
-          >
-            <TwitterIcon color="#ccc" />
-          </TwitterLink>
         </LinkWrapper>
       </FooterWrapper>
     </FooterComponent>
