@@ -34,6 +34,7 @@ const Line = styled.div`
   width: 0.0625rem;
   height: 2rem;
   margin: 1rem 0;
+  min-height: 1rem;
 
   background-color: var(--text-color);
 
@@ -51,6 +52,8 @@ function NotFoundPage(): JSX.Element {
         <Title>This page does not exist...</Title>
         <Line />
         <Link to="/">Go to the homepage</Link>
+        <Line />
+        <Link to="/trips">Take a look at my travel experiences</Link>
         <Footer title="Or find me at:" />
       </Main>
     </Wrapper>
