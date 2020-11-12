@@ -1,12 +1,11 @@
-import React, { useState } from "react";
-import { graphql, useStaticQuery } from "gatsby";
+import React from "react";
+import { Link, graphql, useStaticQuery } from "gatsby";
 import styled from "styled-components";
 
 import GithubIcon from "./githubIcon";
 import GridLayout from "./layout";
 import Image from "./image";
 import LinkedInIcon from "./linkedinIcon";
-import NoTwitterTooltip from "./noTwitterTooltip";
 import Tag from "./tag";
 import TwitterIcon from "./twitterIcon";
 
@@ -18,6 +17,7 @@ const Layout = styled(GridLayout)`
   padding: 12vh 0;
 
   @media (min-width: 1000px) {
+    align-items: center;
     padding: 25vh 0;
   }
 `;
@@ -27,10 +27,7 @@ const TitleWrapper = styled.div`
     position: relative;
     top: 0.25rem;
 
-    display: flex;
     grid-column: 1 / span 5;
-    flex-direction: column;
-    justify-content: center;
   }
 
   @media (min-width: 1200px) {
@@ -46,6 +43,17 @@ const Title = styled.h1`
 
 const AvoidWrap = styled.span`
   display: block;
+`;
+
+const Text = styled.p`
+  margin: 1.75rem 0;
+
+  font-size: clamp(1rem, 2.5vw, 2.375rem);
+
+  @media (min-width: 1000px) {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+  }
 `;
 
 const LinkWrapper = styled.div`
@@ -65,7 +73,7 @@ const LinkWrapper = styled.div`
   }
 `;
 
-const Link = styled.a`
+const IconLink = styled.a`
   display: inline-block;
   width: 2.75rem;
   height: 2.75rem;
@@ -78,7 +86,7 @@ const Link = styled.a`
   }
 `;
 
-const TwitterLink = styled(Link)`
+const TwitterLink = styled(IconLink)`
   padding: 0.125rem;
 
   @media (min-width: 600px) {
@@ -87,7 +95,7 @@ const TwitterLink = styled(Link)`
   }
 `;
 
-const GithubLink = styled(Link)`
+const GithubLink = styled(IconLink)`
   padding: 0.5625rem;
 
   @media (min-width: 600px) {
@@ -96,7 +104,7 @@ const GithubLink = styled(Link)`
   }
 `;
 
-const LinkedInLink = styled(Link)`
+const LinkedInLink = styled(IconLink)`
   padding: 0.6875rem;
 
   @media (min-width: 600px) {
@@ -142,6 +150,9 @@ function Hero(): JSX.Element {
             <AvoidWrap>travel enthousiast based</AvoidWrap>
             <AvoidWrap>in The Netherlands.</AvoidWrap>
           </Title>
+          <Text>
+            Take a look at <Link to="/trips">my travel experiences</Link>
+          </Text>
           <LinkWrapper>
             <TwitterLink
               aria-label="Twitter"
