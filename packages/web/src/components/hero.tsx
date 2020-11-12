@@ -48,16 +48,11 @@ const AvoidWrap = styled.span`
 const Text = styled.p`
   margin: 1.75rem 0;
 
-  font-size: clamp(1rem, 2vw, 2rem);
+  font-size: clamp(1rem, 2vw, 1.5rem);
 
   @media (min-width: 1000px) {
     margin-top: 2rem;
     margin-bottom: 2rem;
-  }
-
-  @media (min-width: 1200px) {
-    margin-top: 3rem;
-    margin-bottom: 3rem;
   }
 `;
 
