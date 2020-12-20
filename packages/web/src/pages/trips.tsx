@@ -289,7 +289,6 @@ function Trips({ data }: TripsProps): JSX.Element {
       </Helmet>
       <TopBar />
       <Main>
-        {console.log("hier?")}
         <HeaderWrapper>
           <Header>
             <Layout>
