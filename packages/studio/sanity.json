@@ -3,10 +3,6 @@
   "project": {
     "name": "nieknijland.nl"
   },
-  "api": {
-    "projectId": "kq5iz0cu",
-    "dataset": "production"
-  },
   "plugins": [
     "@sanity/base",
     "@sanity/components",
@@ -16,9 +12,7 @@
   ],
   "env": {
     "development": {
-      "plugins": [
-        "@sanity/vision"
-      ]
+      "plugins": ["@sanity/vision"]
     }
   },
   "parts": [
