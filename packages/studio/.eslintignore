@@ -1,0 +1,13 @@
+config/
+dist/
+node_modules/
+static/
+
+.env.*
+.eslintrc.js
+.prettierrc
+netlify.toml
+package.json
+sanity.json
+tsconfig.json
+yarn.lock
