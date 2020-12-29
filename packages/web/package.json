@@ -50,7 +50,7 @@
     "serve": "gatsby serve",
     "clean": "gatsby clean",
     "type-check": "tsc",
-    "lint": "eslint --ignore-path .gitignore ./src --ext ts --ext tsx --ext js --ext jsx",
+    "lint": "eslint ./src --ext ts --ext tsx --ext js --ext jsx",
     "lint:fix": "yarn lint --fix"
   }
 }
