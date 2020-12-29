@@ -3,11 +3,17 @@
   "project": {
     "name": "nieknijland.nl"
   },
+  "api": {
+    "projectId": "kq5iz0cu",
+    "dataset": "development"
+  },
   "plugins": [
     "@sanity/base",
     "@sanity/components",
     "@sanity/default-layout",
     "@sanity/default-login",
+    "@sanity/dashboard",
+    "dashboard-widget-netlify",
     "@sanity/desk-tool"
   ],
   "env": {
@@ -19,6 +25,10 @@
     {
       "name": "part:@sanity/base/schema",
       "path": "./schemas/schema"
+    },
+    {
+      "implements": "part:@sanity/dashboard/config",
+      "path": "./src/dashboardConfig.js"
     }
   ]
 }
