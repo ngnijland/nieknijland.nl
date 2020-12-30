@@ -7,6 +7,7 @@ import GridLayout from "../components/layout";
 import Map from "../components/map";
 import SEO from "../components/seo";
 import TopBar from "../components/topBar";
+import PageTitle, { Title } from "../components/pageTitle";
 
 export interface Continent {
   name: string;
@@ -73,80 +74,22 @@ const Header = styled.header`
   bottom: 0;
   left: 0;
 
+  ${Title} {
+    margin-top: 5.5rem;
+  }
+
   @media (min-width: 600px) {
     top: -6rem;
+
+    ${Title} {
+      margin-top: 7.5rem;
+    }
   }
 `;
 
 const Layout = styled(GridLayout)`
   grid-template-rows: 1fr min-content 1fr;
   height: 100%;
-`;
-
-const TitleContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-`;
-
-const Title = styled.h1`
-  margin: 5.5rem 0 0;
-
-  font-size: clamp(1.5rem, 2.5vw, 2.625rem);
-
-  @media (min-width: 600px) {
-    margin-top: 7.5rem;
-  }
-`;
-
-const SubTitle = styled.h2`
-  display: flex;
-  flex: 1;
-  margin: 0;
-
-  font-size: 1rem;
-  font-weight: normal;
-
-  writing-mode: vertical-lr;
-
-  @supports (writing-mode: sideways-lr) {
-    writing-mode: sideways-lr;
-  }
-
-  ::before,
-  ::after {
-    content: "";
-
-    position: relative;
-    left: 0.5rem;
-
-    flex: 1;
-    width: 0.0625rem;
-    min-height: 0.75rem;
-
-    background-color: var(--text-color);
-  }
-
-  ::before {
-    margin-top: 1rem;
-    margin-bottom: 0.5rem;
-  }
-
-  ::after {
-    margin-top: 0.5rem;
-    margin-bottom: 1rem;
-  }
-
-  @supports (writing-mode: sideways-lr) {
-    ::before {
-      margin-top: 0.5rem;
-      margin-bottom: 1rem;
-    }
-
-    ::after {
-      margin-top: 1rem;
-      margin-bottom: 0.5rem;
-    }
-  }
 `;
 
 const SummaryContainer = styled.section`
@@ -292,10 +235,7 @@ function Trips({ data }: TripsProps): JSX.Element {
         <HeaderWrapper>
           <Header>
             <Layout>
-              <TitleContainer>
-                <Title>Trips</Title>
-                <SubTitle>Summary</SubTitle>
-              </TitleContainer>
+              <PageTitle title="Trips" subtitle="Summary" />
               <SummaryContainer>
                 <SummaryTitle>
                   {data.allSanityContinent.totalCount}
