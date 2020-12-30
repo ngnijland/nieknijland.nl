@@ -1,4 +1,4 @@
-export default {
+export const continent = {
   title: "Continent",
   name: "continent",
   type: "document",

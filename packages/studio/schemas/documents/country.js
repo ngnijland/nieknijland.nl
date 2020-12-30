@@ -1,6 +1,6 @@
 import { countryCodes } from "./helpers";
 
-export default {
+export const country = {
   title: "Country",
   name: "country",
   type: "document",

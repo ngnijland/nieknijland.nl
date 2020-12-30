@@ -1,4 +1,4 @@
-export default {
+export const place = {
   title: "Place",
   name: "place",
   type: "document",
