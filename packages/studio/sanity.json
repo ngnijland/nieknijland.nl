@@ -13,6 +13,7 @@
     "@sanity/default-layout",
     "@sanity/default-login",
     "@sanity/dashboard",
+    "dashboard-widget-document-list",
     "dashboard-widget-netlify",
     "@sanity/desk-tool"
   ],
