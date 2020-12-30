@@ -43,5 +43,8 @@ export const bodyPortableText = {
       type: "postImage",
       options: { hotspot: true },
     },
+    {
+      type: "code",
+    },
   ],
 };
