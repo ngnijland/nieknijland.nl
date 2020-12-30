@@ -41,6 +41,12 @@ export const post = {
       title: "Body",
       validation: (Rule) => Rule.required(),
     },
+    {
+      name: "canonicalURL",
+      type: "url",
+      title: "Canonical URL",
+      description: "Fill in if this post was first published elsewhere.",
+    },
   ],
   orderings: [
     {
