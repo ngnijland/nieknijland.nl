@@ -5,6 +5,7 @@
   "version": "0.1.0",
   "author": "Niek Nijland <ngnijland@gmail.com>",
   "dependencies": {
+    "@sanity/block-content-to-react": "^2.0.7",
     "@types/mapbox-gl": "^1.12.5",
     "@types/react-helmet": "^6.0.0",
     "@types/styled-components": "^5.1.0",

@@ -44,3 +44,30 @@ exports.createResolvers = ({ createResolvers }) => {
     },
   });
 };
+
+exports.createPages = async ({ graphql, actions: { createPage } }) => {
+  const {
+    data: {
+      allSanityPost: { nodes: posts },
+    },
+  } = await graphql(`
+    {
+      allSanityPost(filter: { publishedAt: { ne: null } }) {
+        nodes {
+          _id
+          slug {
+            current
+          }
+        }
+      }
+    }
+  `);
+
+  posts.forEach(({ _id: id, slug: { current: slug } }) => {
+    createPage({
+      path: `/blog/${slug}`,
+      component: require.resolve("./src/templates/post.tsx"),
+      context: { id },
+    });
+  });
+};
