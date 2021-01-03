@@ -14,7 +14,7 @@ export const TitleContainer = styled.div`
 export const Title = styled.h1`
   margin: 1.5rem 0 0;
 
-  font-size: clamp(1.5rem, 2.5vw, 2.625rem);
+  font-size: clamp(1.5rem, 5vw, 2.625rem);
 `;
 
 export const SubTitle = styled.h2`
