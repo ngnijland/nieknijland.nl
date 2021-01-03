@@ -1,4 +1,6 @@
 import React from "react";
+import { PrismAsyncLight as SyntaxHighlighter } from "react-syntax-highlighter";
+import { tomorrow } from "react-syntax-highlighter/dist/esm/styles/prism";
 
 export interface CodeProps {
   node: {
@@ -9,8 +11,15 @@ export interface CodeProps {
 
 export function Code({ node: { language, code } }: CodeProps): JSX.Element {
   return (
-    <pre data-language={language}>
-      <code>{code}</code>
-    </pre>
+    <SyntaxHighlighter
+      language={language === "html" ? "markdown" : language}
+      style={tomorrow}
+      customStyle={{
+        fontSize: "0.8em",
+        borderRadius: "1rem",
+      }}
+    >
+      {code}
+    </SyntaxHighlighter>
   );
 }
