@@ -12,7 +12,7 @@ export interface FigureProps {
   };
 }
 
-export function Figure({ node }: FigureProps): JSX.Element {
+export function Figure({ node }: FigureProps): JSX.Element | null {
   const image = getFluidGatsbyImage(
     node.asset._ref,
     { maxWidth: 675 },
