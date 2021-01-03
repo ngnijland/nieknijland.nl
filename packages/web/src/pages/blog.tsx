@@ -45,7 +45,7 @@ const Item = styled.li`
     display: block;
     height: 0.0625rem;
 
-    background-color: var(--text-color-secondary);
+    background-color: var(--text-color);
 
     content: "";
   }
