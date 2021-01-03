@@ -22,7 +22,12 @@ const Main = styled.main`
   max-width: 768px;
   margin: 0 32px;
 
-  @media (min-width: 832px) {
+  @media (min-width: 600px) {
+    margin-right: 80px;
+    margin-left: 80px;
+  }
+
+  @media (min-width: 928px) {
     margin-right: auto;
     margin-left: auto;
   }
