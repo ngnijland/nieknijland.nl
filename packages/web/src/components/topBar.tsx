@@ -29,7 +29,7 @@ const NoStyleLink = styled(Link)`
 `;
 
 const Title = styled.h1`
-  margin: 0 1rem;
+  margin: 0 1.125rem;
 
   font-size: clamp(1.5rem, 3.75vw, 2rem);
 

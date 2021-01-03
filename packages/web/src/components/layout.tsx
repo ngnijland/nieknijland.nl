@@ -9,7 +9,7 @@ const Layout = styled.div<LayoutProps>`
   grid-gap: ${({ verticalGap }) => (verticalGap ? "" : "0")} 0.625rem;
   grid-template-columns: repeat(4, [col-start] 1fr);
   max-width: 1640px;
-  margin: 0 2.25rem;
+  margin: 0 2rem;
 
   @media (min-width: 600px) {
     grid-gap: ${({ verticalGap }) => (verticalGap ? "" : "0")} 1rem;
