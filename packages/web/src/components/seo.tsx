@@ -10,6 +10,7 @@ export interface SEOProps {
     | { name: string; content: string; property?: undefined }
     | { property: string; content: string; name?: undefined }
   >;
+  link?: { rel: string; href: string }[];
   title?: string;
 }
 
@@ -18,6 +19,7 @@ function SEO({
   image,
   lang = "en",
   meta = [],
+  link = [],
   title,
 }: SEOProps): JSX.Element {
   const { site } = useStaticQuery(
@@ -94,6 +96,7 @@ function SEO({
           content: metaImage,
         },
       ].concat(meta)}
+      link={link}
     />
   );
 }
