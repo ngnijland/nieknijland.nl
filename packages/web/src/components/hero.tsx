@@ -151,7 +151,8 @@ function Hero(): JSX.Element {
             <AvoidWrap>in The Netherlands.</AvoidWrap>
           </Title>
           <Text>
-            Take a look at <Link to="/trips">my travel experiences</Link>
+            Check <Link to="/blog">articles I&apos;ve written</Link> or take a
+            look at <Link to="/trips">my travel experiences</Link>
           </Text>
           <LinkWrapper>
             <TwitterLink
