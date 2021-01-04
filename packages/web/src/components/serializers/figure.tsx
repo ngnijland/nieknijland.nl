@@ -15,15 +15,6 @@ export interface FigureProps {
 
 const FigureElement = styled.figure`
   margin: 1em 0;
-
-  .gatsby-image-wrapper {
-    font-size: 0;
-
-    > div {
-      width: auto !important;
-      padding-bottom: 0 !important;
-    }
-  }
 `;
 
 const FigCaption = styled.figcaption`
@@ -53,10 +44,6 @@ export function Figure({
           fluid={image}
           alt={alt}
           imgStyle={{
-            position: "static",
-            width: "auto",
-            height: "auto",
-            maxWidth: "100%",
             borderRadius: "1rem",
           }}
         />
