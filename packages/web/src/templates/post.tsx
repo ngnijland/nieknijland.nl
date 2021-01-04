@@ -8,10 +8,16 @@ import TopBar from "../components/topBar";
 import PageTitle from "../components/pageTitle";
 import PortableText from "../components/portableText";
 
+export interface PortableText {
+  _type: string;
+  children: { text: string }[];
+}
+
 export interface PostProps {
   data: {
     post: {
       _rawBody: unknown;
+      _rawExcerpt: PortableText[];
       publishedAt: string;
       title: string;
     };
@@ -40,18 +46,33 @@ export const query = graphql`
       title
       publishedAt
       _rawBody
+      _rawExcerpt
     }
   }
 `;
 
+export function toPlainText(blocks: PortableText[]): string {
+  if (!blocks) {
+    return "";
+  }
+  return blocks
+    .map((block) => {
+      if (block._type !== "block" || !block.children) {
+        return "";
+      }
+      return block.children.map((child) => child.text).join("");
+    })
+    .join("\n\n");
+}
+
 function Post({
   data: {
-    post: { _rawBody, publishedAt, title },
+    post: { _rawBody, _rawExcerpt, publishedAt, title },
   },
 }: PostProps): JSX.Element {
   return (
     <>
-      <SEO title={`${title} | Blog`} />
+      <SEO title={`${title} | Blog`} description={toPlainText(_rawExcerpt)} />
       <TopBar />
       <Main>
         <article>
