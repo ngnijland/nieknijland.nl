@@ -47,6 +47,10 @@ const Container = styled.section`
     color: var(--text-color-secondary);
   }
 
+  > p:first-of-type {
+    margin-top: 0;
+  }
+
   > p code {
     padding: 0.1em 0.25rem;
 

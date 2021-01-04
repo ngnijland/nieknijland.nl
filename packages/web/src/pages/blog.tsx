@@ -117,7 +117,7 @@ function Blog({ data }: BlogProps): JSX.Element {
       <TopBar />
       <Main>
         <header>
-          <PageTitle title="Blog" subtitle="Recent posts" />
+          <PageTitle title="Blog" lineText="Recent posts" />
         </header>
         <section>
           <List>
