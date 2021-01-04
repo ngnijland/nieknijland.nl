@@ -235,7 +235,7 @@ function Trips({ data }: TripsProps): JSX.Element {
         <HeaderWrapper>
           <Header>
             <Layout>
-              <PageTitle title="Trips" subtitle="Summary" />
+              <PageTitle title="Trips" lineText="Summary" />
               <SummaryContainer>
                 <SummaryTitle>
                   {data.allSanityContinent.totalCount}
