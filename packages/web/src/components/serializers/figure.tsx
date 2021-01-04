@@ -1,6 +1,7 @@
 import React from "react";
 import { getFluidGatsbyImage } from "gatsby-source-sanity";
 import Img from "gatsby-image";
+import styled from "styled-components";
 
 export interface FigureProps {
   node: {
@@ -12,10 +13,33 @@ export interface FigureProps {
   };
 }
 
-export function Figure({ node }: FigureProps): JSX.Element | null {
+const FigureElement = styled.figure`
+  margin: 1em 0;
+
+  .gatsby-image-wrapper {
+    font-size: 0;
+
+    > div {
+      width: auto !important;
+      padding-bottom: 0 !important;
+    }
+  }
+`;
+
+const FigCaption = styled.figcaption`
+  padding: 0 1rem;
+  margin-top: 0.75rem;
+
+  font-size: 0.875rem;
+  color: var(--text-color-secondary);
+`;
+
+export function Figure({
+  node: { alt, asset, caption },
+}: FigureProps): JSX.Element | null {
   const image = getFluidGatsbyImage(
-    node.asset._ref,
-    { maxWidth: 675 },
+    asset._ref,
+    { maxWidth: 1000 },
     {
       projectId: process.env.SANITY_API_PROJECT_ID || "",
       dataset: process.env.SANITY_API_DATASET || "",
@@ -24,10 +48,20 @@ export function Figure({ node }: FigureProps): JSX.Element | null {
 
   return (
     image && (
-      <figure>
-        <Img fluid={image} alt={node.alt} />
-        <figcaption>{node.caption}</figcaption>
-      </figure>
+      <FigureElement>
+        <Img
+          fluid={image}
+          alt={alt}
+          imgStyle={{
+            position: "static",
+            width: "auto",
+            height: "auto",
+            maxWidth: "100%",
+            borderRadius: "1rem",
+          }}
+        />
+        {caption && <FigCaption>{caption}</FigCaption>}
+      </FigureElement>
     )
   );
 }

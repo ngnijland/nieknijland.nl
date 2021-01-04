@@ -15,6 +15,7 @@ export function Code({ node: { language, code } }: CodeProps): JSX.Element {
       language={language === "html" ? "markdown" : language}
       style={tomorrow}
       customStyle={{
+        margin: "1em 0",
         fontSize: "0.8em",
         borderRadius: "1rem",
       }}
