@@ -39,6 +39,13 @@ const Container = styled.section`
     font-size: 1.2em;
     margin-top: 1.25rem;
   }
+
+  blockquote {
+    margin: 1em 0 1em 1em;
+
+    font-size: 1.25em;
+    color: var(--text-color-secondary);
+  }
 `;
 
 function PortableText({ blocks }: PortableTextProps): JSX.Element {
