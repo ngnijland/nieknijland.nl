@@ -19,6 +19,7 @@ export interface PostProps {
     post: {
       _rawBody: unknown;
       _rawExcerpt: PortableText[];
+      canonicalURL: string;
       publishedAt: string;
       title: string;
     };
@@ -47,6 +48,7 @@ const Spacer = styled.div`
 export const query = graphql`
   query PostQuery($id: String!) {
     post: sanityPost(_id: { eq: $id }) {
+      canonicalURL
       id
       title
       publishedAt
@@ -72,12 +74,22 @@ export function toPlainText(blocks: PortableText[]): string {
 
 function Post({
   data: {
-    post: { _rawBody, _rawExcerpt, publishedAt, title },
+    post: { _rawBody, _rawExcerpt, canonicalURL, publishedAt, title },
   },
 }: PostProps): JSX.Element {
+  const link = [];
+
+  if (canonicalURL) {
+    link.push({ rel: "cannonical", href: canonicalURL });
+  }
+
   return (
     <>
-      <SEO title={`${title} | Blog`} description={toPlainText(_rawExcerpt)} />
+      <SEO
+        title={`${title} | Blog`}
+        description={toPlainText(_rawExcerpt)}
+        link={link}
+      />
       <TopBar />
       <Main>
         <article>
