@@ -54,6 +54,8 @@ function NotFoundPage(): JSX.Element {
         <Link to="/">Go to the homepage</Link>
         <Line />
         <Link to="/trips">Take a look at my travel experiences</Link>
+        <Line />
+        <Link to="/blog">Read my articles</Link>
         <Footer title="Or find me at:" />
       </Main>
     </Wrapper>
