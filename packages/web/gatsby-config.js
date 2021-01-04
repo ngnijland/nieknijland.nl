@@ -38,8 +38,8 @@ module.exports = {
     {
       resolve: "gatsby-source-sanity",
       options: {
-        projectId: process.env.SANITY_API_PROJECT_ID,
-        dataset: process.env.SANITY_API_DATASET,
+        projectId: process.env.GATSBY_SANITY_API_PROJECT_ID,
+        dataset: process.env.GATSBY_SANITY_API_DATASET,
       },
     },
   ],

@@ -73,8 +73,8 @@ function PortableText({ blocks }: PortableTextProps): JSX.Element {
           code: Code,
         },
       }}
-      projectId={process.env.SANITY_API_PROJECT_ID}
-      dataset={process.env.SANITY_API_DATASET}
+      projectId={process.env.GATSBY_SANITY_API_PROJECT_ID}
+      dataset={process.env.GATSBY_SANITY_API_DATASET}
     />
   );
 }
