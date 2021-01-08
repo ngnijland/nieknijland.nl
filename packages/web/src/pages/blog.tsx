@@ -46,7 +46,7 @@ const List = styled.ul`
 `;
 
 const Item = styled.li`
-  ::after {
+  :not(:last-of-type)::after {
     display: block;
     height: 0.0625rem;
 
