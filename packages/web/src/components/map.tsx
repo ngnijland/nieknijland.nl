@@ -23,7 +23,7 @@ function Map({ countryFilter }: MapProps): JSX.Element {
   useEffect(() => {
     if (ref.current) {
       const map = new mapboxgl.Map({
-        center: [25, 34],
+        center: [4.9537126, 52.704237],
         container: ref.current,
         style: "mapbox://styles/nieknijland/ckgnvhm130gpq19nys1cyg7wn",
         zoom: 2,
