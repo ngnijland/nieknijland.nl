@@ -8,6 +8,7 @@ import Map from "../components/map";
 import SEO from "../components/seo";
 import TopBar from "../components/topBar";
 import PageTitle, { Title } from "../components/pageTitle";
+import { split } from "../utils";
 
 export interface Continent {
   name: string;
@@ -255,11 +256,15 @@ function Trips({ data }: TripsProps): JSX.Element {
                   <SummaryTitleHighlight>Countries</SummaryTitleHighlight>
                 </SummaryTitle>
                 <SummaryList>
-                  {data.allRandomSanityCountry
-                    .slice(0, 6)
-                    .map(({ code, name }) => (
-                      <SummaryListItem key={code}>{name}</SummaryListItem>
-                    ))}
+                  {split<Country>(data.allRandomSanityCountry, 6).map(
+                    (countries, index) => (
+                      <SummaryListItem key={index}>
+                        {countries.map(({ code, name }) => (
+                          <span key={code}>{name}</span>
+                        ))}
+                      </SummaryListItem>
+                    )
+                  )}
                 </SummaryList>
               </SummaryContainer>
               <SummaryContainer>
@@ -269,9 +274,15 @@ function Trips({ data }: TripsProps): JSX.Element {
                   <SummaryTitleHighlight>Places</SummaryTitleHighlight>
                 </SummaryTitle>
                 <SummaryList>
-                  {data.allRandomSanityPlace.slice(0, 6).map(({ name }) => (
-                    <SummaryListItem key={name}>{name}</SummaryListItem>
-                  ))}
+                  {split<Place>(data.allRandomSanityPlace, 6).map(
+                    (places, index) => (
+                      <SummaryListItem key={index}>
+                        {places.map(({ name }) => (
+                          <span key={name}>{name}</span>
+                        ))}
+                      </SummaryListItem>
+                    )
+                  )}
                 </SummaryList>
               </SummaryContainer>
             </Layout>
