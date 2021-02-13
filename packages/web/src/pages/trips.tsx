@@ -8,35 +8,22 @@ import Map from "../components/map";
 import SEO from "../components/seo";
 import TopBar from "../components/topBar";
 import PageTitle, { Title } from "../components/pageTitle";
-
-export interface Continent {
-  name: string;
-}
+import {
+  ContinentList,
+  CountryList,
+  PlaceList,
+} from "../components/summaryList";
 
 export interface Country {
   code: string;
   name: string;
 }
 
-export interface Place {
-  name: string;
-}
-
 export interface TripsProps extends PageProps {
   data: {
-    allSanityContinent: {
-      nodes: Continent[];
-      totalCount: number;
-    };
     allSanityCountry: {
       nodes: Country[];
-      totalCount: number;
     };
-    allRandomSanityCountry: Country[];
-    allSanityPlace: {
-      totalCount: number;
-    };
-    allRandomSanityPlace: Place[];
   };
 }
 
@@ -92,130 +79,12 @@ const Layout = styled(GridLayout)`
   height: 100%;
 `;
 
-const SummaryContainer = styled.section`
-  grid-row: 2 / 3;
-  max-width: 100%;
-
-  :nth-of-type(1) {
-    display: none;
-  }
-
-  :nth-of-type(2) {
-    grid-column: col-start / 3;
-  }
-
-  :nth-of-type(3) {
-    grid-column: 3 / 5;
-  }
-
-  @media (min-width: 1200px) {
-    :nth-of-type(1) {
-      display: block;
-      grid-column: col-start / 3;
-
-      ul::after {
-        display: none;
-      }
-    }
-
-    :nth-of-type(2) {
-      grid-column: 3 / 5;
-    }
-
-    :nth-of-type(3) {
-      grid-column: 5 / 7;
-    }
-  }
-`;
-
-const SummaryTitle = styled.h1`
-  margin: 0;
-
-  font-size: clamp(1.5rem, 2.5vw, 2.625rem);
-`;
-
-const SummaryTitleHighlight = styled.span`
-  display: inline-block;
-  margin-top: 0.75rem;
-
-  font-size: clamp(1.125rem, 1.5vw, 1.5rem);
-  font-weight: normal;
-  color: var(--text-color-highlight);
-
-  @media (min-width: 1200px) {
-    margin-top: 1rem;
-  }
-`;
-
-const SummaryList = styled.ul`
-  position: relative;
-
-  padding: 0;
-  margin: 0.75rem 0 0;
-
-  list-style: none;
-
-  @media (min-width: 1200px) {
-    margin-top: 1rem;
-  }
-
-  ::after {
-    content: "";
-
-    position: absolute;
-    right: 0;
-    bottom: 0;
-    left: 0;
-
-    height: 4rem;
-
-    background-image: linear-gradient(
-      rgba(255, 255, 255, 0),
-      rgba(255, 255, 255, 1)
-    );
-  }
-`;
-
-const SummaryListItem = styled.li`
-  margin-top: 0.5rem;
-
-  font-weight: bold;
-
-  text-overflow: ellipsis;
-  overflow: hidden;
-  white-space: nowrap;
-
-  @media (min-width: 1200px) {
-    margin-top: 0.75rem;
-  }
-`;
-
 export const pageQuery = graphql`
   {
-    allSanityContinent {
-      nodes {
-        name
-      }
-      totalCount
-    }
     allSanityCountry(sort: { fields: name }) {
       nodes {
         code
       }
-      totalCount
-    }
-    allRandomSanityCountry {
-      code
-      name
-    }
-    allSanityPlace(sort: { fields: name }) {
-      nodes {
-        name
-      }
-      totalCount
-    }
-    allRandomSanityPlace {
-      name
     }
   }
 `;
@@ -236,44 +105,9 @@ function Trips({ data }: TripsProps): JSX.Element {
           <Header>
             <Layout>
               <PageTitle title="Trips" lineText="Summary" />
-              <SummaryContainer>
-                <SummaryTitle>
-                  {data.allSanityContinent.totalCount}
-                  <br />
-                  <SummaryTitleHighlight>Continents</SummaryTitleHighlight>
-                </SummaryTitle>
-                <SummaryList>
-                  {data.allSanityContinent.nodes.map(({ name }) => (
-                    <SummaryListItem key={name}>{name}</SummaryListItem>
-                  ))}
-                </SummaryList>
-              </SummaryContainer>
-              <SummaryContainer>
-                <SummaryTitle>
-                  {data.allSanityCountry.totalCount}
-                  <br />
-                  <SummaryTitleHighlight>Countries</SummaryTitleHighlight>
-                </SummaryTitle>
-                <SummaryList>
-                  {data.allRandomSanityCountry
-                    .slice(0, 6)
-                    .map(({ code, name }) => (
-                      <SummaryListItem key={code}>{name}</SummaryListItem>
-                    ))}
-                </SummaryList>
-              </SummaryContainer>
-              <SummaryContainer>
-                <SummaryTitle>
-                  {data.allSanityPlace.totalCount}
-                  <br />
-                  <SummaryTitleHighlight>Places</SummaryTitleHighlight>
-                </SummaryTitle>
-                <SummaryList>
-                  {data.allRandomSanityPlace.slice(0, 6).map(({ name }) => (
-                    <SummaryListItem key={name}>{name}</SummaryListItem>
-                  ))}
-                </SummaryList>
-              </SummaryContainer>
+              <ContinentList />
+              <CountryList />
+              <PlaceList />
             </Layout>
           </Header>
         </HeaderWrapper>
