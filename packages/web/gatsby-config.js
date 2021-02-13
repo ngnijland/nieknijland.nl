@@ -8,7 +8,7 @@ module.exports = {
     description: `Info about Niek Nijland.`,
     url: "https://www.nieknijland.nl",
     image: "/images/og-image.png",
-    twitterUsername: "@nieknijland",
+    twitterUsername: "@ngnijland",
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
