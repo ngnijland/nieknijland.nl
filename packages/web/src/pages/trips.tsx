@@ -8,6 +8,7 @@ import Map from "../components/map";
 import SEO from "../components/seo";
 import TopBar from "../components/topBar";
 import PageTitle, { Title } from "../components/pageTitle";
+import { split } from "../utils";
 
 export interface Continent {
   name: string;
@@ -190,6 +191,50 @@ const SummaryListItem = styled.li`
   }
 `;
 
+const SummaryListItemWord = styled.span`
+  position: absolute;
+  opacity: 0;
+  overflow: hidden;
+  width: 100%;
+
+  animation: rotateWord 60s linear infinite 0s;
+
+  :nth-child(2) {
+    animation-delay: 15s;
+  }
+
+  :nth-child(3) {
+    animation-delay: 30s;
+  }
+
+  :nth-child(4) {
+    animation-delay: 45s;
+  }
+
+  @keyframes rotateWord {
+    0% {
+      opacity: 1;
+      animation-timing-function: ease-in;
+      width: 0px;
+    }
+    10% {
+      opacity: 0.3;
+      width: 0px;
+    }
+    20% {
+      opacity: 1;
+      width: 100%;
+    }
+    27% {
+      opacity: 0;
+      width: 100%;
+    }
+    100% {
+      opacity: 0;
+    }
+  }
+`;
+
 export const pageQuery = graphql`
   {
     allSanityContinent {
@@ -255,11 +300,17 @@ function Trips({ data }: TripsProps): JSX.Element {
                   <SummaryTitleHighlight>Countries</SummaryTitleHighlight>
                 </SummaryTitle>
                 <SummaryList>
-                  {data.allRandomSanityCountry
-                    .slice(0, 6)
-                    .map(({ code, name }) => (
-                      <SummaryListItem key={code}>{name}</SummaryListItem>
-                    ))}
+                  {split<Country>(data.allRandomSanityCountry, 6).map(
+                    (countries, index) => (
+                      <SummaryListItem key={index}>
+                        {countries.map(({ code, name }) => (
+                          <SummaryListItemWord key={code}>
+                            {name}
+                          </SummaryListItemWord>
+                        ))}
+                      </SummaryListItem>
+                    )
+                  )}
                 </SummaryList>
               </SummaryContainer>
               <SummaryContainer>
@@ -269,9 +320,17 @@ function Trips({ data }: TripsProps): JSX.Element {
                   <SummaryTitleHighlight>Places</SummaryTitleHighlight>
                 </SummaryTitle>
                 <SummaryList>
-                  {data.allRandomSanityPlace.slice(0, 6).map(({ name }) => (
-                    <SummaryListItem key={name}>{name}</SummaryListItem>
-                  ))}
+                  {split<Place>(data.allRandomSanityPlace, 6).map(
+                    (places, index) => (
+                      <SummaryListItem key={index}>
+                        {places.map(({ name }) => (
+                          <SummaryListItemWord key={name}>
+                            {name}
+                          </SummaryListItemWord>
+                        ))}
+                      </SummaryListItem>
+                    )
+                  )}
                 </SummaryList>
               </SummaryContainer>
             </Layout>
