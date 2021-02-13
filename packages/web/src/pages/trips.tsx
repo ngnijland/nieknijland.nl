@@ -191,6 +191,50 @@ const SummaryListItem = styled.li`
   }
 `;
 
+const SummaryListItemWord = styled.span`
+  position: absolute;
+  opacity: 0;
+  overflow: hidden;
+  width: 100%;
+
+  animation: rotateWord 60s linear infinite 0s;
+
+  :nth-child(2) {
+    animation-delay: 15s;
+  }
+
+  :nth-child(3) {
+    animation-delay: 30s;
+  }
+
+  :nth-child(4) {
+    animation-delay: 45s;
+  }
+
+  @keyframes rotateWord {
+    0% {
+      opacity: 1;
+      animation-timing-function: ease-in;
+      width: 0px;
+    }
+    10% {
+      opacity: 0.3;
+      width: 0px;
+    }
+    20% {
+      opacity: 1;
+      width: 100%;
+    }
+    27% {
+      opacity: 0;
+      width: 100%;
+    }
+    100% {
+      opacity: 0;
+    }
+  }
+`;
+
 export const pageQuery = graphql`
   {
     allSanityContinent {
@@ -260,7 +304,9 @@ function Trips({ data }: TripsProps): JSX.Element {
                     (countries, index) => (
                       <SummaryListItem key={index}>
                         {countries.map(({ code, name }) => (
-                          <span key={code}>{name}</span>
+                          <SummaryListItemWord key={code}>
+                            {name}
+                          </SummaryListItemWord>
                         ))}
                       </SummaryListItem>
                     )
@@ -278,7 +324,9 @@ function Trips({ data }: TripsProps): JSX.Element {
                     (places, index) => (
                       <SummaryListItem key={index}>
                         {places.map(({ name }) => (
-                          <span key={name}>{name}</span>
+                          <SummaryListItemWord key={name}>
+                            {name}
+                          </SummaryListItemWord>
                         ))}
                       </SummaryListItem>
                     )
