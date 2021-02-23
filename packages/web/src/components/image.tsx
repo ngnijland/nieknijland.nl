@@ -9,18 +9,18 @@ export enum CaptionPosition {
 
 export interface ImageProps {
   alt: string;
-  className?: string;
   caption?: string;
   captionPosition?: CaptionPosition;
+  className?: string;
   fluid: FluidObject;
 }
 
 const Figure = styled.figure`
   margin: 0;
-`;
 
-const StyledImg = styled(Img)`
-  border-radius: 1rem;
+  .gatsby-image-wrapper {
+    border-radius: 1rem;
+  }
 `;
 
 const Figcaption = styled.figcaption<{ position: CaptionPosition }>`
@@ -71,7 +71,7 @@ function Image(props: ImageProps): JSX.Element {
       {caption && (
         <FigcaptionTop position={captionPosition}>{caption}</FigcaptionTop>
       )}
-      <StyledImg fadeIn={false} {...rest} />
+      <Img backgroundColor="#eff0f0" {...rest} />
       {caption && (
         <FigcaptionBottom position={captionPosition}>
           {caption}

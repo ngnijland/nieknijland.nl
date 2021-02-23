@@ -63,21 +63,21 @@ function PersonalImages(): JSX.Element {
       image1: file(relativePath: { eq: "homepage-travel-image-1.jpeg" }) {
         childImageSharp {
           fluid(maxWidth: 750) {
-            ...GatsbyImageSharpFluid
+            ...GatsbyImageSharpFluid_withWebp_noBase64
           }
         }
       }
       image2: file(relativePath: { eq: "homepage-travel-image-2.jpeg" }) {
         childImageSharp {
           fluid(maxWidth: 600) {
-            ...GatsbyImageSharpFluid
+            ...GatsbyImageSharpFluid_withWebp_noBase64
           }
         }
       }
       image3: file(relativePath: { eq: "homepage-travel-image-3.jpeg" }) {
         childImageSharp {
           fluid(maxWidth: 900) {
-            ...GatsbyImageSharpFluid
+            ...GatsbyImageSharpFluid_withWebp_noBase64
           }
         }
       }

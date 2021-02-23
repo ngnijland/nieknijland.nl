@@ -131,7 +131,7 @@ function Hero(): JSX.Element {
       image: file(relativePath: { eq: "nieknijland.jpg" }) {
         childImageSharp {
           fluid(maxWidth: 750) {
-            ...GatsbyImageSharpFluid
+            ...GatsbyImageSharpFluid_withWebp_noBase64
           }
         }
       }

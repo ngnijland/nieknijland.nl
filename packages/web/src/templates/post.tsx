@@ -6,7 +6,7 @@ import dayjs from "dayjs";
 import SEO from "../components/seo";
 import TopBar from "../components/topBar";
 import PageTitle from "../components/pageTitle";
-import PortableText from "../components/portableText";
+import { PortableText } from "../components/portableText";
 import Footer from "../components/footer";
 
 export interface PortableText {
