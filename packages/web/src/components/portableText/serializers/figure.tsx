@@ -15,6 +15,10 @@ export interface FigureProps {
 
 const FigureElement = styled.figure`
   margin: 1em 0;
+
+  .gatsby-image-wrapper {
+    border-radius: 1rem;
+  }
 `;
 
 const FigCaption = styled.figcaption`
@@ -40,13 +44,7 @@ export function Figure({
   return (
     image && (
       <FigureElement>
-        <Img
-          fluid={image}
-          alt={alt}
-          imgStyle={{
-            borderRadius: "1rem",
-          }}
-        />
+        <Img fluid={image} alt={alt} backgroundColor="#eff0f0" />
         {caption && <FigCaption>{caption}</FigCaption>}
       </FigureElement>
     )

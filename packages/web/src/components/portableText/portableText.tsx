@@ -62,7 +62,7 @@ const Container = styled.section`
   }
 `;
 
-function PortableText({ blocks }: PortableTextProps): JSX.Element {
+export function PortableText({ blocks }: PortableTextProps): JSX.Element {
   return (
     <BlockContent
       blocks={blocks}
@@ -78,5 +78,3 @@ function PortableText({ blocks }: PortableTextProps): JSX.Element {
     />
   );
 }
-
-export default PortableText;
