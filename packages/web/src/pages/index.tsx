@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 
-import Hero from "../components/hero";
+import { Hero } from "../components/hero";
 import PersonalImages from "../components/personalImages";
 import Footer from "../components/footer";
 import SEO from "../components/seo";
