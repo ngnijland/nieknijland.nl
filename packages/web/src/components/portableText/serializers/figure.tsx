@@ -1,6 +1,6 @@
 import React from "react";
-import { getFluidGatsbyImage } from "gatsby-source-sanity";
-import Img from "gatsby-image";
+import { getGatsbyImageData } from "gatsby-source-sanity";
+import { GatsbyImage } from "gatsby-plugin-image";
 import styled from "styled-components";
 
 export interface FigureProps {
@@ -32,9 +32,9 @@ const FigCaption = styled.figcaption`
 export function Figure({
   node: { alt, asset, caption },
 }: FigureProps): JSX.Element | null {
-  const image = getFluidGatsbyImage(
+  const image = getGatsbyImageData(
     asset._ref,
-    { maxWidth: 1000 },
+    { layout: "fullWidth" },
     {
       projectId: process.env.GATSBY_SANITY_API_PROJECT_ID || "",
       dataset: process.env.GATSBY_SANITY_API_DATASET || "",
@@ -44,7 +44,7 @@ export function Figure({
   return (
     image && (
       <FigureElement>
-        <Img fluid={image} alt={alt} backgroundColor="#eff0f0" />
+        <GatsbyImage image={image} alt={alt} backgroundColor="#eff0f0" />
         {caption && <FigCaption>{caption}</FigCaption>}
       </FigureElement>
     )

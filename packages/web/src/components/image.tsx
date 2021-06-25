@@ -1,5 +1,5 @@
 import React from "react";
-import Img, { FluidObject } from "gatsby-image";
+import { GatsbyImage, IGatsbyImageData } from "gatsby-plugin-image";
 import styled, { css } from "styled-components";
 
 export enum CaptionPosition {
@@ -12,7 +12,7 @@ export interface ImageProps {
   caption?: string;
   captionPosition?: CaptionPosition;
   className?: string;
-  fluid: FluidObject;
+  image: IGatsbyImageData | undefined;
 }
 
 const Figure = styled.figure`
@@ -58,12 +58,13 @@ const FigcaptionBottom = styled(Figcaption)`
     `}
 `;
 
-function Image(props: ImageProps): JSX.Element {
+export function Image(props: ImageProps): JSX.Element {
   const {
+    alt,
     className,
     caption,
     captionPosition = CaptionPosition.Bottom,
-    ...rest
+    image,
   } = props;
 
   return (
@@ -71,7 +72,9 @@ function Image(props: ImageProps): JSX.Element {
       {caption && (
         <FigcaptionTop position={captionPosition}>{caption}</FigcaptionTop>
       )}
-      <Img backgroundColor="#eff0f0" {...rest} />
+      {image && (
+        <GatsbyImage alt={alt} backgroundColor="#eff0f0" image={image} />
+      )}
       {caption && (
         <FigcaptionBottom position={captionPosition}>
           {caption}
@@ -80,5 +83,3 @@ function Image(props: ImageProps): JSX.Element {
     </Figure>
   );
 }
-
-export default Image;

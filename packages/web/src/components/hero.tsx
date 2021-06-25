@@ -1,10 +1,11 @@
 import React from "react";
 import { Link, graphql, useStaticQuery } from "gatsby";
 import styled from "styled-components";
+import { getImage } from "gatsby-plugin-image";
 
 import GithubIcon from "./githubIcon";
 import GridLayout from "./layout";
-import Image from "./image";
+import { Image } from "./image";
 import LinkedInIcon from "./linkedinIcon";
 import Tag from "./tag";
 import TwitterIcon from "./twitterIcon";
@@ -130,13 +131,13 @@ function Hero(): JSX.Element {
     query {
       image: file(relativePath: { eq: "nieknijland.jpg" }) {
         childImageSharp {
-          fluid(maxWidth: 750) {
-            ...GatsbyImageSharpFluid_withWebp_noBase64
-          }
+          gatsbyImageData(layout: CONSTRAINED)
         }
       }
     }
   `);
+
+  const image = getImage(data.image);
 
   return (
     <Header>
@@ -172,10 +173,7 @@ function Hero(): JSX.Element {
             </LinkedInLink>
           </LinkWrapper>
         </TitleWrapper>
-        <StyledImage
-          fluid={data.image.childImageSharp.fluid}
-          alt="Portrait picture of me"
-        />
+        <StyledImage image={image} alt="Portrait picture of me" />
       </Layout>
     </Header>
   );

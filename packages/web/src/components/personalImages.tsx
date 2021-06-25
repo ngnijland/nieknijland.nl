@@ -1,10 +1,11 @@
 import React from "react";
 import { graphql, useStaticQuery } from "gatsby";
 import styled from "styled-components";
+import { getImage } from "gatsby-plugin-image";
 
-import Image, { CaptionPosition } from "../components/image";
-import Layout from "../components/layout";
-import ScrollDownIndicator from "../components/scrollDownIndicator";
+import { Image, CaptionPosition } from "./image";
+import Layout from "./layout";
+import ScrollDownIndicator from "./scrollDownIndicator";
 
 const Image1 = styled(Image)`
   grid-column: 1 / span 3;
@@ -57,32 +58,30 @@ const Image3 = styled(Image)`
   }
 `;
 
-function PersonalImages(): JSX.Element {
+export function PersonalImages(): JSX.Element {
   const data = useStaticQuery(graphql`
     query {
       image1: file(relativePath: { eq: "homepage-travel-image-1.jpeg" }) {
         childImageSharp {
-          fluid(maxWidth: 750) {
-            ...GatsbyImageSharpFluid_withWebp_noBase64
-          }
+          gatsbyImageData(layout: CONSTRAINED)
         }
       }
       image2: file(relativePath: { eq: "homepage-travel-image-2.jpeg" }) {
         childImageSharp {
-          fluid(maxWidth: 600) {
-            ...GatsbyImageSharpFluid_withWebp_noBase64
-          }
+          gatsbyImageData(layout: CONSTRAINED)
         }
       }
       image3: file(relativePath: { eq: "homepage-travel-image-3.jpeg" }) {
         childImageSharp {
-          fluid(maxWidth: 900) {
-            ...GatsbyImageSharpFluid_withWebp_noBase64
-          }
+          gatsbyImageData(layout: CONSTRAINED)
         }
       }
     }
   `);
+
+  const image1 = getImage(data.image1);
+  const image2 = getImage(data.image2);
+  const image3 = getImage(data.image3);
 
   return (
     <Layout verticalGap>
@@ -91,20 +90,18 @@ function PersonalImages(): JSX.Element {
         alt="Rice fields between mountains"
         caption="Rice fields in Vietnam"
         captionPosition={CaptionPosition.Top}
-        fluid={data.image1.childImageSharp.fluid}
+        image={image1}
       />
       <Image2
         alt="Me standing on a big rock"
         caption="Joshua Tree National Park, California"
-        fluid={data.image2.childImageSharp.fluid}
+        image={image2}
       />
       <Image3
         alt="Brice Canyon hoodoos"
         caption="Bryce Canyon National Park, Utah"
-        fluid={data.image3.childImageSharp.fluid}
+        image={image3}
       />
     </Layout>
   );
 }
-
-export default PersonalImages;
