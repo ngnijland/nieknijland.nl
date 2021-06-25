@@ -37,7 +37,7 @@ export function CountryList(): JSX.Element {
       <Title>
         {totalCount}
         <br />
-        <TitleHighlight>Continents</TitleHighlight>
+        <TitleHighlight>Countries</TitleHighlight>
       </Title>
       <List>
         {countries.slice(0, 6).map(({ name }) => (
