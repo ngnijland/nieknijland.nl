@@ -95,7 +95,11 @@ const Line = styled.div`
   }
 `;
 
-function PageTitle({ title, subtitle, lineText }: PageTitleProps): JSX.Element {
+export function PageTitle({
+  title,
+  subtitle,
+  lineText,
+}: PageTitleProps): JSX.Element {
   return (
     <TitleContainer>
       <Title>{title}</Title>
@@ -105,5 +109,3 @@ function PageTitle({ title, subtitle, lineText }: PageTitleProps): JSX.Element {
     </TitleContainer>
   );
 }
-
-export default PageTitle;

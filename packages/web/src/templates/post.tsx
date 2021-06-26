@@ -5,7 +5,7 @@ import dayjs from "dayjs";
 
 import SEO from "../components/seo";
 import TopBar from "../components/topBar";
-import PageTitle from "../components/pageTitle";
+import { PageTitle } from "../components/pageTitle";
 import { PortableText } from "../components/portableText";
 import Footer from "../components/footer";
 
@@ -22,6 +22,13 @@ export interface PostProps {
       canonicalURL: string;
       publishedAt: string;
       title: string;
+    };
+  };
+  pageContext: {
+    ogImage: {
+      path: string;
+      width: number;
+      height: number;
     };
   };
 }
@@ -76,6 +83,7 @@ function Post({
   data: {
     post: { _rawBody, _rawExcerpt, canonicalURL, publishedAt, title },
   },
+  pageContext: { ogImage },
 }: PostProps): JSX.Element {
   const link = [];
 
@@ -89,6 +97,7 @@ function Post({
         title={`${title} | Blog`}
         description={toPlainText(_rawExcerpt)}
         link={link}
+        image={ogImage.path}
       />
       <TopBar />
       <Main>
