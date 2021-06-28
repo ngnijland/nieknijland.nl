@@ -5,7 +5,7 @@ import dayjs from "dayjs";
 
 import SEO from "../components/seo";
 import TopBar from "../components/topBar";
-import PageTitle from "../components/pageTitle";
+import { PageTitle } from "../components/pageTitle";
 import Footer from "../components/footer";
 
 export interface BlogProps extends PageProps {

@@ -7,7 +7,7 @@ import GridLayout from "../components/layout";
 import Map from "../components/map";
 import SEO from "../components/seo";
 import TopBar from "../components/topBar";
-import PageTitle, { Title } from "../components/pageTitle";
+import { PageTitle, Title } from "../components/pageTitle";
 import {
   ContinentList,
   CountryList,

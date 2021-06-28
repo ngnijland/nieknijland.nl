@@ -1,3 +1,5 @@
+const { createOpenGraphImage } = require("gatsby-plugin-open-graph-images");
+
 function shuffle(array) {
   const newArray = [...array];
   let m = newArray.length;
@@ -67,7 +69,14 @@ exports.createPages = async ({ graphql, actions: { createPage } }) => {
     createPage({
       path: `/blog/${slug}`,
       component: require.resolve("./src/templates/post.tsx"),
-      context: { id },
+      context: {
+        id,
+        ogImage: createOpenGraphImage(createPage, {
+          path: `/og-images/blogs/${slug}.png`,
+          component: require.resolve("./src/templates/post-og-image.tsx"),
+          context: { id },
+        }),
+      },
     });
   });
 };
