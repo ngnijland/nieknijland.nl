@@ -1,0 +1,13 @@
+@font-face {
+  font-family: "SF Bold";
+  font-style: normal;
+  font-weight: 700;
+  src: url("../fonts/SF-Pro-Display-Bold.otf") format("opentype");
+}
+
+@font-face {
+  font-family: "SF Medium";
+  font-style: normal;
+  font-weight: 700;
+  src: url("../fonts/SF-Pro-Display-Medium.otf") format("opentype");
+}

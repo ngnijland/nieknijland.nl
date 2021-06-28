@@ -6,6 +6,8 @@ import TwitterIcon from "../components/twitterIcon";
 import GithubIcon from "../components/githubIcon";
 import Tag from "../components/tag";
 
+import "./sf-font.css";
+
 export interface PostOgImageProps {
   data?: {
     post?: {
@@ -31,8 +33,9 @@ const Root = styled.div`
 const Title = styled.h1`
   margin: 0;
 
-  font-family: sans-serif;
+  font-family: "SF Bold";
   font-size: 42px;
+  font-weight: 700;
   color: var(--text-color);
 `;
 
@@ -93,8 +96,9 @@ const GithubIconWrapper = styled(IconWrapper)`
 `;
 
 const SocialText = styled.span`
-  font-family: sans-serif;
+  font-family: "SF Medium";
   font-size: 16px;
+  font-weight: 500;
   color: var(--text-color);
 `;
 
