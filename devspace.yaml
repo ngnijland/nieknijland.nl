@@ -1,0 +1,74 @@
+version: v1beta11
+
+# https://devspace.sh/cli/docs/configuration/reference
+
+vars:
+- name: SANITY_API_PROJECT_ID
+  question: 'Enter your Sanity project ID:'
+  validationMessage: 'Sanity project ID is required'
+  validationPattern: '.+'
+  default: ''
+- name: MAPBOX_ACCESS_TOKEN
+  question: 'Enter your Mapbox access token:'
+  validationMessage: 'Mapbox access token is required'
+  validationPattern: '.+'
+  password: true
+- name: CONTAINER_REGISTRY
+  default: k8scr.kube-system.svc.cluster.local
+
+images:
+  default:
+    image: ${CONTAINER_REGISTRY}/nieknijland.nl
+    context: packages/web
+    dockerfile: packages/web/Dockerfile
+
+deployments:
+- name: nieknijland
+  helm:
+    # https://devspace.sh/component-chart/docs/introduction
+    componentChart: true
+    values:
+      containers:
+      - image: ${CONTAINER_REGISTRY}/nieknijland.nl
+        command:
+        - sleep
+        - '999999999999999'
+        env:
+        - name: GATSBY_MAPBOX_ACCESS_TOKEN
+          value: "${MAPBOX_ACCESS_TOKEN}"
+        - name: GATSBY_SANITY_API_DATASET
+          value: development
+        - name: GATSBY_SANITY_API_PROJECT_ID
+          value: "${SANITY_API_PROJECT_ID}"
+      service:
+        ports:
+        - name: http
+          port: 8000
+          containerPort: 8000
+
+dev:
+  sync:
+  - labelSelector:
+      app.kubernetes.io/component: nieknijland
+      app.kubernetes.io/name: devspace-app
+    waitInitialSync: true
+    localSubPath: packages/web
+    containerPath: /usr/app/packages/web
+    excludePaths:
+    - node_modules
+  terminal:
+    labelSelector:
+      app.kubernetes.io/component: nieknijland
+      app.kubernetes.io/name: devspace-app
+    command:
+    - yarn
+    - develop
+  ports:
+  - labelSelector:
+      app.kubernetes.io/component: nieknijland
+      app.kubernetes.io/name: devspace-app
+    forward:
+    - remotePort: 8000
+      port: 8000
+  open:
+  - url: http://localhost:8000
