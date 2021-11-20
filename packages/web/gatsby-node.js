@@ -25,22 +25,22 @@ exports.createResolvers = ({ createResolvers }) => {
     Query: {
       allRandomSanityCountry: {
         type: ["SanityCountry"],
-        resolve: (source, args, context) => {
-          const countries = context.nodeModel.getAllNodes({
+        resolve: async (source, args, context) => {
+          const countries = await context.nodeModel.findAll({
             type: `SanityCountry`,
           });
 
-          return shuffle(countries);
+          return shuffle(countries.entries);
         },
       },
       allRandomSanityPlace: {
         type: ["SanityPlace"],
-        resolve: (source, args, context) => {
-          const places = context.nodeModel.getAllNodes({
+        resolve: async (source, args, context) => {
+          const places = await context.nodeModel.findAll({
             type: `SanityPlace`,
           });
 
-          return shuffle(places);
+          return shuffle(places.entries);
         },
       },
     },
