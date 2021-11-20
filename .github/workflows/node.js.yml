@@ -24,13 +24,13 @@ jobs:
         node-version: ${{ matrix.node-version }}
 
     - name: Install dependencies
-      run: yarn --frozen-lockfile
+      run: npm ci
 
     - name: Bootstrap project
-      run: yarn bootstrap
+      run: npm run bootstrap:ci
 
     - name: Lint files
-      run: yarn lint
+      run: npm run lint
 
     - name: Type check
-      run: yarn type-check
+      run: npm run type-check
