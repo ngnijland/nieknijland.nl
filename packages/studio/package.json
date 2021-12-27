@@ -9,7 +9,6 @@
   "scripts": {
     "lint": "eslint .",
     "start": "sanity start",
-    "test": "sanity check",
     "build": "sanity build"
   },
   "keywords": [
