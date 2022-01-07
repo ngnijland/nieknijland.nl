@@ -4,6 +4,7 @@ import { Helmet } from "react-helmet";
 import { PageProps, graphql } from "gatsby";
 
 import GridLayout from "../components/layout";
+import { HalfWidthLayout } from "../components/halfWidthLayout.tsx";
 import Map from "../components/map";
 import SEO from "../components/seo";
 import TopBar from "../components/topBar";
@@ -79,6 +80,36 @@ const Layout = styled(GridLayout)`
   height: 100%;
 `;
 
+const TripsList = styled.ol`
+  padding: 0;
+  margin: 0 2rem;
+
+  list-style: none;
+
+  @media (min-width: 600px) {
+    margin-right: 5rem;
+    margin-left: 5rem;
+  }
+
+  @media (min-width: 1200px) {
+    margin-right: 8.75rem;
+    margin-left: 8.75rem;
+  }
+
+  @media (min-width: 1920px) {
+    margin-right: auto;
+    margin-left: auto;
+  }
+`;
+
+const TripsLayout = styled(HalfWidthLayout)`
+  width: 100%;
+  padding: 0;
+  margin: 0;
+
+  list-style: none;
+`;
+
 export const pageQuery = graphql`
   {
     allSanityCountry(sort: { fields: name }) {
@@ -111,6 +142,30 @@ function Trips({ data }: TripsProps): JSX.Element {
             </Layout>
           </Header>
         </HeaderWrapper>
+        <section>
+          <TripsList>
+            <HalfWidthLayout as="li">
+              <header>
+                <h2>2021</h2>
+              </header>
+              <TripsLayout as="ol">
+                <li>Foo</li>
+                <li>Foo</li>
+                <li>Foo</li>
+              </TripsLayout>
+            </HalfWidthLayout>
+            <HalfWidthLayout as="li">
+              <header>
+                <h2>2021</h2>
+              </header>
+              <TripsLayout as="ol">
+                <li>Foo</li>
+                <li>Foo</li>
+                <li>Foo</li>
+              </TripsLayout>
+            </HalfWidthLayout>
+          </TripsList>
+        </section>
       </Main>
       <MapWrapper>
         <Map
