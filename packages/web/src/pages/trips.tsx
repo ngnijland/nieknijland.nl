@@ -19,10 +19,26 @@ export interface Country {
   name: string;
 }
 
+export interface Trip {
+  id: string;
+  title: string;
+  startDate: string;
+  endDate: string;
+  featuredImage: {
+    asset: {
+      url: string;
+    };
+    altText: string;
+  };
+}
+
 export interface TripsProps extends PageProps {
   data: {
     allSanityCountry: {
       nodes: Country[];
+    };
+    allSanityTrip: {
+      nodes: Trip[];
     };
   };
 }
@@ -131,15 +147,41 @@ const TripsLayout = styled(HalfWidthLayout)`
 
 export const pageQuery = graphql`
   {
-    allSanityCountry(sort: { fields: name }) {
+    allSanityCountry {
       nodes {
         code
+      }
+    }
+    allSanityTrip(sort: { order: DESC, fields: startDate }) {
+      nodes {
+        featuredImage {
+          asset {
+            url
+          }
+          altText
+        }
+        startDate
+        title
+        id
+        endDate
       }
     }
   }
 `;
 
 function Trips({ data }: TripsProps): JSX.Element {
+  const tripsByYear = data.allSanityTrip.nodes.reduce<Record<string, Trip[]>>(
+    (acc, trip) => {
+      const year = new Date(trip.startDate).getFullYear().toString();
+
+      return {
+        ...acc,
+        [year]: [...(acc[year] || []), trip],
+      };
+    },
+    {}
+  );
+
   return (
     <>
       <SEO title="Trips" />
@@ -163,26 +205,20 @@ function Trips({ data }: TripsProps): JSX.Element {
         </HeaderWrapper>
         <TripsSection>
           <TripsList>
-            <HalfWidthLayout as="li">
-              <header>
-                <h2>2021</h2>
-              </header>
-              <TripsLayout as="ol">
-                <li>Trip 1</li>
-                <li>Trip 2</li>
-                <li>Trip 3</li>
-              </TripsLayout>
-            </HalfWidthLayout>
-            <HalfWidthLayout as="li">
-              <header>
-                <h2>2020</h2>
-              </header>
-              <TripsLayout as="ol">
-                <li>Trip 1</li>
-                <li>Trip 2</li>
-                <li>Trip 3</li>
-              </TripsLayout>
-            </HalfWidthLayout>
+            {Object.keys(tripsByYear)
+              .sort((a, b) => parseInt(b, 10) - parseInt(a, 10))
+              .map((year) => (
+                <HalfWidthLayout as="li" key={year}>
+                  <header>
+                    <h2>{year}</h2>
+                  </header>
+                  <TripsLayout as="ol">
+                    {tripsByYear[year].map(({ id, title }) => (
+                      <li key={id}>{title}</li>
+                    ))}
+                  </TripsLayout>
+                </HalfWidthLayout>
+              ))}
           </TripsList>
         </TripsSection>
       </Main>
