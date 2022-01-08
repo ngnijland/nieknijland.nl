@@ -48,6 +48,7 @@ function Map({ countryFilter }: MapProps): JSX.Element {
             "country-label"
           );
 
+          map.scrollZoom.disable();
           map.setFilter("country-boundaries", countryFilter);
         }
       });
