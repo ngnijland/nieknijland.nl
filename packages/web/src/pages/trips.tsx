@@ -3,8 +3,7 @@ import styled from "styled-components";
 import { Helmet } from "react-helmet";
 import { PageProps, graphql } from "gatsby";
 
-import GridLayout from "../components/layout";
-import { HalfWidthLayout } from "../components/halfWidthLayout.tsx";
+import { HalfWidthLayout } from "../components/halfWidthLayout";
 import Map from "../components/map";
 import SEO from "../components/seo";
 import TopBar from "../components/topBar";
@@ -62,6 +61,9 @@ const Header = styled.header`
   bottom: 0;
   left: 0;
 
+  max-width: 1640px;
+  margin: 0 2rem;
+
   ${Title} {
     margin-top: 5.5rem;
   }
@@ -69,22 +71,33 @@ const Header = styled.header`
   @media (min-width: 600px) {
     top: -6rem;
 
+    margin-right: 5rem;
+    margin-left: 5rem;
+
     ${Title} {
       margin-top: 7.5rem;
     }
   }
+
+  @media (min-width: 1200px) {
+    margin-right: 8.75rem;
+    margin-left: 8.75rem;
+  }
+
+  @media (min-width: 1920px) {
+    margin-right: auto;
+    margin-left: auto;
+  }
 `;
 
-const Layout = styled(GridLayout)`
+const Layout = styled(HalfWidthLayout)`
   grid-template-rows: 1fr min-content 1fr;
   height: 100%;
 `;
 
-const TripsList = styled.ol`
-  padding: 0;
+const TripsSection = styled.section`
+  max-width: 1640px;
   margin: 0 2rem;
-
-  list-style: none;
 
   @media (min-width: 600px) {
     margin-right: 5rem;
@@ -100,6 +113,12 @@ const TripsList = styled.ol`
     margin-right: auto;
     margin-left: auto;
   }
+`;
+
+const TripsList = styled.ol`
+  padding: 0;
+
+  list-style: none;
 `;
 
 const TripsLayout = styled(HalfWidthLayout)`
@@ -142,30 +161,30 @@ function Trips({ data }: TripsProps): JSX.Element {
             </Layout>
           </Header>
         </HeaderWrapper>
-        <section>
+        <TripsSection>
           <TripsList>
             <HalfWidthLayout as="li">
               <header>
                 <h2>2021</h2>
               </header>
               <TripsLayout as="ol">
-                <li>Foo</li>
-                <li>Foo</li>
-                <li>Foo</li>
+                <li>Trip 1</li>
+                <li>Trip 2</li>
+                <li>Trip 3</li>
               </TripsLayout>
             </HalfWidthLayout>
             <HalfWidthLayout as="li">
               <header>
-                <h2>2021</h2>
+                <h2>2020</h2>
               </header>
               <TripsLayout as="ol">
-                <li>Foo</li>
-                <li>Foo</li>
-                <li>Foo</li>
+                <li>Trip 1</li>
+                <li>Trip 2</li>
+                <li>Trip 3</li>
               </TripsLayout>
             </HalfWidthLayout>
           </TripsList>
-        </section>
+        </TripsSection>
       </Main>
       <MapWrapper>
         <Map
