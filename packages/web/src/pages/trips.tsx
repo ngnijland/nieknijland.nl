@@ -15,6 +15,7 @@ import {
   PlaceList,
 } from "../components/summaryList";
 import { TripItem } from "../components/trip";
+import * as TripColumns from "../components/tripColumns";
 
 export interface Country {
   code: string;
@@ -50,7 +51,7 @@ const MapWrapper = styled.div`
   top: 0;
   right: 0;
   bottom: 0;
-  left: 50%;
+  left: calc(50% + 0.5rem);
 
   display: none;
 
@@ -232,9 +233,16 @@ function Trips({ data }: TripsProps): JSX.Element {
                     <YearTitle>{year}</YearTitle>
                   </YearHeader>
                   <TripsLayout as="ol">
-                    {tripsByYear[year].map((trip) => (
-                      <TripItem key={trip.id} trip={trip} />
-                    ))}
+                    {tripsByYear[year].map((trip) => {
+                      const TripColumn =
+                        TripColumns[`Total${tripsByYear[year].length}`];
+
+                      return (
+                        <TripColumn key={trip.id} gridColumn="1 / -1">
+                          <TripItem trip={trip} />
+                        </TripColumn>
+                      );
+                    })}
                   </TripsLayout>
                 </HalfWidthLayout>
               ))}

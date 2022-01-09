@@ -35,12 +35,10 @@ export function TripItem({
 
   // TODO: fix fade in colors images
   return (
-    <li>
-      <article>
-        <Duration>{days + 1} days</Duration>
-        <Title>{title}</Title>
-        <Image image={asset.gatsbyImageData} alt={altText} />
-      </article>
-    </li>
+    <article>
+      <Duration>{days + 1} days</Duration>
+      <Title>{title}</Title>
+      <Image image={asset.gatsbyImageData} alt={altText} />
+    </article>
   );
 }
