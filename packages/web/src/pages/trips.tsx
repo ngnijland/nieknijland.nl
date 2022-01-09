@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { Helmet } from "react-helmet";
 import { PageProps, graphql } from "gatsby";
+import { IGatsbyImageData } from "gatsby-plugin-image";
 
 import { HalfWidthLayout } from "../components/halfWidthLayout";
 import Map from "../components/map";
@@ -13,6 +14,7 @@ import {
   CountryList,
   PlaceList,
 } from "../components/summaryList";
+import { TripItem } from "../components/trip";
 
 export interface Country {
   code: string;
@@ -26,7 +28,7 @@ export interface Trip {
   endDate: string;
   featuredImage: {
     asset: {
-      url: string;
+      gatsbyImageData: IGatsbyImageData;
     };
     altText: string;
   };
@@ -145,6 +147,23 @@ const TripsLayout = styled(HalfWidthLayout)`
   list-style: none;
 `;
 
+const YearHeader = styled.header`
+  display: flex;
+  grid-column: 1 / span 1;
+  align-items: center;
+  justify-content: start;
+`;
+
+// TODO: add before and after for lines
+const YearTitle = styled.h2`
+  padding: 1rem 0;
+  margin: 0;
+
+  font-size: 1rem;
+  font-weight: normal;
+  writing-mode: sideways-lr;
+`;
+
 export const pageQuery = graphql`
   {
     allSanityCountry {
@@ -155,10 +174,10 @@ export const pageQuery = graphql`
     allSanityTrip(sort: { order: DESC, fields: startDate }) {
       nodes {
         featuredImage {
-          asset {
-            url
-          }
           altText
+          asset {
+            gatsbyImageData(layout: CONSTRAINED)
+          }
         }
         startDate
         title
@@ -209,12 +228,12 @@ function Trips({ data }: TripsProps): JSX.Element {
               .sort((a, b) => parseInt(b, 10) - parseInt(a, 10))
               .map((year) => (
                 <HalfWidthLayout as="li" key={year}>
-                  <header>
-                    <h2>{year}</h2>
-                  </header>
+                  <YearHeader>
+                    <YearTitle>{year}</YearTitle>
+                  </YearHeader>
                   <TripsLayout as="ol">
-                    {tripsByYear[year].map(({ id, title }) => (
-                      <li key={id}>{title}</li>
+                    {tripsByYear[year].map((trip) => (
+                      <TripItem key={trip.id} trip={trip} />
                     ))}
                   </TripsLayout>
                 </HalfWidthLayout>
