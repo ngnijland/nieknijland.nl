@@ -148,7 +148,7 @@ const TripsLayout = styled(HalfWidthLayout)`
   list-style: none;
 `;
 
-const YearHeader = styled.header`
+const YearHeader = styled.li`
   display: flex;
   grid-column: 1 / span 1;
   align-items: center;
@@ -229,10 +229,10 @@ function Trips({ data }: TripsProps): JSX.Element {
               .sort((a, b) => parseInt(b, 10) - parseInt(a, 10))
               .map((year) => (
                 <HalfWidthLayout as="li" key={year}>
-                  <YearHeader>
-                    <YearTitle>{year}</YearTitle>
-                  </YearHeader>
-                  <TripsLayout as="ol">
+                  <TripsLayout as="ol" role="group" aria-label={year}>
+                    <YearHeader>
+                      <YearTitle>{year}</YearTitle>
+                    </YearHeader>
                     {tripsByYear[year].map((trip) => {
                       const TripColumn =
                         TripColumns[`Total${tripsByYear[year].length}`];
