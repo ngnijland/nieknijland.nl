@@ -238,7 +238,7 @@ function Trips({ data }: TripsProps): JSX.Element {
                         TripColumns[`Total${tripsByYear[year].length}`];
 
                       return (
-                        <TripColumn key={trip.id} gridColumn="1 / -1">
+                        <TripColumn key={trip.id}>
                           <TripItem trip={trip} />
                         </TripColumn>
                       );

@@ -25,6 +25,13 @@ export const Total2 = styled.li`
     :nth-of-type(3) {
       grid-column: 1 / 5;
       grid-row: 2;
+
+      article {
+        display: flex;
+        flex-direction: column-reverse;
+
+        text-align: right;
+      }
     }
   }
 `;
@@ -46,11 +53,23 @@ export const Total3 = styled.li`
     :nth-of-type(3) {
       grid-column: 1 / 3;
       grid-row: 2;
+
+      article {
+        display: flex;
+        flex-direction: column-reverse;
+      }
     }
 
     :nth-of-type(4) {
       grid-column: 3 / 6;
       grid-row: 2;
+
+      article {
+        display: flex;
+        flex-direction: column-reverse;
+
+        text-align: right;
+      }
     }
   }
 `;
@@ -73,16 +92,32 @@ export const Total4 = styled.li`
       display: flex;
       grid-column: 4 / 6;
       align-items: flex-end;
+
+      article {
+        text-align: right;
+      }
     }
 
     :nth-of-type(4) {
       grid-column: 1 / 3;
       grid-row: 2;
+
+      article {
+        display: flex;
+        flex-direction: column-reverse;
+      }
     }
 
     :nth-of-type(5) {
       grid-column: 3 / 6;
       grid-row: 2;
+
+      article {
+        display: flex;
+        flex-direction: column-reverse;
+
+        text-align: right;
+      }
     }
   }
 `;

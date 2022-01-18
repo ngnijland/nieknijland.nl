@@ -9,8 +9,13 @@ export interface TripProps {
   trip: Trip;
 }
 
+const TripSummary = styled.div`
+  padding: 0 1rem;
+  margin: 0.375rem 0;
+`;
+
 const Title = styled.h3`
-  margin: 0 0 0.375rem;
+  margin: 0;
 
   font-size: 1rem;
 `;
@@ -36,8 +41,10 @@ export function TripItem({
   // TODO: fix fade in colors images
   return (
     <article>
-      <Duration>{days + 1} days</Duration>
-      <Title>{title}</Title>
+      <TripSummary>
+        <Duration>{days + 1} days</Duration>
+        <Title>{title}</Title>
+      </TripSummary>
       <Image image={asset.gatsbyImageData} alt={altText} />
     </article>
   );
