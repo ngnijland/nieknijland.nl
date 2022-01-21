@@ -1,5 +1,11 @@
 {
   "extends": [
     "config:base"
+  ],
+  "packageRules": [
+    {
+      "matchSourceUrlPrefixes": ["https://github.com/lerna/lerna"],
+      "groupName": "Lerna monorepo packages"
+    }
   ]
 }
