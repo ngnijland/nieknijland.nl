@@ -58,28 +58,32 @@ const FigcaptionBottom = styled(Figcaption)`
     `}
 `;
 
-export function Image(props: ImageProps): JSX.Element {
-  const {
-    alt,
-    className,
-    caption,
-    captionPosition = CaptionPosition.Bottom,
-    image,
-  } = props;
+export const Image = React.forwardRef(
+  (props: ImageProps, ref: React.ForwardedRef<HTMLElement>): JSX.Element => {
+    const {
+      alt,
+      className,
+      caption,
+      captionPosition = CaptionPosition.Bottom,
+      image,
+    } = props;
 
-  return (
-    <Figure className={className}>
-      {caption && (
-        <FigcaptionTop position={captionPosition}>{caption}</FigcaptionTop>
-      )}
-      {image && (
-        <GatsbyImage alt={alt} backgroundColor="#eff0f0" image={image} />
-      )}
-      {caption && (
-        <FigcaptionBottom position={captionPosition}>
-          {caption}
-        </FigcaptionBottom>
-      )}
-    </Figure>
-  );
-}
+    return (
+      <Figure className={className} ref={ref}>
+        {caption && (
+          <FigcaptionTop position={captionPosition}>{caption}</FigcaptionTop>
+        )}
+        {image && (
+          <GatsbyImage alt={alt} backgroundColor="#eff0f0" image={image} />
+        )}
+        {caption && (
+          <FigcaptionBottom position={captionPosition}>
+            {caption}
+          </FigcaptionBottom>
+        )}
+      </Figure>
+    );
+  }
+);
+
+Image.displayName = "Image";

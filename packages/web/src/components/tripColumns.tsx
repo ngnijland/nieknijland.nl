@@ -89,6 +89,8 @@ export const Total4 = styled.li`
       align-items: flex-end;
 
       article {
+        flex: 1;
+
         text-align: right;
       }
     }

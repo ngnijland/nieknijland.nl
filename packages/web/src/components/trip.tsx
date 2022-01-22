@@ -1,11 +1,14 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import dayjs from "dayjs";
 import styled from "styled-components";
+import { getImage } from "gatsby-plugin-image";
 
 import { Image } from "./image";
 import { Trip } from "../pages/trips";
+import { useElementSizes } from "../contexts/elementSizes";
 
 export interface TripProps {
+  first?: boolean;
   trip: Trip;
 }
 
@@ -28,7 +31,18 @@ const Duration = styled.span`
   color: var(--text-color-highlight);
 `;
 
+function getElementHeight(node: HTMLElement): number {
+  const styles = getComputedStyle(node);
+
+  return (
+    node.offsetHeight +
+    parseInt(styles.marginTop, 10) +
+    parseInt(styles.marginBottom, 10)
+  );
+}
+
 export function TripItem({
+  first,
   trip: {
     endDate,
     featuredImage: { asset, altText },
@@ -37,15 +51,40 @@ export function TripItem({
   },
 }: TripProps) {
   const days = dayjs(endDate).diff(startDate, "day");
+  const articleElement = useRef<HTMLElement>(null);
+  const imageElement = useRef<HTMLElement>(null);
+  const { setSizes } = useElementSizes();
+
+  useEffect(() => {
+    if (imageElement.current && articleElement.current && first) {
+      setSizes({
+        card: getElementHeight(articleElement.current),
+        image: getElementHeight(imageElement.current),
+      });
+
+      window.addEventListener("resize", () => {
+        if (imageElement.current && articleElement.current) {
+          setSizes({
+            card: getElementHeight(articleElement.current),
+            image: getElementHeight(imageElement.current),
+          });
+        }
+      });
+    }
+  }, []);
 
   // TODO: fix fade in colors images
   return (
-    <article>
+    <article ref={articleElement}>
       <TripSummary>
         <Duration>{days + 1} days</Duration>
         <Title>{title}</Title>
       </TripSummary>
-      <Image image={asset.gatsbyImageData} alt={altText} />
+      <Image
+        image={getImage(asset.gatsbyImageData)}
+        alt={altText}
+        ref={imageElement}
+      />
     </article>
   );
 }
