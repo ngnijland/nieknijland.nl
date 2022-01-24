@@ -14,7 +14,7 @@ export interface TripProps {
 
 const TripSummary = styled.div`
   padding: 0 1rem;
-  margin: 0.375rem 0;
+  margin-bottom: 0.375rem;
 `;
 
 const Title = styled.h3`

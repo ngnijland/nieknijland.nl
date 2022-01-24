@@ -12,7 +12,13 @@ export interface TripYearProps {
   year: string;
 }
 
+const WrapperLayout = styled(HalfWidthLayout)`
+  margin: 1rem 0;
+`;
+
 const YearHeader = styled.header`
+  position: relative;
+
   grid-column: 1 / span 1;
   grid-row: 1 / span 1;
 
@@ -24,18 +30,41 @@ const YearHeader = styled.header`
 `;
 
 const YearTitle = styled.h2<{ sizes: SizesContext["sizes"] }>`
-  position: relative;
-  ${({ sizes }) =>
-    sizes &&
-    `top: calc(${sizes.card - sizes.image + sizes.image / 2}px - 1.5rem);`}
-
   height: 3rem;
   margin: 0;
 
   font-size: 1rem;
   font-weight: normal;
   text-align: center;
-  writing-mode: sideways-lr;
+  writing-mode: vertical-lr;
+  @supports (writing-mode: sideways-lr) {
+    writing-mode: sideways-lr;
+  }
+
+  background-color: #fff;
+
+  ${({ sizes }) =>
+    sizes &&
+    `transform: translateY(calc(${
+      sizes.card - sizes.image + sizes.image / 2
+    }px - 1.5rem));`}
+`;
+
+const Line = styled.div<{ sizes: SizesContext["sizes"] }>`
+  position: absolute;
+  top: 0;
+  left: 0.4375rem;
+  z-index: -1;
+
+  ${({ sizes }) => sizes && `height: ${sizes.card}px;`}
+  width: 0.0625rem;
+
+  background-color: var(--text-color);
+
+  @media (min-width: 1200px) {
+    right: 0.5625rem;
+    left: auto;
+  }
 `;
 
 const TripsLayout = styled(HalfWidthLayout)`
@@ -50,11 +79,10 @@ const TripsLayout = styled(HalfWidthLayout)`
 export function TripYear({ trips, year }: TripYearProps) {
   const { sizes } = useElementSizes();
 
-  console.log({ sizes });
-
   return (
-    <HalfWidthLayout as="li">
+    <WrapperLayout as="li">
       <YearHeader>
+        <Line sizes={sizes} />
         <YearTitle sizes={sizes}>{year}</YearTitle>
       </YearHeader>
       <TripsLayout as="ol">
@@ -68,6 +96,6 @@ export function TripYear({ trips, year }: TripYearProps) {
           );
         })}
       </TripsLayout>
-    </HalfWidthLayout>
+    </WrapperLayout>
   );
 }
