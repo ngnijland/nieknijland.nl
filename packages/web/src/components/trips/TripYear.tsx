@@ -12,10 +12,6 @@ export interface TripYearProps {
   year: string;
 }
 
-const WrapperLayout = styled(HalfWidthLayout)`
-  margin: 1rem 0;
-`;
-
 const YearHeader = styled.header`
   position: relative;
 
@@ -84,13 +80,31 @@ const TripsLayout = styled(HalfWidthLayout)`
   margin: 0;
 
   list-style: none;
+
+  li {
+    :first-of-type {
+      article {
+        margin-top: 3rem;
+
+        @media (min-width: 1200px) {
+          margin-top: 12.5rem;
+        }
+      }
+    }
+
+    :last-of-type {
+      article {
+        margin-bottom: 1rem;
+      }
+    }
+  }
 `;
 
 export function TripYear({ trips, year }: TripYearProps) {
   const { sizes } = useElementSizes();
 
   return (
-    <WrapperLayout as="li">
+    <HalfWidthLayout as="li">
       <YearHeader>
         <Line sizes={sizes} />
         <YearTitle sizes={sizes}>{year}</YearTitle>
@@ -112,6 +126,6 @@ export function TripYear({ trips, year }: TripYearProps) {
           );
         })}
       </TripsLayout>
-    </WrapperLayout>
+    </HalfWidthLayout>
   );
 }
