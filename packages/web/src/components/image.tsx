@@ -9,6 +9,7 @@ export enum CaptionPosition {
 
 export interface ImageProps {
   alt: string;
+  aspectRatio?: [number, number];
   caption?: string;
   captionPosition?: CaptionPosition;
   className?: string;
@@ -62,6 +63,7 @@ export const Image = React.forwardRef(
   (props: ImageProps, ref: React.ForwardedRef<HTMLElement>): JSX.Element => {
     const {
       alt,
+      aspectRatio,
       className,
       caption,
       captionPosition = CaptionPosition.Bottom,
@@ -74,7 +76,15 @@ export const Image = React.forwardRef(
           <FigcaptionTop position={captionPosition}>{caption}</FigcaptionTop>
         )}
         {image && (
-          <GatsbyImage alt={alt} backgroundColor="#eff0f0" image={image} />
+          <GatsbyImage
+            alt={alt}
+            backgroundColor="#eff0f0"
+            image={
+              aspectRatio
+                ? { ...image, width: aspectRatio[0], height: aspectRatio[1] }
+                : image
+            }
+          />
         )}
         {caption && (
           <FigcaptionBottom position={captionPosition}>

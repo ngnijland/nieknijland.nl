@@ -6,10 +6,12 @@ import { getImage } from "gatsby-plugin-image";
 import { Image } from "./image";
 import { Trip } from "../pages/trips";
 import { useElementSizes } from "../contexts/elementSizes";
+import { aspectRatioMap } from "./trips/aspectRatioMap";
 
 export interface TripProps {
-  first?: boolean;
   trip: Trip;
+  tripNumber: number;
+  tripsInYear: number;
 }
 
 const TripSummary = styled.div`
@@ -42,13 +44,14 @@ function getElementHeight(node: HTMLElement): number {
 }
 
 export function TripItem({
-  first,
   trip: {
     endDate,
     featuredImage: { asset, altText },
     startDate,
     title,
   },
+  tripNumber,
+  tripsInYear,
 }: TripProps) {
   const days = dayjs(endDate).diff(startDate, "day");
   const articleElement = useRef<HTMLElement>(null);
@@ -56,7 +59,7 @@ export function TripItem({
   const { setSizes } = useElementSizes();
 
   useEffect(() => {
-    if (imageElement.current && articleElement.current && first) {
+    if (imageElement.current && articleElement.current && tripNumber === 0) {
       setSizes({
         card: getElementHeight(articleElement.current),
         image: getElementHeight(imageElement.current),
@@ -81,6 +84,7 @@ export function TripItem({
         <Title>{title}</Title>
       </TripSummary>
       <Image
+        aspectRatio={aspectRatioMap[tripsInYear - 1][tripNumber]}
         image={getImage(asset.gatsbyImageData)}
         alt={altText}
         ref={imageElement}

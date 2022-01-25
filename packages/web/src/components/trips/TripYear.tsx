@@ -89,9 +89,15 @@ export function TripYear({ trips, year }: TripYearProps) {
         {trips.map((trip, index) => {
           const TripColumn = TripColumns[`Total${trips.length}`];
 
+          console.log({ tripNumber: index, tripsInYear: trips.length });
+
           return (
             <TripColumn key={trip.id}>
-              <TripItem trip={trip} first={index === 0} />
+              <TripItem
+                trip={trip}
+                tripNumber={index}
+                tripsInYear={trips.length}
+              />
             </TripColumn>
           );
         })}
