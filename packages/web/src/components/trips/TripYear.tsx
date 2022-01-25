@@ -30,7 +30,7 @@ const YearHeader = styled.header`
 `;
 
 const YearTitle = styled.h2<{ sizes: SizesContext["sizes"] }>`
-  height: 3rem;
+  height: 3.25rem;
   margin: 0;
 
   font-size: 1rem;
@@ -47,7 +47,17 @@ const YearTitle = styled.h2<{ sizes: SizesContext["sizes"] }>`
     sizes &&
     `transform: translateY(calc(${
       sizes.card - sizes.image + sizes.image / 2
-    }px - 1.5rem));`}
+    }px - 1.625rem));`}
+
+  @media (min-width: 725px) {
+    height: 4.25rem;
+
+    ${({ sizes }) =>
+      sizes &&
+      `transform: translateY(calc(${
+        sizes.card - sizes.image + sizes.image / 2
+      }px - 2.125rem));`}
+  }
 `;
 
 const Line = styled.div<{ sizes: SizesContext["sizes"] }>`
