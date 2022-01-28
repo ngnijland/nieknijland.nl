@@ -16,6 +16,7 @@ import {
 } from "../components/summaryList";
 import { ImageHeightProvider } from "../contexts/elementSizes";
 import { TripYear } from "../components/trips/TripYear";
+import Footer from "../components/footer";
 
 export interface Country {
   code: string;
@@ -46,6 +47,10 @@ export interface TripsProps extends PageProps {
   };
 }
 
+const Main = styled.main`
+  margin-bottom: 2rem;
+`;
+
 const MapWrapper = styled.div`
   position: fixed;
   top: 0;
@@ -60,26 +65,15 @@ const MapWrapper = styled.div`
   }
 `;
 
-const Main = styled.main`
-  height: calc(100% - 4rem);
+const HeaderWrapper = styled.div`
+  height: calc(100vh - 4rem);
 
   @media (min-width: 600px) {
-    height: calc(100% - 6rem);
+    height: calc(100vh - 6rem);
   }
 `;
 
-const HeaderWrapper = styled.div`
-  position: relative;
-
-  height: 100%;
-`;
 const Header = styled.header`
-  position: absolute;
-  top: -4rem;
-  right: 0;
-  bottom: 0;
-  left: 0;
-
   max-width: 1640px;
   margin: 0 2rem;
 
@@ -139,6 +133,12 @@ const TripsList = styled.ol`
   margin: 0;
 
   list-style: none;
+
+  li:last-of-type {
+    article {
+      margin-bottom: 0;
+    }
+  }
 `;
 
 export const pageQuery = graphql`
@@ -211,6 +211,9 @@ function Trips({ data }: TripsProps): JSX.Element {
           </TripsList>
         </TripsSection>
       </Main>
+      <HalfWidthLayout>
+        <Footer title="Find me at:" />
+      </HalfWidthLayout>
       <MapWrapper>
         <Map
           countryFilter={[
