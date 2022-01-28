@@ -4,10 +4,12 @@ import styled from "styled-components";
 import { HalfWidthLayout } from "../halfWidthLayout";
 import { TripItem } from "../trip";
 import * as TripColumns from "../tripColumns";
+import ArrowDownIcon from "../arrowDownIcon";
 import { Trip } from "../../pages/trips";
 import { SizesContext, useElementSizes } from "../../contexts/elementSizes";
 
 export interface TripYearProps {
+  first: boolean;
   trips: Trip[];
   year: string;
 }
@@ -56,7 +58,7 @@ const YearTitle = styled.h2<{ sizes: SizesContext["sizes"] }>`
   }
 `;
 
-const Line = styled.div<{ sizes: SizesContext["sizes"] }>`
+const Line = styled.div<{ first: boolean; sizes: SizesContext["sizes"] }>`
   position: absolute;
   top: 0;
   left: 0.4375rem;
@@ -71,6 +73,24 @@ const Line = styled.div<{ sizes: SizesContext["sizes"] }>`
     right: 0.5625rem;
     left: auto;
   }
+
+  ${({ first }) =>
+    first &&
+    `
+  ::after {
+    content: "";
+
+    position: absolute;
+    top: -12.5rem;
+
+    display: block;
+    width: 0.0625rem;
+    height: 12.5rem;
+
+    background-color: var(--text-color);
+    background-image: linear-gradient(0deg, var(--text-color) 0%, #fff 100%);
+  }
+  `}
 `;
 
 const TripsLayout = styled(HalfWidthLayout)`
@@ -100,13 +120,27 @@ const TripsLayout = styled(HalfWidthLayout)`
   }
 `;
 
-export function TripYear({ trips, year }: TripYearProps) {
+const Icon = styled(ArrowDownIcon)`
+  position: absolute;
+  top: -2rem;
+  left: 1.25rem;
+
+  width: 1rem;
+
+  @media (min-width: 1200px) {
+    right: -1.25rem;
+    left: auto;
+  }
+`;
+
+export function TripYear({ first, trips, year }: TripYearProps) {
   const { sizes } = useElementSizes();
 
   return (
     <HalfWidthLayout as="li">
       <YearHeader>
-        <Line sizes={sizes} />
+        {first && <Icon />}
+        <Line first={first} sizes={sizes} />
         <YearTitle sizes={sizes}>{year}</YearTitle>
       </YearHeader>
       <TripsLayout as="ol">

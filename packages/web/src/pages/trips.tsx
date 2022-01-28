@@ -203,9 +203,9 @@ function Trips({ data }: TripsProps): JSX.Element {
           <TripsList>
             {Object.entries(tripsByYear)
               .sort(([a], [b]) => parseInt(b, 10) - parseInt(a, 10))
-              .map(([year, trips]) => (
+              .map(([year, trips], index) => (
                 <ImageHeightProvider key={year}>
-                  <TripYear trips={trips} year={year} />
+                  <TripYear trips={trips} year={year} first={index === 0} />
                 </ImageHeightProvider>
               ))}
           </TripsList>
