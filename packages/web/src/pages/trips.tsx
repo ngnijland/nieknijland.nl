@@ -136,6 +136,7 @@ const TripsSection = styled.section`
 
 const TripsList = styled.ol`
   padding: 0;
+  margin: 0;
 
   list-style: none;
 `;

@@ -30,6 +30,11 @@ export const Total2 = styled.li`
         flex-direction: column-reverse;
 
         text-align: right;
+
+        div {
+          margin-top: 0.375rem;
+          margin-bottom: 0;
+        }
       }
     }
   }
@@ -54,6 +59,11 @@ export const Total3 = styled.li`
       article {
         display: flex;
         flex-direction: column-reverse;
+
+        div {
+          margin-top: 0.375rem;
+          margin-bottom: 0;
+        }
       }
     }
 
@@ -66,6 +76,11 @@ export const Total3 = styled.li`
         flex-direction: column-reverse;
 
         text-align: right;
+
+        div {
+          margin-top: 0.375rem;
+          margin-bottom: 0;
+        }
       }
     }
   }
@@ -102,6 +117,11 @@ export const Total4 = styled.li`
       article {
         display: flex;
         flex-direction: column-reverse;
+
+        div {
+          margin-top: 0.375rem;
+          margin-bottom: 0;
+        }
       }
     }
 
@@ -114,6 +134,11 @@ export const Total4 = styled.li`
         flex-direction: column-reverse;
 
         text-align: right;
+
+        div {
+          margin-top: 0.375rem;
+          margin-bottom: 0;
+        }
       }
     }
   }
