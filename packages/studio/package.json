@@ -9,8 +9,8 @@
   "scripts": {
     "lint": "eslint .",
     "start": "sanity start",
-    "test": "sanity check",
-    "build": "sanity build"
+    "build": "sanity build",
+    "deploy:graphql": "sanity graphql deploy"
   },
   "keywords": [
     "sanity"

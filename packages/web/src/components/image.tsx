@@ -9,6 +9,7 @@ export enum CaptionPosition {
 
 export interface ImageProps {
   alt: string;
+  aspectRatio?: [number, number];
   caption?: string;
   captionPosition?: CaptionPosition;
   className?: string;
@@ -58,28 +59,51 @@ const FigcaptionBottom = styled(Figcaption)`
     `}
 `;
 
-export function Image(props: ImageProps): JSX.Element {
-  const {
-    alt,
-    className,
-    caption,
-    captionPosition = CaptionPosition.Bottom,
-    image,
-  } = props;
+export const Image = React.forwardRef(
+  (
+    props: ImageProps,
+    ref: React.ForwardedRef<HTMLElement>
+  ): JSX.Element | null => {
+    const {
+      alt,
+      aspectRatio,
+      className,
+      caption,
+      captionPosition = CaptionPosition.Bottom,
+      image,
+    } = props;
 
-  return (
-    <Figure className={className}>
-      {caption && (
-        <FigcaptionTop position={captionPosition}>{caption}</FigcaptionTop>
-      )}
-      {image && (
-        <GatsbyImage alt={alt} backgroundColor="#eff0f0" image={image} />
-      )}
-      {caption && (
-        <FigcaptionBottom position={captionPosition}>
-          {caption}
-        </FigcaptionBottom>
-      )}
-    </Figure>
-  );
-}
+    if (typeof image === "undefined") {
+      return null;
+    }
+
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const { backgroundColor, ...newImage } = image;
+
+    return (
+      <Figure className={className} ref={ref}>
+        {caption && (
+          <FigcaptionTop position={captionPosition}>{caption}</FigcaptionTop>
+        )}
+        {image && (
+          <GatsbyImage
+            alt={alt}
+            backgroundColor="#eff0f0"
+            image={
+              aspectRatio
+                ? { ...newImage, width: aspectRatio[0], height: aspectRatio[1] }
+                : newImage
+            }
+          />
+        )}
+        {caption && (
+          <FigcaptionBottom position={captionPosition}>
+            {caption}
+          </FigcaptionBottom>
+        )}
+      </Figure>
+    );
+  }
+);
+
+Image.displayName = "Image";
