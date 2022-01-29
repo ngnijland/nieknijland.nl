@@ -12,6 +12,6 @@
     "type-check": "lerna run type-check"
   },
   "devDependencies": {
-    "lerna": "^4.0.0"
+    "lerna": "4.0.0"
   }
 }
