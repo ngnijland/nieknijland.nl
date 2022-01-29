@@ -136,7 +136,7 @@ const TripsList = styled.ol`
 
   list-style: none;
 
-  li:last-of-type {
+  li:last-of-type ol li:last-of-type {
     article {
       margin-bottom: 0;
     }

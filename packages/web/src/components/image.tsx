@@ -89,6 +89,7 @@ export const Image = React.forwardRef(
           <GatsbyImage
             alt={alt}
             backgroundColor="#eff0f0"
+            imgStyle={{ borderRadius: "1rem" }}
             image={
               aspectRatio
                 ? { ...newImage, width: aspectRatio[0], height: aspectRatio[1] }
