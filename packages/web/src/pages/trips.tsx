@@ -211,9 +211,11 @@ function Trips({ data }: TripsProps): JSX.Element {
           </TripsList>
         </TripsSection>
       </Main>
-      <HalfWidthLayout>
-        <Footer title="Find me at:" />
-      </HalfWidthLayout>
+      {Object.keys(tripsByYear).length !== 0 && (
+        <HalfWidthLayout>
+          <Footer title="Find me at:" />
+        </HalfWidthLayout>
+      )}
       <MapWrapper>
         <Map
           countryFilter={[
