@@ -13,6 +13,7 @@ interface ProviderProps {
 
 const defaultState = {
   sizes: undefined,
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
   setSizes: () => {},
 };
 
