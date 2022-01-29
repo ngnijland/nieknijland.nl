@@ -67,9 +67,11 @@ const MapWrapper = styled.div`
 
 const HeaderWrapper = styled.div`
   height: calc(100vh - 4rem);
+  min-height: 45rem;
 
   @media (min-width: 600px) {
     height: calc(100vh - 6rem);
+    min-height: 50rem;
   }
 `;
 
