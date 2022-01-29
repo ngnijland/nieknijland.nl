@@ -60,7 +60,10 @@ const FigcaptionBottom = styled(Figcaption)`
 `;
 
 export const Image = React.forwardRef(
-  (props: ImageProps, ref: React.ForwardedRef<HTMLElement>): JSX.Element => {
+  (
+    props: ImageProps,
+    ref: React.ForwardedRef<HTMLElement>
+  ): JSX.Element | null => {
     const {
       alt,
       aspectRatio,
@@ -69,6 +72,13 @@ export const Image = React.forwardRef(
       captionPosition = CaptionPosition.Bottom,
       image,
     } = props;
+
+    if (typeof image === "undefined") {
+      return null;
+    }
+
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const { backgroundColor, ...newImage } = image;
 
     return (
       <Figure className={className} ref={ref}>
@@ -81,8 +91,8 @@ export const Image = React.forwardRef(
             backgroundColor="#eff0f0"
             image={
               aspectRatio
-                ? { ...image, width: aspectRatio[0], height: aspectRatio[1] }
-                : image
+                ? { ...newImage, width: aspectRatio[0], height: aspectRatio[1] }
+                : newImage
             }
           />
         )}

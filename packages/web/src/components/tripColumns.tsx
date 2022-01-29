@@ -31,7 +31,7 @@ export const Total2 = styled.li`
 
         text-align: right;
 
-        div {
+        > div {
           margin-top: 0.375rem;
           margin-bottom: 0;
         }
@@ -60,7 +60,7 @@ export const Total3 = styled.li`
         display: flex;
         flex-direction: column-reverse;
 
-        div {
+        > div {
           margin-top: 0.375rem;
           margin-bottom: 0;
         }
@@ -77,7 +77,7 @@ export const Total3 = styled.li`
 
         text-align: right;
 
-        div {
+        > div {
           margin-top: 0.375rem;
           margin-bottom: 0;
         }
@@ -118,7 +118,7 @@ export const Total4 = styled.li`
         display: flex;
         flex-direction: column-reverse;
 
-        div {
+        > div {
           margin-top: 0.375rem;
           margin-bottom: 0;
         }
@@ -135,7 +135,7 @@ export const Total4 = styled.li`
 
         text-align: right;
 
-        div {
+        > div {
           margin-top: 0.375rem;
           margin-bottom: 0;
         }
