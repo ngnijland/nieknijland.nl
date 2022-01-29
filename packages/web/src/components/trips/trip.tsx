@@ -3,10 +3,10 @@ import dayjs from "dayjs";
 import styled from "styled-components";
 import { getImage } from "gatsby-plugin-image";
 
-import { Image } from "./image";
-import { Trip } from "../pages/trips";
-import { useElementSizes } from "../contexts/elementSizes";
-import { aspectRatioMap } from "./trips/aspectRatioMap";
+import { aspectRatioMap } from "./aspectRatioMap";
+import { Image } from "../image";
+import { Trip } from "../../pages/trips";
+import { useElementSizes } from "../../contexts/elementSizes";
 
 export interface TripProps {
   trip: Trip;

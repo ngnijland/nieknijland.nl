@@ -1,9 +1,9 @@
 import React from "react";
 import styled, { StyledComponent } from "styled-components";
 
+import { TripItem } from "./trip";
+import * as TripColumns from "./tripColumns";
 import { HalfWidthLayout } from "../halfWidthLayout";
-import { TripItem } from "../trip";
-import * as TripColumns from "../tripColumns";
 import ArrowDownIcon from "../arrowDownIcon";
 import { Trip } from "../../pages/trips";
 import { SizesContext, useElementSizes } from "../../contexts/elementSizes";
