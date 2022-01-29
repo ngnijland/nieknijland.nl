@@ -1,5 +1,5 @@
 import React from "react";
-import styled from "styled-components";
+import styled, { StyledComponent } from "styled-components";
 
 import { HalfWidthLayout } from "../halfWidthLayout";
 import { TripItem } from "../trip";
@@ -145,7 +145,16 @@ export function TripYear({ first, trips, year }: TripYearProps) {
       </YearHeader>
       <TripsLayout as="ol">
         {trips.map((trip, index) => {
-          const TripColumn = TripColumns[`Total${trips.length}`];
+          const TripColumn = (
+            TripColumns as {
+              [key: string]: StyledComponent<
+                "li",
+                Record<string, unknown>,
+                { children: JSX.Element },
+                never
+              >;
+            }
+          )[`Total${trips.length}`];
 
           return (
             <TripColumn key={trip.id}>
