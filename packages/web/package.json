@@ -28,7 +28,7 @@
     "gatsby-plugin-styled-components": "5.2.0",
     "gatsby-plugin-typescript": "4.2.0",
     "gatsby-source-filesystem": "4.2.0",
-    "gatsby-source-sanity": "7.2.0",
+    "gatsby-source-sanity": "7.3.2",
     "gatsby-transformer-sharp": "4.2.0",
     "mapbox-gl": "2.6.1",
     "prettier": "2.4.1",
