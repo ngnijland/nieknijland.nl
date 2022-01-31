@@ -7,7 +7,7 @@
   "dependencies": {
     "@sanity/block-content-to-react": "3.0.0",
     "@types/mapbox-gl": "2.4.2",
-    "@types/react-helmet": "6.1.4",
+    "@types/react-helmet": "6.1.5",
     "@types/react-syntax-highlighter": "13.5.2",
     "@types/styled-components": "5.1.20",
     "@typescript-eslint/eslint-plugin": "5.4.0",
