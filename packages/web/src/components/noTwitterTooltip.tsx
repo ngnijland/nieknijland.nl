@@ -12,7 +12,9 @@ const Root = styled.div<{ state: string }>`
   flex: 0 1 auto;
   align-items: center;
 
-  transition: opacity 200ms ease-in-out, transform 200ms ease-in-out;
+  transition:
+    opacity 200ms ease-in-out,
+    transform 200ms ease-in-out;
   opacity: ${({ state }) =>
     state === "entering" || state === "entered" ? "1" : "0"};
   transform: ${({ state }) =>
