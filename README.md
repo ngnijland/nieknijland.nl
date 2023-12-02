@@ -6,6 +6,18 @@ This site is build with
 
 ## Start developing
 
+Using Kubernetes + [Devspace](https://devspace.sh)
+
+1. Either use a remote or local Kubernetes cluster. For example using [minikube](https://minikube.sigs.k8s.io), [kind](https://kind.sigs.k8s.io) or [Rancher Desktop](https://rancherdesktop.io).
+
+1. [Install devspace](https://devspace.sh/cli/docs/getting-started/installation).
+
+1. Run `devspace dev`.
+
+---
+
+Using plain Node.js
+
 1. Install dependencies
 
 ```shell
