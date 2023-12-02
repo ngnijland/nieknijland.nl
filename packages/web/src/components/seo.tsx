@@ -22,21 +22,19 @@ function SEO({
   link = [],
   title,
 }: SEOProps): JSX.Element {
-  const { site } = useStaticQuery(
-    graphql`
-      query {
-        site {
-          siteMetadata {
-            title
-            description
-            image
-            url
-            twitterUsername
-          }
+  const { site } = useStaticQuery(graphql`
+    query {
+      site {
+        siteMetadata {
+          title
+          description
+          image
+          url
+          twitterUsername
         }
       }
-    `
-  );
+    }
+  `);
 
   const metaDescription = description || site.siteMetadata.description;
   const metaImage = `${site.siteMetadata.url}${
