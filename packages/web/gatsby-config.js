@@ -10,6 +10,7 @@ module.exports = {
     image: "/images/og-image.png",
     twitterUsername: "@ngnijland",
   },
+  trailingSlash: `never`,
   plugins: [
     `gatsby-plugin-open-graph-images`,
     `gatsby-plugin-react-helmet`,

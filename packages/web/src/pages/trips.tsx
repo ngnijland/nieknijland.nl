@@ -143,29 +143,27 @@ const TripsList = styled.ol`
   }
 `;
 
-export const pageQuery = graphql`
-  {
-    allSanityCountry {
-      nodes {
-        code
-      }
-    }
-    allSanityTrip(sort: { order: DESC, fields: startDate }) {
-      nodes {
-        featuredImage {
-          altText
-          asset {
-            gatsbyImageData(layout: FULL_WIDTH)
-          }
-        }
-        startDate
-        title
-        id
-        endDate
-      }
+export const pageQuery = graphql`{
+  allSanityCountry {
+    nodes {
+      code
     }
   }
-`;
+  allSanityTrip(sort: {startDate: DESC}) {
+    nodes {
+      featuredImage {
+        altText
+        asset {
+          gatsbyImageData(layout: FULL_WIDTH)
+        }
+      }
+      startDate
+      title
+      id
+      endDate
+    }
+  }
+}`;
 
 function Trips({ data }: TripsProps): JSX.Element {
   const tripsByYear = data.allSanityTrip.nodes.reduce<Record<string, Trip[]>>(

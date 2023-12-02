@@ -92,23 +92,18 @@ const Spacer = styled.div`
   }
 `;
 
-export const pageQuery = graphql`
-  {
-    allSanityPost(
-      sort: { fields: [publishedAt], order: DESC }
-      filter: { publishedAt: { ne: null } }
-    ) {
-      nodes {
-        _id
-        title
-        slug {
-          current
-        }
-        publishedAt
+export const pageQuery = graphql`{
+  allSanityPost(sort: {publishedAt: DESC}, filter: {publishedAt: {ne: null}}) {
+    nodes {
+      _id
+      title
+      slug {
+        current
       }
+      publishedAt
     }
   }
-`;
+}`;
 
 function Blog({ data }: BlogProps): JSX.Element {
   return (
