@@ -147,7 +147,7 @@ function Hero(): JSX.Element {
             <AvoidWrap>
               Hi, I&#39;m <Tag>&#60;</Tag>Niek<Tag>/&#62;</Tag>
             </AvoidWrap>
-            <AvoidWrap>a web developer and</AvoidWrap>
+            <AvoidWrap>a web engineer and</AvoidWrap>
             <AvoidWrap>travel enthousiast based</AvoidWrap>
             <AvoidWrap>in The Netherlands.</AvoidWrap>
           </Title>

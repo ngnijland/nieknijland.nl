@@ -2,25 +2,17 @@ import React from "react";
 import { useSiteMetadata } from "../hooks/use-site-metadata";
 
 export interface SEOProps {
+  children?: React.ReactNode;
   description?: string;
   image?: string;
-  lang?: string;
-  meta?: ConcatArray<
-    | { name: string; content: string; property?: undefined }
-    | { property: string; content: string; name?: undefined }
-  >;
-  link?: { rel: string; href: string }[];
   title: string;
-  children?: React.ReactNode;
 }
 
 export function SEO({
-  description = "",
-  image,
-  lang = "en",
-  meta = [],
-  title,
   children,
+  description,
+  image,
+  title: titlePrefix,
 }: SEOProps): JSX.Element {
   const {
     title: defaultTitle,
@@ -33,69 +25,27 @@ export function SEO({
   const metaDescription = description || defaultDescription;
   const metaImage = `${url}${image || defaultImage}`;
 
+  const title = `${titlePrefix} | ${defaultTitle}`;
+
+  // TODO: improve default description. Use home page subtitle?
   return (
     <>
-      <title>
-        {title} | {defaultTitle}
-      </title>
+      <html lang="en" />
+      <title>{title}</title>
+      <meta name="description" content={metaDescription} />
+      <meta name="image" content={metaImage} />
+
+      <meta name="og:title" content={title} />
+      <meta name="og:description" content={metaDescription} />
+      <meta name="og:image" content={metaImage} />
+      <meta name="og:type" content="website" />
+
+      <meta name="twitter:card" content="summary" />
+      <meta name="twitter:creator" content={twitterUsername} />
+      <meta name="twitter:title" content={title} />
+      <meta name="twitter:description" content={metaDescription} />
+      <meta name="twitter:image" content={metaImage} />
       {children}
     </>
   );
-
-  // return (
-  //   <Helmet
-  //     htmlAttributes={{
-  //       lang,
-  //     }}
-  //     title={title}
-  //     titleTemplate={`%s | ${defaultTitle}`}
-  //     meta={[
-  //       {
-  //         name: `description`,
-  //         content: metaDescription,
-  //       },
-  //       {
-  //         name: "image",
-  //         content: metaImage,
-  //       },
-  //       {
-  //         property: `og:title`,
-  //         content: title,
-  //       },
-  //       {
-  //         property: `og:description`,
-  //         content: metaDescription,
-  //       },
-  //       {
-  //         property: "og:image",
-  //         content: metaImage,
-  //       },
-  //       {
-  //         property: `og:type`,
-  //         content: `website`,
-  //       },
-  //       {
-  //         name: `twitter:card`,
-  //         content: `summary`,
-  //       },
-  //       {
-  //         name: `twitter:creator`,
-  //         content: twitterUsername,
-  //       },
-  //       {
-  //         name: `twitter:title`,
-  //         content: title,
-  //       },
-  //       {
-  //         name: `twitter:description`,
-  //         content: metaDescription,
-  //       },
-  //       {
-  //         name: "twitter:image",
-  //         content: metaImage,
-  //       },
-  //     ].concat(meta)}
-  //     link={link}
-  //   />
-  // );
 }
