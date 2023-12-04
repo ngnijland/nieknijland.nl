@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "gatsby";
 import styled from "styled-components";
 
-import SEO from "../components/seo";
+import { SEO } from "../components/seo";
 import Footer from "../components/footer";
 import TopBar from "../components/topBar";
 
@@ -43,12 +43,15 @@ const Line = styled.div`
   }
 `;
 
+export function Head() {
+  return <SEO title="404: Not found" />;
+}
+
 function NotFoundPage(): JSX.Element {
   return (
     <Wrapper>
       <TopBar />
       <Main>
-        <SEO title="404: Not found" />
         <Title>This page does not exist...</Title>
         <Line />
         <Link to="/">Go to the homepage</Link>

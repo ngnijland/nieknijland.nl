@@ -13,7 +13,6 @@ module.exports = {
   trailingSlash: `never`,
   plugins: [
     `gatsby-plugin-open-graph-images`,
-    `gatsby-plugin-react-helmet`,
     {
       resolve: `gatsby-source-filesystem`,
       options: {

@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { Link, PageProps, graphql } from "gatsby";
 import dayjs from "dayjs";
 
-import SEO from "../components/seo";
+import { SEO } from "../components/seo";
 import TopBar from "../components/topBar";
 import { PageTitle } from "../components/pageTitle";
 import Footer from "../components/footer";
@@ -110,10 +110,13 @@ export const pageQuery = graphql`
   }
 `;
 
+export function Head() {
+  return <SEO title="Blog" />;
+}
+
 function Blog({ data }: BlogProps): JSX.Element {
   return (
     <>
-      <SEO title="Blog" />
       <TopBar />
       <Main>
         <header>
