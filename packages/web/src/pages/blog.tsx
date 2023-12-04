@@ -8,20 +8,18 @@ import TopBar from "../components/topBar";
 import { PageTitle } from "../components/pageTitle";
 import Footer from "../components/footer";
 
-export interface BlogProps extends PageProps {
-  data: {
-    allSanityPost: {
-      nodes: {
-        _id: string;
-        title: string;
-        slug: {
-          current: string;
-        };
-        publishedAt: string;
-      }[];
-    };
+type DataProps = {
+  allSanityPost: {
+    nodes: {
+      _id: string;
+      title: string;
+      slug: {
+        current: string;
+      };
+      publishedAt: string;
+    }[];
   };
-}
+};
 
 const Main = styled.main`
   max-width: 768px;
@@ -114,7 +112,7 @@ export function Head() {
   return <SEO title="Blog" />;
 }
 
-function Blog({ data }: BlogProps): JSX.Element {
+function Blog({ data }: PageProps<DataProps>): JSX.Element {
   return (
     <>
       <TopBar />

@@ -35,16 +35,14 @@ export interface Trip {
   };
 }
 
-export interface TripsProps extends PageProps {
-  data: {
-    allSanityCountry: {
-      nodes: Country[];
-    };
-    allSanityTrip: {
-      nodes: Trip[];
-    };
+type DataProps = {
+  allSanityCountry: {
+    nodes: Country[];
   };
-}
+  allSanityTrip: {
+    nodes: Trip[];
+  };
+};
 
 const Main = styled.main`
   margin-bottom: 2rem;
@@ -177,7 +175,7 @@ export function Head() {
   );
 }
 
-function Trips({ data }: TripsProps): JSX.Element {
+function Trips({ data }: PageProps<DataProps>): JSX.Element {
   const tripsByYear = data.allSanityTrip.nodes.reduce<Record<string, Trip[]>>(
     (acc, trip) => {
       const year = new Date(trip.startDate).getFullYear().toString();
