@@ -3,35 +3,36 @@ import styled from "styled-components";
 import { graphql } from "gatsby";
 import dayjs from "dayjs";
 
-import SEO from "../components/seo";
+import { SEO } from "../components/seo";
 import TopBar from "../components/topBar";
 import { PageTitle } from "../components/pageTitle";
 import { PortableText } from "../components/portableText";
 import Footer from "../components/footer";
+
+import type { HeadProps, PageProps } from "gatsby";
 
 export interface PortableText {
   _type: string;
   children: { text: string }[];
 }
 
-export interface PostProps {
-  data: {
-    post: {
-      _rawBody: unknown;
-      _rawExcerpt: PortableText[];
-      canonicalURL: string;
-      publishedAt: string;
-      title: string;
-    };
+type DataProps = {
+  post: {
+    _rawBody: unknown;
+    _rawExcerpt: PortableText[];
+    canonicalURL: string;
+    publishedAt: string;
+    title: string;
   };
-  pageContext: {
-    ogImage: {
-      path: string;
-      width: number;
-      height: number;
-    };
+};
+
+type PageContext = {
+  ogImage: {
+    path: string;
+    width: number;
+    height: number;
   };
-}
+};
 
 const Main = styled.main`
   max-width: 768px;
@@ -65,7 +66,7 @@ export const query = graphql`
   }
 `;
 
-export function toPlainText(blocks: PortableText[]): string {
+function toPlainText(blocks: PortableText[]): string {
   if (!blocks) {
     return "";
   }
@@ -79,12 +80,28 @@ export function toPlainText(blocks: PortableText[]): string {
     .join("\n\n");
 }
 
-function Post({
+export function Head({
   data: {
-    post: { _rawBody, _rawExcerpt, canonicalURL, publishedAt, title },
+    post: { _rawExcerpt, canonicalURL, title },
   },
   pageContext: { ogImage },
-}: PostProps): JSX.Element {
+}: HeadProps<DataProps, PageContext>) {
+  return (
+    <SEO
+      title={`${title} | Blog`}
+      description={toPlainText(_rawExcerpt)}
+      image={ogImage.path}
+    >
+      {canonicalURL ? <link rel="cannonical" href={canonicalURL} /> : null}
+    </SEO>
+  );
+}
+
+function Post({
+  data: {
+    post: { _rawBody, canonicalURL, publishedAt, title },
+  },
+}: PageProps<DataProps>): JSX.Element {
   const link = [];
 
   if (canonicalURL) {
@@ -93,12 +110,6 @@ function Post({
 
   return (
     <>
-      <SEO
-        title={`${title} | Blog`}
-        description={toPlainText(_rawExcerpt)}
-        link={link}
-        image={ogImage.path}
-      />
       <TopBar />
       <Main>
         <article>

@@ -1,12 +1,11 @@
 import React from "react";
 import styled from "styled-components";
-import { Helmet } from "react-helmet";
 import { PageProps, graphql } from "gatsby";
 import { IGatsbyImageData } from "gatsby-plugin-image";
 
 import { HalfWidthLayout } from "../components/halfWidthLayout";
 import Map from "../components/map";
-import SEO from "../components/seo";
+import { SEO } from "../components/seo";
 import TopBar from "../components/topBar";
 import { PageTitle, Title } from "../components/pageTitle";
 import {
@@ -167,6 +166,17 @@ export const pageQuery = graphql`
   }
 `;
 
+export function Head() {
+  return (
+    <SEO title="Trips">
+      <link
+        href="https://api.mapbox.com/mapbox-gl-js/v1.12.0/mapbox-gl.css"
+        rel="stylesheet"
+      />
+    </SEO>
+  );
+}
+
 function Trips({ data }: TripsProps): JSX.Element {
   const tripsByYear = data.allSanityTrip.nodes.reduce<Record<string, Trip[]>>(
     (acc, trip) => {
@@ -182,13 +192,6 @@ function Trips({ data }: TripsProps): JSX.Element {
 
   return (
     <>
-      <SEO title="Trips" />
-      <Helmet>
-        <link
-          href="https://api.mapbox.com/mapbox-gl-js/v1.12.0/mapbox-gl.css"
-          rel="stylesheet"
-        />
-      </Helmet>
       <TopBar />
       <Main>
         <HeaderWrapper>
