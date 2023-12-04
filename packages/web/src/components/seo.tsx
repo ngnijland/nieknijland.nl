@@ -1,6 +1,6 @@
 import React from "react";
 import { Helmet } from "react-helmet";
-import { useStaticQuery, graphql } from "gatsby";
+import { useSiteMetadata } from "../hooks/use-site-metadata";
 
 export interface SEOProps {
   description?: string;
@@ -22,24 +22,16 @@ function SEO({
   link = [],
   title,
 }: SEOProps): JSX.Element {
-  const { site } = useStaticQuery(graphql`
-    query {
-      site {
-        siteMetadata {
-          title
-          description
-          image
-          url
-          twitterUsername
-        }
-      }
-    }
-  `);
+  const {
+    title: defaultTitle,
+    description: defaultDescription,
+    image: defaultImage,
+    url,
+    twitterUsername,
+  } = useSiteMetadata();
 
-  const metaDescription = description || site.siteMetadata.description;
-  const metaImage = `${site.siteMetadata.url}${
-    image || site.siteMetadata.image
-  }`;
+  const metaDescription = description || defaultDescription;
+  const metaImage = `${url}${image || defaultImage}`;
 
   return (
     <Helmet
@@ -47,7 +39,7 @@ function SEO({
         lang,
       }}
       title={title}
-      titleTemplate={`%s | ${site.siteMetadata.title}`}
+      titleTemplate={`%s | ${defaultTitle}`}
       meta={[
         {
           name: `description`,
@@ -79,7 +71,7 @@ function SEO({
         },
         {
           name: `twitter:creator`,
-          content: site.siteMetadata.twitterUsername,
+          content: twitterUsername,
         },
         {
           name: `twitter:title`,
