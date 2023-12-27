@@ -49,5 +49,11 @@ module.exports = {
         dataset: process.env.GATSBY_SANITY_API_DATASET,
       },
     },
+    {
+      resolve: `gatsby-plugin-plausible`,
+      options: {
+        domain: `nieknijland.nl`,
+      },
+    },
   ],
 };
