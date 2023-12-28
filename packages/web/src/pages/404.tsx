@@ -66,7 +66,7 @@ function NotFoundPage(): JSX.Element {
       <Script
         id="script__plausible-404"
         dangerouslySetInnerHTML={{
-          __html: `document.addEventListener('DOMContentLoaded', function () { plausible('404', { props: { path: document.location.pathname } }); });`,
+          __html: `document.addEventListener('DOMContentLoaded', function () { console.log("FOO"); plausible('404', { props: { path: document.location.pathname } }); })`,
         }}
       />
     </>
