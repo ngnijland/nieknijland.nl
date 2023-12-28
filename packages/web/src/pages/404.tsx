@@ -1,5 +1,5 @@
-import React from "react";
-import { Link, Script } from "gatsby";
+import React, { useEffect } from "react";
+import { Link } from "gatsby";
 import styled from "styled-components";
 
 import { SEO } from "../components/seo";
@@ -48,28 +48,26 @@ export function Head() {
 }
 
 function NotFoundPage(): JSX.Element {
+  useEffect(() => {
+    if (window?.plausible) {
+      window.plausible("404", { props: { path: document.location.pathname } });
+    }
+  }, [window]);
+
   return (
-    <>
-      <Wrapper>
-        <TopBar />
-        <Main>
-          <Title>This page does not exist...</Title>
-          <Line />
-          <Link to="/">Go to the homepage</Link>
-          <Line />
-          <Link to="/trips">Take a look at my travel experiences</Link>
-          <Line />
-          <Link to="/blog">Read my articles</Link>
-          <Footer title="Or find me at:" />
-        </Main>
-      </Wrapper>
-      <Script
-        id="script__plausible-404"
-        dangerouslySetInnerHTML={{
-          __html: `document.addEventListener('DOMContentLoaded', function () { console.log("FOO"); plausible('404', { props: { path: document.location.pathname } }); })`,
-        }}
-      />
-    </>
+    <Wrapper>
+      <TopBar />
+      <Main>
+        <Title>This page does not exist...</Title>
+        <Line />
+        <Link to="/">Go to the homepage</Link>
+        <Line />
+        <Link to="/trips">Take a look at my travel experiences</Link>
+        <Line />
+        <Link to="/blog">Read my articles</Link>
+        <Footer title="Or find me at:" />
+      </Main>
+    </Wrapper>
   );
 }
 
