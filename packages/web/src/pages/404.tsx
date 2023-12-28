@@ -52,7 +52,7 @@ function NotFoundPage(): JSX.Element {
     if (window?.plausible) {
       window.plausible("404", { props: { path: document.location.pathname } });
     }
-  }, [window]);
+  }, []);
 
   return (
     <Wrapper>
