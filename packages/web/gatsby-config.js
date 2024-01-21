@@ -83,6 +83,14 @@ module.exports = {
       },
     },
     {
+      resolve: "gatsby-plugin-robots-txt",
+      options: {
+        host: "",
+        sitemap: `${siteUrl}/sitemap-index.xml`,
+        policy: [],
+      },
+    },
+    {
       resolve: `gatsby-source-filesystem`,
       options: {
         name: `images`,
