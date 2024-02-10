@@ -39,6 +39,24 @@ const Title = styled.h1`
   }
 `;
 
+const List = styled.ul`
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0;
+  margin: 0;
+
+  list-style: none;
+`;
+
+const NavLink = styled(Link)`
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
+`;
+
 function TopBar(): JSX.Element {
   return (
     <Header>
@@ -47,6 +65,16 @@ function TopBar(): JSX.Element {
           <Tag>&#60;</Tag>Niek<Tag>/&#62;</Tag>
         </Title>
       </NoStyleLink>
+      <nav>
+        <List>
+          <li>
+            <NavLink to="/blog">Blog</NavLink>
+          </li>
+          <li>
+            <NavLink to="/trips">Trips</NavLink>
+          </li>
+        </List>
+      </nav>
     </Header>
   );
 }
