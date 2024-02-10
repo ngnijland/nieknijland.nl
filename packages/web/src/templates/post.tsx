@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { graphql } from "gatsby";
+import { Link, graphql } from "gatsby";
 import dayjs from "dayjs";
 
 import { SEO } from "../components/seo";
@@ -8,6 +8,7 @@ import TopBar from "../components/topBar";
 import { PageTitle } from "../components/pageTitle";
 import { PortableText } from "../components/portableText";
 import Footer from "../components/footer";
+import ArrowDownIcon from "../components/arrowDownIcon";
 
 import type { HeadProps, PageProps } from "gatsby";
 
@@ -51,6 +52,34 @@ const Main = styled.main`
 
 const Spacer = styled.div`
   height: 2rem;
+`;
+
+const LinkWrapper = styled.div`
+  display: none;
+
+  @media (min-width: 600px) {
+    display: block;
+  }
+`;
+
+const LinkBack = styled(Link)`
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+
+  font-weight: 400;
+
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
+`;
+
+const Arrow = styled(ArrowDownIcon)`
+  width: 0.875rem;
+
+  transform: rotate(90deg);
 `;
 
 export const query = graphql`
@@ -112,6 +141,12 @@ function Post({
     <>
       <TopBar />
       <Main>
+        <LinkWrapper>
+          <LinkBack to="/blog">
+            <Arrow />
+            All posts
+          </LinkBack>
+        </LinkWrapper>
         <article>
           <header>
             <PageTitle
