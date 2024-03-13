@@ -8,6 +8,6 @@ static/
 .prettierrc
 netlify.toml
 package.json
-sanity.json
+sanity.config.js
 tsconfig.json
-yarn.lock
+package-lock.json
