@@ -38,8 +38,8 @@ if (
 
 export default defineConfig({
   title: "nieknijland.nl",
-  projectId: "kq5iz0cu",
-  dataset: "development",
+  projectId: process.env.SANITY_STUDIO_API_PROJECT_ID || "kq5iz0cu",
+  dataset: process.env.SANITY_STUDIO_API_DATASET || "development",
   plugins: [
     codeInput(),
     dashboardTool({
