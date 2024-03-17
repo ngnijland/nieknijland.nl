@@ -132,5 +132,69 @@ module.exports = {
         domain: `nieknijland.nl`,
       },
     },
+    {
+      resolve: `gatsby-plugin-feed`,
+      options: {
+        query: `
+          {
+            site {
+              siteMetadata {
+                title
+                description
+                site_url: url
+              }
+            }
+          }
+      `,
+        feeds: [
+          {
+            title: "Niek Nijland's Blog",
+            output: "/rss.xml",
+            match: "^/blog/",
+            language: "en",
+            serialize: ({ query: { site, allSanityPost } }) => {
+              console.log(site.siteMetadata);
+              return allSanityPost.nodes.map((node) => ({
+                title: node.title,
+                description: convertPortableTexttoPlainText(node._rawExcerpt),
+                author: "Niek Nijland",
+                date: node.publishedAt,
+                url: `${site.siteMetadata.site_url}/blog/${node.slug.current}`,
+                guid: node.slug.current,
+              }));
+            },
+            query: `
+            {
+              allSanityPost(sort: {publishedAt: ASC}) {
+                nodes {
+                  _updatedAt
+                  _rawExcerpt
+                  title
+                  slug {
+                    current
+                  }
+                  publishedAt
+                }
+              }
+            }
+            `,
+          },
+        ],
+      },
+    },
   ],
 };
+
+function convertPortableTexttoPlainText(blocks) {
+  if (!blocks) {
+    return "";
+  }
+  return blocks
+    .map((block) => {
+      if (block._type !== "block" || !block.children) {
+        return "";
+      }
+      return block.children.map((child) => child.text).join("");
+    })
+    .join("\n\n");
+}

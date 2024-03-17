@@ -98,20 +98,6 @@ export const query = graphql`
   }
 `;
 
-function toPlainText(blocks: PortableText[]): string {
-  if (!blocks) {
-    return "";
-  }
-  return blocks
-    .map((block) => {
-      if (block._type !== "block" || !block.children) {
-        return "";
-      }
-      return block.children.map((child) => child.text).join("");
-    })
-    .join("\n\n");
-}
-
 export function Head({
   data: {
     post: { _rawExcerpt, canonicalURL, publishedAt, title, _updatedAt },
@@ -121,7 +107,7 @@ export function Head({
   return (
     <SEO
       title={`${title} | Blog`}
-      description={toPlainText(_rawExcerpt)}
+      description={convertPortableTexttoPlainText(_rawExcerpt)}
       image={ogImage.path}
     >
       {canonicalURL ? <link rel="cannonical" href={canonicalURL} /> : null}
@@ -175,6 +161,20 @@ function Post({
       <Footer title="Find me at:" />
     </>
   );
+}
+
+function convertPortableTexttoPlainText(blocks: PortableText[]): string {
+  if (!blocks) {
+    return "";
+  }
+  return blocks
+    .map((block) => {
+      if (block._type !== "block" || !block.children) {
+        return "";
+      }
+      return block.children.map((child) => child.text).join("");
+    })
+    .join("\n\n");
 }
 
 export default Post;
