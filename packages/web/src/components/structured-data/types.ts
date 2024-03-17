@@ -10,27 +10,23 @@ type BlogPosting = {
 export type BlogPostingListItem = {
   author: ArticleAuthor;
   headline: string;
-  image: string[];
   datePublished: string;
   dateModified: string;
 };
 
 export type ArticleAuthor = {
   name: string;
-  url: string;
 };
 
 type JsonLdBlogPosting = {
   "@context": "https://schema.org";
   "@type": "BlogPosting";
   headline: string;
-  image: string[];
   datePublished: string;
   dateModified: string;
   author: {
     "@type": "Person";
     name: string;
-    url: string;
   }[];
 };
 

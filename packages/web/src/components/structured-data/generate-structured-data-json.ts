@@ -7,7 +7,6 @@ export function generateStructuredDataJson(data: Data): StructuredDataJsonLd {
         "@context": "https://schema.org",
         "@type": "BlogPosting",
         headline: data.item.headline,
-        image: data.item.image,
         datePublished: data.item.datePublished,
         dateModified: data.item.dateModified,
         author: [
