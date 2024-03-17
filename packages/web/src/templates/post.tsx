@@ -9,6 +9,7 @@ import { PageTitle } from "../components/pageTitle";
 import { PortableText } from "../components/portableText";
 import Footer from "../components/footer";
 import ArrowDownIcon from "../components/arrowDownIcon";
+import { StructuredData } from "../components/structured-data/StructuredData";
 
 import type { HeadProps, PageProps } from "gatsby";
 
@@ -24,6 +25,7 @@ type DataProps = {
     canonicalURL: string;
     publishedAt: string;
     title: string;
+    _updatedAt: string;
   };
 };
 
@@ -89,6 +91,7 @@ export const query = graphql`
       id
       title
       publishedAt
+      _updatedAt
       _rawBody
       _rawExcerpt
     }
@@ -111,7 +114,7 @@ function toPlainText(blocks: PortableText[]): string {
 
 export function Head({
   data: {
-    post: { _rawExcerpt, canonicalURL, title },
+    post: { _rawExcerpt, canonicalURL, publishedAt, title, _updatedAt },
   },
   pageContext: { ogImage },
 }: HeadProps<DataProps, PageContext>) {
@@ -122,6 +125,17 @@ export function Head({
       image={ogImage.path}
     >
       {canonicalURL ? <link rel="cannonical" href={canonicalURL} /> : null}
+      <StructuredData
+        data={{
+          type: "blog_posting",
+          item: {
+            author: { name: "Niek Nijland" },
+            headline: title,
+            datePublished: publishedAt,
+            dateModified: _updatedAt,
+          },
+        }}
+      />
     </SEO>
   );
 }
