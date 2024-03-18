@@ -152,17 +152,21 @@ module.exports = {
             output: "/rss.xml",
             match: "^/blog/",
             language: "en",
-            serialize: ({ query: { site, allSanityPost } }) => {
-              console.log(site.siteMetadata);
-              return allSanityPost.nodes.map((node) => ({
+            custom_elements: [
+              {
+                'atom:link href="https://www.nieknijland.nl/rss.xml" rel="self" type="application/rss+xml"':
+                  null,
+              },
+            ],
+            serialize: ({ query: { site, allSanityPost } }) =>
+              allSanityPost.nodes.map((node) => ({
                 title: node.title,
                 description: convertPortableTexttoPlainText(node._rawExcerpt),
                 author: "Niek Nijland",
                 date: node.publishedAt,
                 url: `${site.siteMetadata.site_url}/blog/${node.slug.current}`,
                 guid: node.slug.current,
-              }));
-            },
+              })),
             query: `
             {
               allSanityPost(sort: {publishedAt: ASC}) {
