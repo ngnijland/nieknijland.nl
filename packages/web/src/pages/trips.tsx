@@ -216,7 +216,7 @@ function Trips({ data }: PageProps<DataProps>): JSX.Element {
       </Main>
       {Object.keys(tripsByYear).length !== 0 && (
         <HalfWidthLayout>
-          <Footer title="Find me at:" />
+          <Footer title="Follow me at:" />
         </HalfWidthLayout>
       )}
       <MapWrapper>

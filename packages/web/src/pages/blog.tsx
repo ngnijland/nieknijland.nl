@@ -138,7 +138,7 @@ function Blog({ data }: PageProps<DataProps>): JSX.Element {
         </section>
       </Main>
       <Spacer />
-      <Footer title="Find me at:" />
+      <Footer title="Follow me at:" />
     </>
   );
 }
