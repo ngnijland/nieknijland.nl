@@ -21,7 +21,7 @@ function IndexPage(): JSX.Element {
       <Main>
         <PersonalImages />
       </Main>
-      <Footer title="Find me at:" />
+      <Footer title="Follow me at:" />
     </>
   );
 }

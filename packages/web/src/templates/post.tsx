@@ -158,7 +158,7 @@ function Post({
         </article>
       </Main>
       <Spacer />
-      <Footer title="Find me at:" />
+      <Footer title="Follow me at:" />
     </>
   );
 }

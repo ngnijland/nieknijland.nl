@@ -4,6 +4,7 @@ import styled from "styled-components";
 import GithubIcon from "../components/githubIcon";
 import LinkedInIcon from "../components/linkedinIcon";
 import TwitterIcon from "../components/twitterIcon";
+import { RSSIcon } from "../components/rss-icon";
 
 export interface FooterProps {
   title?: string;
@@ -56,7 +57,9 @@ const LinkWrapper = styled.div`
 `;
 
 const Link = styled.a`
-  display: inline-block;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 2.75rem;
   height: 2.75rem;
 
@@ -73,6 +76,10 @@ const GithubLink = styled(Link)`
 
 const LinkedInLink = styled(Link)`
   padding: 0.6875rem;
+`;
+
+const RSSLink = styled(Link)`
+  padding: 0.75rem;
 `;
 
 function Footer({ title }: FooterProps): JSX.Element {
@@ -96,6 +103,9 @@ function Footer({ title }: FooterProps): JSX.Element {
           >
             <LinkedInIcon />
           </LinkedInLink>
+          <RSSLink href="/rss.xml" aria-label="RSS feed">
+            <RSSIcon />
+          </RSSLink>
         </LinkWrapper>
       </FooterWrapper>
     </FooterComponent>
