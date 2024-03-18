@@ -7,7 +7,7 @@ const siteUrl = "https://www.nieknijland.nl";
 module.exports = {
   siteMetadata: {
     title: `Niek Nijland`,
-    description: `A web engineer andtravel enthousiast basedin The Netherlands.`,
+    description: `A web engineer and travel enthousiast based in The Netherlands.`,
     url: siteUrl,
     image: "/images/og-image.png",
     twitterUsername: "@ngnijland",
