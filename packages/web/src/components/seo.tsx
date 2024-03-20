@@ -35,14 +35,14 @@ export function SEO({
       <meta name="description" content={metaDescription} />
       <meta name="image" content={metaImage} />
 
-      <meta name="og:title" content={title} />
+      <meta name="og:title" content={titlePrefix} />
       <meta name="og:description" content={metaDescription} />
       <meta name="og:image" content={metaImage} />
       <meta name="og:type" content="website" />
 
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:creator" content={twitterUsername} />
-      <meta name="twitter:title" content={title} />
+      <meta name="twitter:title" content={titlePrefix} />
       <meta name="twitter:description" content={metaDescription} />
       <meta name="twitter:image" content={metaImage} />
       {children}
