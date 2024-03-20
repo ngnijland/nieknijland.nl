@@ -51,7 +51,7 @@ const Container = styled.section`
     margin-top: 0;
   }
 
-  > p code {
+  code {
     padding: 0.1em 0.25rem;
 
     font-family: Consolas, Monaco, "Andale Mono", "Ubuntu Mono", monospace;

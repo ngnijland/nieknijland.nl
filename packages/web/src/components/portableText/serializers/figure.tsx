@@ -27,6 +27,7 @@ const FigCaption = styled.figcaption`
 
   font-size: 0.875rem;
   color: var(--text-color-secondary);
+  text-align: center;
 `;
 
 export function Figure({
