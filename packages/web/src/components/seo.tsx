@@ -40,7 +40,7 @@ export function SEO({
       <meta name="og:image" content={metaImage} />
       <meta name="og:type" content="website" />
 
-      <meta name="twitter:card" content="summary" />
+      <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:creator" content={twitterUsername} />
       <meta name="twitter:title" content={title} />
       <meta name="twitter:description" content={metaDescription} />
